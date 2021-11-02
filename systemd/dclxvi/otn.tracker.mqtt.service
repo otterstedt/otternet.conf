@@ -1,0 +1,20 @@
+[Unit]
+Description=MQTT Location Tracker
+#BindsTo=tracker.dependency.service
+#PartOf=tracker.dependency.service
+#After=tracker.dependency.service
+
+[Service]
+ExecStart=/home/pi/python/venvs/ict3/bin/python /home/pi/ict/tracker/tracker.mqtt.py
+WorkingDirectory=/home/pi/ict/tracker
+User=pi
+RestartSec=5
+Restart=always
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=tracker.mqtt
+
+[Install]
+Alias=tracker.mqtt.service
+WantedBy=multi-user.target
+#WantedBy=tracker.dependency.service

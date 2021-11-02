@@ -1,0 +1,17 @@
+[Unit]
+Description=GPS Tracker
+Requires=gpsd.service
+After=network.target
+
+[Service]
+ExecStart=/home/pi/python/venvs/ict3/bin/python /home/pi/ict/api/geospatial-api.py
+WorkingDirectory=/home/pi/ict/api
+User=pi
+RestartSec=10
+Restart=always
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ict.api.geospatial
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,22 @@
+[Unit]
+Description=Location Tracker Dependency
+Requires=geospatial-api.service ict.influxdb.service
+After=network.target geospatial-api.service
+#StartLimitIntervalSec=600
+#StartLimitBurst=10
+#OnFailure=otn.ict.shutdown.service
+#Conflicts=otn.ict.shutdown.service
+
+[Service]
+ExecStart=/home/pi/python/venvs/ict3/bin/python /home/pi/ict/tracker/tracker.dependency.py
+ExecStartPost=/usr/bin/sleep 5
+WorkingDirectory=/home/pi/ict/tracker
+User=pi
+RestartSec=5
+Restart=always
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=location-tracker.dependency
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+[Unit]
+Description=ICT Live Syncing Service
+After=network.target
+
+[Service]
+Restart=always
+RestartSec=5
+Type=simple
+#Nice=19
+ExecStart=/usr/bin/lsyncd -nodaemon -pidfile /run/lsyncd.pid /home/pi/ict/config/lsync.ict.conf
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill $MAINPID
+SuccessExitStatus=143
+User=pi
+PIDFile=/run/lsyncd.pid
+
+[Install]
+WantedBy=multi-user.target
