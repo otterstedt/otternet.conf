@@ -1,5 +1,5 @@
 iptables_routing:
-  - iptables -t nat -A POSTROUTING -o eto0 -j MASQUERADE
+  - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
   - iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
   - iptables -A FORWARD -o eth0 -j ACCEPT
   - iptables -A FORWARD -i eth0 -m conntrack --ctstate ESTABLISHED,RELATED   -j ACCEPT
