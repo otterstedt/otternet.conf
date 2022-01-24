@@ -6,9 +6,6 @@ default_config:
 #   base_url: example.duckdns.org:8123
 
 homeassistant:
-  name: !secret zone_lkn_name
-  external_url: !secret zone_lkn_internal_url
-  internal_url: !secret zone_lkn_external_url
   unit_system: metric
   time_zone: America/Montreal
   auth_providers:
@@ -61,6 +58,18 @@ camera:
   - platform: mjpeg
     name: !secret camera_sln_cat_name
     mjpeg_url: !secret camera_sln_cat_url
+  - platform: mjpeg
+    name: !secret camera_rge_acer_name
+    mjpeg_url: http://192.168.50.10:8004
+  - platform: mjpeg
+    name: !secret camera_rge_attic_name
+    mjpeg_url: http://192.168.50.10:8005
+  - platform: mjpeg
+    name: !secret camera_rge_outhouse_name
+    mjpeg_url: http://192.168.50.10:8006
+  - platform: mjpeg
+    name: !secret camera_rge_lroom_name
+    mjpeg_url: http://192.168.50.10:8003
 
 lutron_caseta:
     host: 10.0.1.41
@@ -142,7 +151,7 @@ iperf3:
   hosts:
     - host: !secret host_dmz_rge
       port: 5001
-  - host: acer.rge
+    - host: acer.rge
       port: 5001
 
 media_extractor:
@@ -189,6 +198,10 @@ notify:
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_token_secret
     username: !secret twitter_username
+
+#plex:
+#  host: 10.0.1.2
+#  port: 32401
 
 prometheus:
   namespace: hass_sln
@@ -314,5 +327,6 @@ volvooncall:
     - any_window_open
 
 group: !include groups.yaml
-automation: !include automations.yaml
+automation manual: !include_dir_merge_list automations/
+automation ui: !include automations.yaml
 script: !include scripts.yaml

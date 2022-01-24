@@ -1,0 +1,102 @@
+- id: ict_instance_running
+  alias: ICT instance running
+  trigger:
+  - platform: state
+    entity_id: sensor.ict_instance
+    to: running
+  - platform: state
+    entity_id: input_boolean.ict_switch
+    to: 'on'
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.ict_switch
+  - service: shell_command.aws_cli_start_instances
+    data:
+      ids: i-07f7b6b0af31594f2
+- id: ict_instance_stopped
+  alias: ICT instance stopped
+  trigger:
+  - platform: state
+    entity_id: sensor.ict_instance
+    to: stopped
+  - platform: state
+    entity_id: input_boolean.ict_switch
+    to: 'off'
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.ict_switch
+  - service: shell_command.aws_cli_stop_instances
+    data:
+      ids: i-07f7b6b0af31594f2
+- id: tools_instance_running
+  alias: Tools instance running
+  trigger:
+  - platform: state
+    entity_id: sensor.tools_instance
+    to: running
+  - platform: state
+    entity_id: input_boolean.tools_switch
+    to: 'on'
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.tools_switch
+  - service: shell_command.aws_cli_start_instances
+    data:
+      ids: i-0c2c0942e2b0e13fc
+- id: tools_instance_stopped
+  alias: Tools instance stopped
+  trigger:
+  - platform: state
+    entity_id: sensor.tools_instance
+    to: stopped
+  - platform: state
+    entity_id: input_boolean.tools_switch
+    to: 'off'
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.tools_switch
+  - service: shell_command.aws_cli_stop_instances
+    data:
+      ids: i-0c2c0942e2b0e13fc
+- id: web_instance_running
+  alias: Web instance running
+  trigger:
+  - platform: state
+    entity_id: sensor.web_instance
+    to: running
+  - platform: state
+    entity_id: input_boolean.web_switch
+    to: 'on'
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.web_switch
+  - service: shell_command.aws_cli_start_instances
+    data:
+      ids: i-06d83f0e21bf32455
+- id: web_instance_stopped
+  alias: Web instance stopped
+  trigger:
+  - platform: state
+    entity_id: sensor.web_instance
+    to: stopped
+  - platform: state
+    entity_id: input_boolean.web_switch
+    to: 'off'
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.web_switch
+  - service: shell_command.aws_cli_stop_instances
+    data:
+      ids: i-06d83f0e21bf32455
