@@ -92,7 +92,8 @@
   trigger:
   - entity_id: media_player.chambre_principale
     platform: state
-    to: unavailable
+    to: idle
+    for: 00:10:00
   condition:
   - before: sunset
     condition: sun

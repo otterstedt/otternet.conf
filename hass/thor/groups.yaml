@@ -10,18 +10,21 @@ kids:
     - person.dorothee
     - person.olivier
     
-pets:
-  name: Pet Devices
-  entities:
-    - person.sven
-    - person.gustaf
-    - person.loki
+#pets:
+#  name: Pet Devices
+#  entities:
+#    - person.sven
+#    - person.gustaf
+#    - person.loki
 
-climate_rge:
-  name: Climate Rävgrävle
+bedroom_sln:
+  name: Bedroom
   entities:
-    - sensor.temp_patio_temperature
-    - sensor.temp_patio_humidity
+    - light.media_room_hood
+    - light.bedroom_basement_bedroom_roof
+    - sensor.bedroomdown_sln_temperature 
+    - switch.radiator_media
+    - climate.bedroom_basement_thermostat
 
 climate_sln:
   name: Climate Silverlyckan
@@ -37,6 +40,28 @@ climate_sln:
     - sensor.kitchenout_sln_temperature
     - sensor.tvroom_sln_temperature
     - sensor.tvroom_sln_humidity
+    - sensor.dipper_sln_temperature
+    - sensor.bedroomdown_sln_humidity
+    - sensor.bedroomdown_sln_temperature 
+
+camera_entrance:
+  name: Entrance Camera
+  entities:
+    - binary_sensor.amcrest_camera_motion_detected
+    - binary_sensor.amcrest_camera_online
+    - camera.amcrest_camera
+    - sensor.amcrest_camera_ptz_preset
+    - sensor.amcrest_camera_sd_used
+
+entrance_sln:
+  name: Entrance
+  entities:
+    - binary_sensor.amcrest_camera_motion_detected
+    - light.approach_lamp
+    - light.basement_outdoor_lamp
+    - switch.ljusstake
+    - switch.balcony_power
+    - binary_sensor.door_sln
     
 network_sln:
   name: Network Silverlyckan
