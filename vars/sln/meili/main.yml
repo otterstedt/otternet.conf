@@ -1,4 +1,5 @@
 packages:
+  - openvpn
   - net-tools
   - iptables-persistent
 
