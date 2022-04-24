@@ -1,13 +1,18 @@
 host:
   site: 4
-  id: 165
-  description: Networking/VPN
+  id: 161
+  description: Audio/Video/Streaming
+
+esxi:
+  config_settings:
+    - key: disk.EnableUUID
+      value: 'TRUE'
 
 packages:
-  - nginx
   - openvpn
   - net-tools
   - iptables-persistent
+  - nfs-common
 
 iptables_routing:
   - iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE

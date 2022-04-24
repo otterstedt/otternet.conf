@@ -1,0 +1,12 @@
+host:
+  site: 4
+  id: 166
+  description: Gaming
+
+esxi:
+  config_settings:
+    - key: disk.EnableUUID
+      value: 'TRUE'
+
+packages:
+  - docker.io

@@ -1,0 +1,106 @@
+adults:
+  name: Adult devices
+  entities:
+    - person.michael
+    - person.karen
+
+kids:
+  name: Kid devices
+  entities:
+    - person.dorothee
+    - person.olivier
+    
+#pets:
+#  name: Pet Devices
+#  entities:
+#    - person.sven
+#    - person.gustaf
+#    - person.loki
+
+bedroom_sln:
+  name: Bedroom
+  entities:
+    - light.media_room_hood
+    - light.bedroom_basement_bedroom_roof
+    - sensor.bedroomdown_sln_temperature 
+    - switch.radiator_media
+    - climate.bedroom_basement_thermostat
+
+climate_sln:
+  name: Climate Silverlyckan
+  entities:
+    - sensor.bedroom_sln_temperature
+    - sensor.bedroom_sln_humidity
+    - sensor.freezer_sln_temperature
+    - sensor.freezer_sln_humidity
+    - sensor.mediaroom_sln_temperature
+    - sensor.mediaroom_sln_humidity
+    - sensor.kitchen_sln_temperature
+    - sensor.kitchen_sln_humidity
+    - sensor.kitchenout_sln_temperature
+    - sensor.tvroom_sln_temperature
+    - sensor.tvroom_sln_humidity
+    - sensor.dipper_sln_temperature
+    - sensor.bedroomdown_sln_humidity
+    - sensor.bedroomdown_sln_temperature 
+
+camera_entrance:
+  name: Entrance Camera
+  entities:
+    - binary_sensor.amcrest_camera_motion_detected
+    - binary_sensor.amcrest_camera_online
+    - camera.amcrest_camera
+    - sensor.amcrest_camera_ptz_preset
+    - sensor.amcrest_camera_sd_used
+
+entrance_sln:
+  name: Entrance
+  entities:
+    - binary_sensor.amcrest_camera_motion_detected
+    - light.approach_lamp
+    - light.basement_outdoor_lamp
+    - switch.ljusstake
+    - switch.balcony_power
+    - binary_sensor.door_sln
+    
+network_sln:
+  name: Network Silverlyckan
+  entities:
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    
+dclxvi_sln:
+  name: DCLXVI
+  entities:
+    - device_tracker.volvo_dclxvi
+    - binary_sensor.dclxvi_engine
+    - switch.dclxvi_engine
+    - lock.dclxvi_door_lock
+    - sensor.dclxvi_fuel_amount
+    - sensor.dclxvi_fuel_level
+    - sensor.dclxvi_range
+    
+environment_sln:
+  name: Environment
+  entities:
+    - sun.sun
+    - sensor.season
+    - sensor.silversky
+    - sensor.silver_callsign
+    - sensor.dipper_sln_temperature
+
+instances:
+  name: Instances
+  entities:
+    - input_boolean.ict_switch
+    - input_boolean.web_switch
+    - input_boolean.tools_switch
+
+other:
+  name: Other Devices
+    - person.dclxvi
+
+guests:
+  name: Guest Devices
+    - person.melanie

@@ -1,0 +1,344 @@
+# Configure a default setup of Home Assistant (frontend, api, etc) 
+default_config: 
+ 
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc. 
+# http: 
+#   base_url: example.duckdns.org:8123
+
+homeassistant:
+  unit_system: metric
+  time_zone: America/Montreal
+  latitude: !secret zone_lkn_latitude
+  longitude: !secret zone_lkn_longitude
+  auth_providers:
+    - type: homeassistant
+    - type: legacy_api_password
+      api_password: !secret http_api_password
+ 
+ 
+amcrest: 
+  - host: 10.0.1.52 
+    username: admin 
+    password: !secret mqtt_password 
+    binary_sensors:
+      - motion_detected
+      - online
+    sensors:
+      - sdcard
+      - ptz_preset
+#  - host: 10.0.1.54 
+#    username: admin 
+#    password: !secret mqtt_password 
+#    binary_sensors:
+#      - motion_detected
+#      - online
+#    sensors:
+#      - sdcard
+#      - ptz_preset
+
+binary_sensor:
+  - platform: template
+    sensors:
+      person_present:
+        friendly_name: 'Person Present'
+        device_class: presence
+        entity_id:
+          - sensor.time
+        value_template: >
+          {% set ns = namespace(found=false) %}
+          {% for state in states.person %}
+            {% if state.state == 'home' %}
+              {% set ns.found = true %}
+            {% endif %}
+          {% endfor %}
+          {{ns.found}}
+
+camera:
+  - platform: mjpeg
+    name: !secret camera_sln_washer_name
+    mjpeg_url: !secret camera_sln_washer_url
+  - platform: mjpeg
+    name: !secret camera_sln_cat_name
+    mjpeg_url: !secret camera_sln_cat_url
+  - platform: mjpeg
+    name: !secret camera_rge_acer_name
+    mjpeg_url: http://192.168.50.10:8004
+  - platform: mjpeg
+    name: !secret camera_rge_attic_name
+    mjpeg_url: http://192.168.50.10:8005
+  - platform: mjpeg
+    name: !secret camera_rge_outhouse_name
+    mjpeg_url: http://192.168.50.10:8006
+  - platform: mjpeg
+    name: !secret camera_rge_lroom_name
+    mjpeg_url: http://192.168.50.10:8003
+
+lutron_caseta:
+    host: 10.0.1.41
+    keyfile: caseta.key
+    certfile: caseta.crt
+    ca_certs: caseta-bridge.crt
+    
+climate:
+  - platform: generic_thermostat
+    name: Bedroom Thermostat
+    heater: switch.radiator_bedroom
+    target_sensor: sensor.bedroom_sln_temperature
+    max_temp: 24
+    cold_tolerance: 0.8
+    keep_alive:
+      minutes: 5
+  - platform: generic_thermostat
+    name: Media Room Thermostat
+    heater: switch.radiator_media
+    target_sensor: sensor.mediaroom_sln_temperature
+    max_temp: 24
+    cold_tolerance: 0.8
+    keep_alive:
+      minutes: 5
+  - platform: generic_thermostat
+    name: Bedroom Basement Thermostat
+    heater: switch.radiator_media
+    target_sensor: sensor.bedroomdown_sln_temperature
+    max_temp: 24
+    cold_tolerance: 0.8
+    keep_alive:
+      minutes: 5
+
+
+device_tracker: 
+  - platform: bluetooth_tracker 
+  - platform: bluetooth_le_tracker 
+    track_new_devices: true 
+  - platform: nmap_tracker 
+    hosts: 10.0.1.0/24 
+    home_interval: 10 
+    consider_home: 180
+  - platform: tile
+    username: !secret tile_username
+    password: !secret tile_password
+    
+discovery:
+
+fastdotcom:
+  scan_interval:
+      minutes: 60
+
+gdacs:
+
+geo_location:
+  - platform: usgs_earthquakes_feed
+    feed_type: 'past_month_all_earthquakes'
+    radius: 50
+    minimum_magnitude: 0.0
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+ 
+influxdb:
+  api_version: 2
+  host: localhost
+  port: 8086
+  ssl: false
+  bucket: home_assistant
+  organization: 976be20ced77ca21
+  token: !secret influxdb_token_sln
+  tags:
+    source: hass
+
+
+input_boolean:
+  ict_switch:
+    name: AWS ICT Instance
+    icon: mdi:server
+  tools_switch:
+    name: AWS Tools Instance
+    icon: mdi:server
+  web_switch:
+    name: AWS Web Instance
+    icon: mdi:server
+
+iperf3:
+  hosts:
+    - host: !secret host_dmz_rge
+      port: 5001
+    - host: acer.rge
+      port: 5001
+
+media_extractor:
+ 
+mqtt: 
+  broker: !secret mqtt_host 
+  port: !secret mqtt_port 
+  username: !secret mqtt_user 
+  password: !secret mqtt_password 
+  certificate: /etc/ssl/certs/ca-certificates.crt 
+ 
+mqtt_statestream: 
+  base_topic: hass/statestream 
+  publish_attributes: true 
+  publish_timestamps: true
+
+mqtt_eventstream:
+  publish_topic: hass/eventstream/slaves/sln
+  subscribe_topic: hass/eventstream/master
+
+notify:
+  - name: pushover
+    platform: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key
+  - name: slack_smolandia
+    platform: slack
+    api_key: !secret slack_smolandia_hasse_access_token
+    default_channel: '#automation-notifications'
+    username: hasse
+  - name: aws_cli
+    platform: command_line
+    command: "ARGS=$(cat) && /usr/local/bin/aws $ARGS"
+  - name: twitter
+    platform: twitter
+    consumer_key: !secret twitter_consumer_key
+    consumer_secret: !secret twitter_consumer_secret
+    access_token: !secret twitter_access_token
+    access_token_secret: !secret twitter_access_token_secret
+  - name: twitter_direct
+    platform: twitter
+    consumer_key: !secret twitter_consumer_key
+    consumer_secret: !secret twitter_consumer_secret
+    access_token: !secret twitter_access_token
+    access_token_secret: !secret twitter_access_token_secret
+    username: !secret twitter_username
+
+#plex:
+#  host: 10.0.1.2
+#  port: 32401
+
+prometheus:
+  namespace: hass_sln
+
+sensor:
+  - platform: season
+    name: Season
+  - platform: mqtt
+    name: Silver Callsign
+    unique_id: silversky_callsign
+    state_topic: "hass/message/silversky/callsign"
+  - platform: opensky
+    radius: 15
+    name: silversky
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'date_time_utc'
+      - 'date_time_iso'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
+  - platform: template
+    sensors:
+      timetopoubelle:
+        friendly_name: Days to Poubelle
+        entity_id: sensor.time
+        value_template: >-
+          {% if states.calendar.marbleton_poubelle.attributes.start_time %}
+            {{((as_timestamp(states.calendar.marbleton_poubelle.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {%- else -%}
+            0
+          {%- endif %}
+      timetorecyclage:
+        friendly_name: Days to Recyclage
+        entity_id: sensor.time
+        value_template: >-
+          {% if states.calendar.marbleton_recyclage.attributes.start_time %}
+            {{((as_timestamp(states.calendar.marbleton_recyclage.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {%- else -%}
+            0
+          {%- endif %}
+      bishoptonpoubelle:
+        friendly_name: Days to Poubelle - Bishopton
+        entity_id: sensor.time
+        value_template: >-
+          {% if states.calendar.bishopton_poubelle.attributes.start_time %}
+            {{((as_timestamp(states.calendar.bishopton_poubelle.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {%- else -%}
+            0
+          {%- endif %}
+      bishoptonrecyclage:
+        friendly_name: Days to Recyclage - Bishopton
+        entity_id: sensor.time
+        value_template: >-
+          {% if states.calendar.bishopton_recyclage.attributes.start_time %}
+            {{((as_timestamp(states.calendar.bishopton_recyclage.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {%- else -%}
+            0
+          {%- endif %}
+      timetocomposte:
+        friendly_name: Days to Composte
+        entity_id: sensor.time
+        value_template: >-
+          {% if states.calendar.dudswell_composte.attributes.start_time %}
+            {{((as_timestamp(states.calendar.dudswell_composte.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {%- else -%}
+            0
+          {%- endif %}
+  - platform: command_line
+    name: ICT Instance
+    json_attributes:
+      - Reservations
+    command: !secret aws_instance_ict_status_command
+    value_template: '{{ value_json.Reservations[0].Instances[0].State.Name }}'
+  - platform: command_line
+    name: Tools Instance
+    json_attributes:
+      - Reservations
+    command: !secret aws_instance_tools_status_command
+    value_template: '{{ value_json.Reservations[0].Instances[0].State.Name }}'
+  - platform: command_line
+    name: Web Instance
+    json_attributes:
+      - Reservations
+    command: !secret aws_instance_web_status_command
+    value_template: '{{ value_json.Reservations[0].Instances[0].State.Name }}'
+
+shell_command:
+  aws_cli: '/usr/local/bin/aws {{ args }}'
+  aws_cli_start_instances: '/usr/local/bin/aws ec2 start-instances --instance-ids {{ ids }}'
+  aws_cli_stop_instances: '/usr/local/bin/aws ec2 stop-instances --instance-ids {{ ids }}'
+
+speedtestdotnet:
+
+tellduslive:
+  host: 10.0.1.25
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+upnp:
+
+volvooncall:
+  username: !secret voc_user
+  password: !secret voc_password
+  region: !secret voc_region
+  resources:
+    - position 
+    - engine_start
+    - heater
+    - is_engine_running
+    - lock
+    - fuel_amount
+    - fuel_amount_level
+    - distance_to_empty
+    - battery_range
+    - battery_level
+    - any_door_open
+    - any_window_open
+
+group: !include groups.yaml
+automation manual: !include_dir_merge_list automations/
+automation ui: !include automations.yaml
+script: !include scripts.yaml

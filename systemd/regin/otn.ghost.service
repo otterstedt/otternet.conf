@@ -1,0 +1,22 @@
+[Unit]
+Description=Ghost Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name=ghost \
+    -e url=http://10.0.1.162:8000 \
+    -p 8000:2368 \
+    -v ghost-volume:/var/lib/ghost/content\
+     ghost:4.44
+ExecStop=/usr/bin/docker stop ghost
+ExecReload=/usr/bin/docker restart ghost
+User=otterstedt
+RestartSec=10
+Restart=always
+TimeoutSec=600
+
+[Install]
+Alias=ghost.service
+WantedBy=multi-user.target

@@ -1,0 +1,28 @@
+[Unit]
+Description=Plex Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name plex \
+    --network=host \
+    -e TZ="America/Toronto" \
+    -v /home/otterstedt/plex/config:/config \
+    -v /home/otterstedt/plex/transcode:/transcode \
+    -v /home/otterstedt/Media:/data \
+    plexinc/pms-docker
+ExecStop=/usr/bin/docker stop plex
+ExecReload=/usr/bin/docker restart plex
+User=otterstedt
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.plex
+
+[Install]
+Alias=plex.service
+WantedBy=multi-user.target

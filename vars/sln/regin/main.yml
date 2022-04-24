@@ -1,0 +1,17 @@
+host:
+  site: 4
+  id: 162
+  description: Tools/Automation/Monitoring
+
+esxi:
+  config_settings:
+    - key: disk.EnableUUID
+      value: 'TRUE'
+
+packages:
+  - influxdb-client
+  - iperf3
+  - docker-ce 
+  - docker-ce-cli 
+  - containerd.io
+  - nfs-common

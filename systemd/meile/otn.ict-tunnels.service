@@ -1,0 +1,12 @@
+[Unit]
+Description=ICT Tunnels
+After=network.target ssh.service
+
+[Service]
+ExecStart=/usr/bin/ssh -NT ict-amazon-tunnels
+User=otterstedt
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

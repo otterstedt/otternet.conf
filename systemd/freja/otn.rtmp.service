@@ -1,0 +1,25 @@
+[Unit]
+Description=RTMP Nginx Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+  --name=rtmp \
+  -p 1935:1935 \
+  -p 8080:8080 \
+  alqutami/rtmp-hls
+ExecStop=/usr/bin/docker stop rtmp
+ExecReload=/usr/bin/docker restart rtmp
+User=otterstedt
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.rtmp
+
+[Install]
+Alias=rtmp.service
+WantedBy=multi-user.target

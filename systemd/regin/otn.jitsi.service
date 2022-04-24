@@ -1,0 +1,30 @@
+[Unit]
+Description=Jitsi Video Conferencing
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/local/bin/docker-compose up
+ExecStop=/usr/local/bin/docker-compose stop
+User=otterstedt
+Group=docker
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+WorkingDirectory=/home/otterstedt/docker-jitsi-meet
+TimeoutSec=600
+
+[Install]
+Alias=jitsi.service
+WantedBy=multi-user.target
+
+## 
+# git clone https://github.com/jitsi/docker-jitsi-meet
+# cp env.example .env
+# sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# sudo chmod +x /usr/local/bin/docker-compose
+# sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+# docker-compose --version
+
+
+## User
+# docker-compose exec prosody /bin/bash
+# prosodyctl --config /config/prosody.cfg.lua register TheDesiredUsername meet.jitsi TheDesiredPassword

@@ -1,0 +1,30 @@
+[Unit]
+Description=Lightweight Music Server Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name=lms \
+    --user 1000:1000 \
+    -p 5082:5082 \
+    -v /home/otterstedt/Media/Music:/music:ro \
+    -v /home/otterstedt/lms/data:/var/lms \
+    epoupon/lms
+ExecStop=/usr/bin/docker stop lms
+ExecReload=/usr/bin/docker restart lms
+User=otterstedt
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.lms
+
+[Install]
+Alias=lms.service
+WantedBy=multi-user.target
+
+#https://github.com/epoupon/lms
+#https://hub.docker.com/r/epoupon/lms

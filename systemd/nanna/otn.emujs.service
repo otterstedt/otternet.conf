@@ -1,0 +1,36 @@
+[Unit]
+Description=Emulator.js Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+
+ExecStart=/usr/bin/docker run --rm \
+  --name=emulatorjs \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=America/Montreal \
+  -p 3000:3000 \
+  -p 80:80 \
+  -p 4001:4001 \
+  -v /home/otterstedt/emujs/config:/config \
+  -v /home/otterstedt/emujs/data:/data \
+  lscr.io/linuxserver/emulatorjs
+ExecStop=/usr/bin/docker stop emulatorjs
+ExecReload=/usr/bin/docker restart emulatorjs
+User=otterstedt
+RestartSec=10
+Restart=always
+Group=docker
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+WorkingDirectory=/home/otterstedt/emujs
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.emujs
+
+[Install]
+Alias=emujs.service
+WantedBy=multi-user.target
+
+# https://github.com/linuxserver/docker-emulatorjs
