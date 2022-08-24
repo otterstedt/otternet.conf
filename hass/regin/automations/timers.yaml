@@ -14,7 +14,7 @@
     service: switch.turn_on
     
  - id: aquarium_lights_evening
-  alias: Turn on Aquarium in the morning
+  alias: Turn off Aquarium in the morning
   description: ''
   trigger:
   - at: '22.30'
