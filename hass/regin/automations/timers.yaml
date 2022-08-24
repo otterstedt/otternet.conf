@@ -14,16 +14,16 @@
     service: switch.turn_on
     
  - id: aquarium_lights_evening
-  alias: Turn off Aquarium in the morning
-  description: ''
-  trigger:
-  - at: '22.30'
-    platform: time
-  condition:
-  - condition: state
-    entity_id: binary_sensor.person_present
-    state: 'on'
-  action:
-  - data: {}
-    entity_id: switch.christmas_tree
-    service: switch.turn_off
+   alias: Turn off Aquarium in the morning
+   description: ''
+   trigger:
+   - at: '22.30'
+     platform: time
+   condition:
+   - condition: state
+     entity_id: binary_sensor.person_present
+     state: 'on'
+   action:
+   - data: {}
+     entity_id: switch.christmas_tree
+     service: switch.turn_off
