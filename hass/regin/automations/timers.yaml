@@ -2,27 +2,21 @@
   alias: Turn on Aquarium in the morning
   description: ''
   trigger:
-  - at: '06.30'
+  - at: '06:30'
     platform: time
-  condition:
-  - condition: state
-    entity_id: binary_sensor.person_present
-    state: 'on'
+  condition: []
   action:
   - data: {}
     entity_id: switch.christmas_tree
     service: switch.turn_on
-    
+
 - id: aquarium_lights_evening
   alias: Turn off Aquarium in the morning
   description: ''
   trigger:
-  - at: '22.30'
+  - at: '22:30'
     platform: time
-  condition:
-  - condition: state
-    entity_id: binary_sensor.person_present
-    state: 'on'
+  condition: []
   action:
   - data: {}
     entity_id: switch.christmas_tree
