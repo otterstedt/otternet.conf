@@ -1,0 +1,20 @@
+[Unit]
+Description=Concourse
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker-compose up
+ExecStop=/usr/bin/docker-compose stop
+User=otterstedt
+Group=docker
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+WorkingDirectory=/home/otterstedt/concourse
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.concourse
+
+[Install]
+Alias=concourse.service
+WantedBy=multi-user.target
