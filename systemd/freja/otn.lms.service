@@ -8,12 +8,12 @@ ExecStart=/usr/bin/docker run --rm \
     --name=lms \
     --user 1000:1000 \
     -p 5082:5082 \
-    -v /home/otterstedt/Media/Music:/music:ro \
-    -v /home/otterstedt/lms/data:/var/lms \
+    -v /home/{{ ansible_user }}/Media/Music:/music:ro \
+    -v /home/{{ ansible_user }}lms/data:/var/lms \
     epoupon/lms
 ExecStop=/usr/bin/docker stop lms
 ExecReload=/usr/bin/docker restart lms
-User=otterstedt
+User={{ ansible_user }}
 RestartSec=10
 Restart=always
 Group=docker

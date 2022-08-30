@@ -6,10 +6,10 @@ After=docker.service
 [Service]
 ExecStart=/usr/bin/docker-compose up
 ExecStop=/usr/bin/docker-compose stop
-User=otterstedt
+User={{ ansible_user }}
 Group=docker
 Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
-WorkingDirectory=/home/otterstedt/concourse
+WorkingDirectory=/home/{{ ansible_user }}/concourse
 TimeoutSec=600
 StandardOutput=journal
 StandardError=journal

@@ -4,7 +4,7 @@ After=network.target ssh.service
 
 [Service]
 ExecStart=/usr/bin/ssh -NT ict-amazon-tunnels
-User=otterstedt
+User={{ ansible_user }}
 RestartSec=5
 Restart=always
 
