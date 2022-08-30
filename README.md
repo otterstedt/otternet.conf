@@ -19,4 +19,3 @@ General configuration package
 [udev](./udev)
 
 ### WSL2
-
