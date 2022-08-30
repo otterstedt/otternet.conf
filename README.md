@@ -6,7 +6,9 @@ General configuration package
 
 ## Platforms
 
-### SystemD
+### SystemD Services
+
+[SystemD](./systemd)
 
 ### Home Assistant
 
