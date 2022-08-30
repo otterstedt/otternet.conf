@@ -10,6 +10,8 @@ General configuration package
 
 ### Home Assistant
 
+[hass](./hass)
+
 ### Udev
 
 ### WSL2
