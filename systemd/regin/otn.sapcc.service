@@ -1,0 +1,15 @@
+[Unit]
+Description=SAP Cloud Connector
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/bash go.sh
+KillSignal=SIGINT
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+TimeoutSec=600
+
+[Install]
+Alias=sapcc.service
+WantedBy=multi-user.target
