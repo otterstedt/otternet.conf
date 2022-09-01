@@ -6,6 +6,8 @@ After=network.target
 ExecStart=/usr/bin/bash go.sh
 KillSignal=SIGINT
 User={{ ansible_user }}
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+WorkingDirectory=/home/{{ ansible_user }}/sapcc
 RestartSec=10
 Restart=always
 TimeoutSec=600
