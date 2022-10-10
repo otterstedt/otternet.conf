@@ -2,5 +2,11 @@ iptables_routing:
   - iptables -t nat -A POSTROUTING -o enp2s0f2 -j MASQUERADE
   - iptables -A FORWARD -i wlp3s0 -o enp2s0f2 -j ACCEPT
   - iptables -A FORWARD -o enp2s0f2 -j ACCEPT
-  - iptables -A FORWARD -i enp2s0f2 -m conntrack --ctstate ESTABLISHED,RELATED   -j ACCEPT
+  - iptables -A FORWARD -i enp2s0f2 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
   - iptables -A INPUT -i enp2s0f2 -j ACCEPT
+
+  - iptables -t nat -A POSTROUTING -o wlp3s0  -j MASQUERADE
+  - iptables -A FORWARD -i enp2s0f2 -o wlp3s0  -j ACCEPT
+  - iptables -A FORWARD -o wlp3s0 -j ACCEPT
+  - iptables -A FORWARD -i wlp3s0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+  - iptables -A INPUT -i wlp3s0 -j ACCEPT
