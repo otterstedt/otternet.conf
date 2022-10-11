@@ -119,9 +119,6 @@ nest:
 
 camera:
   - platform: mjpeg
-    name: !secret camera_rge_back_name
-    mjpeg_url: !secret camera_rge_back_url
-  - platform: mjpeg
     name: !secret camera_rge_front_name
     mjpeg_url: !secret camera_rge_front_url
   - platform: mjpeg
