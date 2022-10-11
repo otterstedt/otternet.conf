@@ -1,0 +1,19 @@
+[Unit]
+Description=Homeassistant Docker
+Requires=docker.service
+After=docker.service influxdb.service 
+
+[Service]
+ExecStart=/usr/bin/docker run --rm --privileged --name=home-assistant -v=/home/{{ ansible_user }}/homeass/config:/config -v=/etc/localtime:/etc/localtime:ro --net=host homeassistant/home-assistant
+ExecStop=/usr/bin/docker stop home-assistant
+ExecReload=/usr/bin/docker restart home-assistant
+{{ ansible_user }}
+# Note RHEL/Fedora uses 'nobody', Debian/Ubuntu uses 'nogroup'
+Group=docker
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+WorkingDirectory=/home/{{ ansible_user }}/homeass
+TimeoutSec=600
+
+[Install]
+Alias=hass.service
+WantedBy=multi-user.target
