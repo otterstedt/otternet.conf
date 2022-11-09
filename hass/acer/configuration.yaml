@@ -194,6 +194,7 @@ lovelace:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+light: !include lights.yaml
 
 logger:
   default: warning

@@ -1,0 +1,9 @@
+- platform: group
+  name: Lights
+  entities:
+    - light.kitchentable
+    - switch.acer
+    - switch.lampflower
+    - switch.greenblack
+    - switch.lamptable
+    - switch.cambigroom
