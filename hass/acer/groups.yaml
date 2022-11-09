@@ -64,3 +64,13 @@ surroundings:
   name: Surroundings
   entities:
     - sensor.rge_callsign
+
+lights:
+  name: Lights
+  entities:
+    - light.kitchentable
+    - switch.acer
+    - switch.lampflower
+    - switch.greenblack
+    - switch.lamptable
+    - switch.cambigroom
