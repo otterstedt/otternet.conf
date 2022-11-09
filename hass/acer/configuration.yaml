@@ -96,6 +96,21 @@ sensor:
     name: RGE Callsign
     unique_id: rgesky_callsign
     state_topic: "hass/message/rgesky/callsign"
+  - platform: trafikverket_weatherstation
+    name: Trafikverket Borgholm
+    api_key: 44c57611abe74a599f3d02d97dda940f
+    station: Borgholm
+    monitored_conditions:
+        - air_temp
+        - road_temp
+        - humidity
+        - precipitation
+        - wind_direction
+        - wind_direction_text
+        - wind_speed
+        - wind_speed_max
+        - precipitation_amount
+        - precipitation_amountname
 
 tellduslive:
 
