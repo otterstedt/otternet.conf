@@ -38,3 +38,29 @@ rge:
    - binary_sensor.backyard_camera_person_detected
    - binary_sensor.backyard_camera_sound_detected
    - camera.backyard
+
+network_speed:
+  name: Network Bandwidth/Speed
+  entities:
+    - sensor.download_ict_otternet_ca
+    - sensor.upload_ict_otternet_ca
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+
+network_throughput:
+  name: Network Throughput
+  entities:
+    - sensor.rt_ax56u_b8f0_b_received
+    - sensor.rt_ax56u_b8f0_b_sent
+    - sensor.rt_ax56u_b8f0_kib_s_received
+    - sensor.rt_ax56u_b8f0_kib_s_sent
+    - sensor.rt_ax56u_b8f0_packets_received
+    - sensor.rt_ax56u_b8f0_packets_sent
+    - sensor.rt_ax56u_b8f0_packets_s_received
+    - sensor.rt_ax56u_b8f0_packets_s_sent
+
+surroundings:
+  name: Surroundings
+  entities:
+    - sensor.rge_callsign
