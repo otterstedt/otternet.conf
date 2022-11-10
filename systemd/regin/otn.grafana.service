@@ -1,0 +1,24 @@
+[Unit]
+Description=Grafana Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+  -p 3000:3000 \
+  --name=grafana \
+  -e "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource" \
+  --volume "$PWD/data:/var/lib/grafana" \
+  --user $ID \
+  grafana/grafana-oss
+ExecStop=/usr/bin/docker stop grafana
+ExecReload=/usr/bin/docker restart grafana
+User={{ ansible_user }}
+WorkingDirectory=/home/{{ ansible_user }}/grafana
+RestartSec=10
+Restart=always
+TimeoutSec=600
+
+[Install]
+Alias=grafana.service
+WantedBy=multi-user.target
