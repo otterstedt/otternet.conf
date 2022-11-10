@@ -78,6 +78,9 @@ camera:
   - platform: mjpeg
     name: !secret camera_rge_lroom_name
     mjpeg_url: http://192.168.50.10:8003
+  - platform: mjpeg
+    name: !secret camera_rge_dtop_name
+    mjpeg_url: !secret camera_rge_dtop_url
 
 lutron_caseta:
     host: 10.0.1.41
