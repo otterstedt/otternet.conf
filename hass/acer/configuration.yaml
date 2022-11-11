@@ -54,6 +54,17 @@ map:
 # Track the sun
 sun:
 
+amcrest: 
+  - host: 10.0.1.52 
+    username: admin 
+    password: !secret mqtt_password 
+    binary_sensors:
+      - motion_detected
+      - online
+    sensors:
+      - sdcard
+      - ptz_preset
+
 binary_sensor:
   - platform: mqtt
     name: "Door Detector"
