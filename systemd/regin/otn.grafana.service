@@ -8,8 +8,8 @@ ExecStart=/usr/bin/docker run --rm \
   -p 3000:3000 \
   --name=grafana \
   -e "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource" \
-  --volume "$PWD/data:/var/lib/grafana" \
-  --user $ID \
+  --volume "/home/{{ ansible_user }}/grafana/data:/var/lib/grafana" \
+  --user 1000 \
   grafana/grafana-oss
 ExecStop=/usr/bin/docker stop grafana
 ExecReload=/usr/bin/docker restart grafana
