@@ -66,15 +66,25 @@ surroundings:
     - sensor.rge_callsign
     - sensor.rgesky
 
-lights:
-  name: Lights
-  entities:
-    - light.kitchentable
-    - switch.acer
-    - switch.lampflower
-    - switch.greenblack
-    - switch.lamptable
-    - switch.cambigroom
+rge_lights:
+  name: Rävgrävle Lights
+    entities:
+      - light.kitchentable
+      - switch.acer
+      - switch.lampflower
+      - switch.greenblack
+      - switch.lamptable
+      - switch.cambigroom
+
+sln_lights:
+  name: Silverlyckan Lights
+    entities:
+    - light.bathroom_bathroom_light
+    - light.salle_a_manger_dinner_table
+    - light.bedroom_basement_bedroom_roof
+    - light.exterieur_balcony_light
+    - light.media_room_chandelier
+    - light.media_room_hood
 
 asus_router:
   name: RGE Asus
