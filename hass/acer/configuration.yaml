@@ -98,21 +98,21 @@ sensor:
 #    name: RGE Callsign
 #    unique_id: rgesky_callsign
 #    state_topic: "hass/message/rgesky/callsign"
-  - platform: trafikverket_weatherstation
-    name: Trafikverket Borgholm
-    api_key: 44c57611abe74a599f3d02d97dda940f
-    station: Borgholm
-    monitored_conditions:
-        - air_temp
-        - road_temp
-        - humidity
-        - precipitation
-        - wind_direction
-        - wind_direction_text
-        - wind_speed
-        - wind_speed_max
-        - precipitation_amount
-        - precipitation_amountname
+#  - platform: trafikverket_weatherstation
+#    name: Trafikverket Borgholm
+#    api_key: <key>
+#    station: Borgholm
+#    monitored_conditions:
+#        - air_temp
+#        - road_temp
+#        - humidity
+#        - precipitation
+#        - wind_direction
+#        - wind_direction_text
+#        - wind_speed
+#        - wind_speed_max
+#        - precipitation_amount
+#        - precipitation_amountname
 
 tellduslive:
 
@@ -140,25 +140,25 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
-camera:
-  - platform: mjpeg
-    name: !secret camera_rge_front_name
-    mjpeg_url: !secret camera_rge_front_url
-  - platform: mjpeg
-    name: !secret camera_rge_lroom_name
-    mjpeg_url: !secret camera_rge_lroom_url
-  - platform: mjpeg
-    name: !secret camera_rge_dtop_name
-    mjpeg_url: !secret camera_rge_dtop_url
-  - platform: mjpeg
-    name: !secret camera_rge_acer_name
-    mjpeg_url: !secret camera_rge_acer_url
-  - platform: mjpeg
-    name: !secret camera_rge_attic_name
-    mjpeg_url: !secret camera_rge_attic_url
-  - platform: mjpeg
-    name: !secret camera_rge_outhouse_name
-    mjpeg_url: !secret camera_rge_outhouse_url
+#camera:
+#  - platform: mjpeg
+#    name: !secret camera_rge_front_name
+#    mjpeg_url: !secret camera_rge_front_url
+#  - platform: mjpeg
+#    name: !secret camera_rge_lroom_name
+#    mjpeg_url: !secret camera_rge_lroom_url
+#  - platform: mjpeg
+#    name: !secret camera_rge_dtop_name
+#    mjpeg_url: !secret camera_rge_dtop_url
+#  - platform: mjpeg
+#    name: !secret camera_rge_acer_name
+#    mjpeg_url: !secret camera_rge_acer_url
+#  - platform: mjpeg
+#    name: !secret camera_rge_attic_name
+#    mjpeg_url: !secret camera_rge_attic_url
+#  - platform: mjpeg
+#    name: !secret camera_rge_outhouse_name
+#    mjpeg_url: !secret camera_rge_outhouse_url
 
 #device_tracker:
 #  - platform: nmap_tracker
