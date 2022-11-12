@@ -230,7 +230,7 @@ panel_iframe:
     url: http://192.168.50.10:3000
     icon: mdi:gauge
 
-upnp:
+#upnp:
 #  sensors: true
 #  port_mapping: false
   
