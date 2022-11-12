@@ -75,3 +75,9 @@ lights:
     - switch.greenblack
     - switch.lamptable
     - switch.cambigroom
+
+asus_router:
+  name: RGE Asus
+  entities:
+    - sensor.rt_ax56u_b8f0_external_ip
+    - binary_sensor.rt_ax56u_b8f0_wan_status
