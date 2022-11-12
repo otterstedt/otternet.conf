@@ -78,7 +78,7 @@ binary_sensor:
 #    json_attributes_topic: "hass/message/sensorist/rge"
 
 # Sensors
-#sensor:
+sensor:
 #  - platform: mqtt
 #    name: "RGE Door Temperature"
 #    state_topic: "hass/message/sensorist/rge"
