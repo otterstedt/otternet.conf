@@ -130,6 +130,12 @@ cloud:
 #  radius: 50
 #not supported
 
+lutron_caseta:
+    host: 10.0.1.41
+    keyfile: caseta.key
+    certfile: caseta.crt
+    ca_certs: caseta-bridge.crt
+
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
