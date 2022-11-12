@@ -185,11 +185,11 @@ iperf3:
       port: 5001
 
 mqtt:
-  broker: !secret mqtt_host
-  port: !secret mqtt_port
-  username: !secret mqtt_user
-  password: !secret mqtt_password
-  certificate: /etc/ssl/certs/ca-certificates.crt
+#  broker: !secret mqtt_host
+#  port: !secret mqtt_port
+#  username: !secret mqtt_user
+#  password: !secret mqtt_password
+#  certificate: /etc/ssl/certs/ca-certificates.crt
   binary_sensor:
     - name: "Door Detector"
       device_class: "door"
