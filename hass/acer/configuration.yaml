@@ -209,8 +209,7 @@ mqtt:
       unit_of_measurement: '°C'
       value_template: "{{ value_json['35040']['value'] }}"
       json_attributes_topic: "hass/message/sensorist/rge"
-    - platform: mqtt
-      name: RGE Callsign
+    - name: RGE Callsign
       unique_id: rgesky_callsign
       state_topic: "hass/message/rgesky/callsign"
 
