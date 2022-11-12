@@ -191,8 +191,7 @@ mqtt:
   password: !secret mqtt_password
   certificate: /etc/ssl/certs/ca-certificates.crt
   binary_sensor:
-    - platform: mqtt
-      name: "Door Detector"
+    - name: "Door Detector"
       device_class: "door"
       state_topic: "hass/message/sensorist/rge"
       payload_on: 1
@@ -200,23 +199,19 @@ mqtt:
       value_template: "{{ value_json['35055']['value'] }}"
       json_attributes_topic: "hass/message/sensorist/rge"
   sensor:
-    - platform: mqtt
-      name: "RGE Door Temperature"
+    - name: "RGE Door Temperature"
       state_topic: "hass/message/sensorist/rge"
       unit_of_measurement: '°C'
       value_template: "{{ value_json['35036']['value'] }}"
       json_attributes_topic: "hass/message/sensorist/rge"
-    - platform: mqtt
-      name: "RGE Bedroom Temperature "
+    - name: "RGE Bedroom Temperature "
       state_topic: "hass/message/sensorist/rge"
       unit_of_measurement: '°C'
       value_template: "{{ value_json['35040']['value'] }}"
       json_attributes_topic: "hass/message/sensorist/rge"
-    - platform: opensky
-      radius: 15
+    - radius: 15
       name: rgesky
-    - platform: mqtt
-      name: RGE Callsign
+    - name: RGE Callsign
       unique_id: rgesky_callsign
       state_topic: "hass/message/rgesky/callsign"
 
