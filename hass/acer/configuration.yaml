@@ -67,7 +67,7 @@ amcrest:
       - sdcard
       - ptz_preset
 
-#binary_sensor:
+binary_sensor:
 #  - platform: mqtt
 #    name: "Door Detector"
 #    device_class: "door"
