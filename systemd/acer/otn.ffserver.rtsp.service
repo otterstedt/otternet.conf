@@ -1,0 +1,15 @@
+[Unit]
+Description=FFServer RTSP Streams
+
+[Service]
+ExecStart=/usr/bin/ffserver -f /etc/ffserver-launch.conf
+User={{ ansible_user }}
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+RuntimeMaxSec=3600
+TimeoutSec=600
+RestartSec=10
+Restart=always
+
+[Install]
+Alias=ffserver.rtsp.service
+WantedBy=multi-user.target

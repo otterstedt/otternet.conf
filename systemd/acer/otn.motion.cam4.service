@@ -1,0 +1,16 @@
+[Unit]
+Description=Motion Cam 4 - 8004 - RGE Acer
+Requires=otn.ffserver.rtsp.service
+After=otn.ffserver.rtsp.service
+
+[Service]
+ExecStart=/usr/bin/motion -c /etc/motion/motion-8004.conf
+User={{ ansible_user }}
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+TimeoutSec=600
+RestartSec=10
+Restart=always
+
+[Install]
+Alias=motion.cam4.service
+WantedBy=multi-user.target

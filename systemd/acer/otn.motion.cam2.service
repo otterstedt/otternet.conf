@@ -1,0 +1,14 @@
+[Unit]
+Description=Motion Cam 2 - 8002 - RGE Frontyard
+
+[Service]
+ExecStart=/usr/bin/motion -c /etc/motion/motion-8002.conf
+User={{ ansible_user }}
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+TimeoutSec=600
+RestartSec=10
+Restart=always
+
+[Install]
+Alias=motion.cam2.service
+WantedBy=multi-user.target
