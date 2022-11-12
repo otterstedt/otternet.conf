@@ -91,9 +91,9 @@ amcrest:
 #    unit_of_measurement: '°C'
 #    value_template: "{{ value_json['35040']['value'] }}"
 #    json_attributes_topic: "hass/message/sensorist/rge"
-#  - platform: opensky
-#    radius: 15
-#    name: rgesky
+  - platform: opensky
+    radius: 15
+    name: rgesky
 #  - platform: mqtt
 #    name: RGE Callsign
 #    unique_id: rgesky_callsign
@@ -209,9 +209,8 @@ mqtt:
       unit_of_measurement: '°C'
       value_template: "{{ value_json['35040']['value'] }}"
       json_attributes_topic: "hass/message/sensorist/rge"
-    - radius: 15
-      name: rgesky
-    - name: RGE Callsign
+    - platform: mqtt
+      name: RGE Callsign
       unique_id: rgesky_callsign
       state_topic: "hass/message/rgesky/callsign"
 
