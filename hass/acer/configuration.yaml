@@ -162,7 +162,7 @@ camera:
 
 device_tracker:
   - platform: nmap_tracker
-    hosts: 192.168.0.0/24, 192.168.50.0/24
+    hosts: 192.168.0.0/24, 192.168.50.0/24, 192.168.0.0/24
     home_interval: 1
     exclude:
       - 192.168.1.80
