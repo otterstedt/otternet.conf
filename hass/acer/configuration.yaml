@@ -160,12 +160,12 @@ camera:
     name: !secret camera_rge_outhouse_name
     mjpeg_url: !secret camera_rge_outhouse_url
 
-device_tracker:
-  - platform: nmap_tracker
-    hosts: 192.168.0.0/24, 192.168.50.0/24, 192.168.0.0/24
-    home_interval: 1
-    exclude:
-      - 192.168.1.80
+#device_tracker:
+#  - platform: nmap_tracker
+#    hosts: 192.168.0.0/24, 192.168.50.0/24, 192.168.0.0/24
+#    home_interval: 1
+#    exclude:
+#      - 192.168.1.80
 
 #  - platform: nmap_tracker
 #    hosts: ipcam-back.lan
