@@ -90,12 +90,24 @@ environment_sln:
     - sensor.silver_callsign
     - sensor.dipper_sln_temperature
 
+network_speed_sln:
+  name: Network Bandwidth/Speed
+  entities:
+    - sensor.download_acer_rge
+    - sensor.upload_acer_rge
+    - sensor.download_dmz_rge_otternet_ca
+    - sensor.upload_dmz_rge_otternet_ca
+    - sensor.fast_com_download
+
 instances:
   name: Instances
   entities:
     - input_boolean.ict_switch
+    - sensor.ict_instance
     - input_boolean.web_switch
+    - sensor.web_instance
     - input_boolean.tools_switch
+    - sensor.tools_instance
 
 other:
   name: Other Devices

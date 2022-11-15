@@ -39,7 +39,7 @@ rge:
    - binary_sensor.backyard_camera_sound_detected
    - camera.backyard
 
-network_speed:
+network_speed_rge:
   name: Network Bandwidth/Speed
   entities:
     - sensor.download_ict_otternet_ca
