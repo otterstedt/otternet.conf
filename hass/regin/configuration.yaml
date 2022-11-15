@@ -131,7 +131,7 @@ discovery:
 
 fastdotcom:
   scan_interval:
-      minutes: 60
+      minutes: 720
 
 gdacs:
 
