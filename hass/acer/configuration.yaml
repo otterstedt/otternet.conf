@@ -224,6 +224,13 @@ mqtt_eventstream:
 
 ffmpeg:
 
+zone:
+  - name: !secret zone_lkn_name
+    latitude: !secret zone_lkn_latitude
+    longitude: !secret zone_lkn_longitude
+    radius: 500
+    icon: mdi:castle
+
 panel_iframe:
   grafana:
     title: 'Grafana'
