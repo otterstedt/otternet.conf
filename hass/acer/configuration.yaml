@@ -260,6 +260,11 @@ zone:
     longitude: !secret zone_lkn_longitude
     radius: 500
     icon: mdi:castle
+  - name: !secret zone_dsn_name
+    latitude: !secret zone_dsn_latitude
+    longitude: !secret zone_dsn_longitude
+    radius: 500
+    icon: mdi:castle
 
 panel_iframe:
   grafana:

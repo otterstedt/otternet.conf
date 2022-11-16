@@ -347,6 +347,18 @@ volvooncall:
     - any_door_open
     - any_window_open
 
+zone:
+  - name: !secret zone_rge_name
+    latitude: !secret zone_rge_latitude
+    longitude: !secret zone_rge_longitude
+    radius: 500
+    icon: mdi:castle
+  - name: !secret zone_dsn_name
+    latitude: !secret zone_dsn_latitude
+    longitude: !secret zone_dsn_longitude
+    radius: 500
+    icon: mdi:castle
+
 group: !include groups.yaml
 automation manual: !include_dir_merge_list automations/
 automation ui: !include automations.yaml
