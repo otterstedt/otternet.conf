@@ -91,3 +91,14 @@ asus_router:
   entities:
     - sensor.rt_ax56u_b8f0_external_ip
     - binary_sensor.rt_ax56u_b8f0_wan_status
+
+dclxvi_rge:
+  name: DCLXVI
+  entities:
+    - device_tracker.volvo_dclxvi
+    - binary_sensor.dclxvi_engine
+    - switch.dclxvi_engine
+    - lock.dclxvi_door_lock
+    - sensor.dclxvi_fuel_amount
+    - sensor.dclxvi_fuel_level
+    - sensor.dclxvi_range
