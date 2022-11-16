@@ -213,6 +213,24 @@ mqtt:
       unique_id: rgesky_callsign
       state_topic: "hass/message/rgesky/callsign"
 
+volvooncall:
+  username: !secret voc_user
+  password: !secret voc_password
+  region: !secret voc_region
+  resources:
+    - position 
+    - engine_start
+    - heater
+    - is_engine_running
+    - lock
+    - fuel_amount
+    - fuel_amount_level
+    - distance_to_empty
+    - battery_range
+    - battery_level
+    - any_door_open
+    - any_window_open
+
 mqtt_statestream:
   base_topic: hass/statestream
   publish_attributes: true
