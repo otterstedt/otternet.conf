@@ -24,6 +24,8 @@ homeassistant:
     - type: legacy_api_password
       api_password: !secret http_api_password
 
+default_config:
+
 # Enables the frontend
 frontend:
 
