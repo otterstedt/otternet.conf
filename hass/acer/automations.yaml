@@ -27,8 +27,8 @@
     service: switch.turn_off
   - delay: 00:00:10
   - data:
-    entity_id: switch.switch.camgardendoor
-  service: switch.turn_on 
+      entity_id: switch.switch.camgardendoor
+    service: switch.turn_on 
 
 - alias: RGE Flight entry notification
   trigger:
