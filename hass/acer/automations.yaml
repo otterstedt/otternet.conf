@@ -5,6 +5,9 @@
     platform: state
     to: not_home
   condition: []
+  - condition: state
+    entity_id: device_tracker.rt_ax56u_b8f0
+    state: home
   action:
   - data:
       entity_id: switch.cambedroom
@@ -20,7 +23,10 @@
   - entity_id: device_tracker.nmap_tracker_00_62_6e_63_2c_f2
     platform: state
     to: not_home
-  condition: []
+  condition:
+  - condition: state
+    entity_id: device_tracker.d_link_international_97_71_88
+    state: home
   action:
   - data:
       entity_id: switch.switch.camgardendoor
