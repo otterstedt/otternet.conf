@@ -80,7 +80,7 @@
     data_template:
       message: 'Silverlyckan Flight Entry by: {{ trigger.event.data.callsign }} Altitude:
         {{ trigger.event.data.altitude }} - https://flightaware.com/live/flight/{{
-        trigger.event.data.callsign }}'
+        trigger.event.data.callsign }}' - https://opensky-network.org/aircraft-profile?icao24={{ trigger.event.data.icao24 }}
       title: 'Flight: {{ trigger.event.data.callsign }} Altitude: {{ trigger.event.data.altitude
         }}'
   id: 4a5f482525864aa2a190e174fb6e9590
