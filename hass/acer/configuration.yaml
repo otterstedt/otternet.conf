@@ -267,6 +267,12 @@ zone:
     longitude: !secret zone_dsn_longitude
     radius: 500
     icon: mdi:castle
+  - name: !secret zone_mwork_name
+    latitude: !secret zone_mwork_latitude
+    longitude: !secret zone_mwork_longitude
+    radius: 500
+    icon: mdi:office-building
+
 
 panel_iframe:
   grafana:
