@@ -1,0 +1,42 @@
+- id: '1542399583462'
+  alias: Turn on Front Yard Cam
+  trigger:
+  - entity_id: device_tracker.ipcam_guestroom
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data:
+      entity_id: switch.cambedroom
+    service: switch.turn_off
+  - delay: 00:00:10
+  - data:
+      entity_id: switch.cambedroom
+    service: switch.turn_on
+
+- id: '1542399673362'
+  alias: Turn On Living Room Cam
+  trigger:
+  - entity_id: device_tracker.nmap_tracker_00_62_6e_63_2c_f2
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data:
+      entity_id: switch.switch.camgardendoor
+    service: switch.turn_off
+  - delay: 00:00:10
+   - data:
+      entity_id: switch.switch.camgardendoor
+    service: switch.turn_on 
+
+- alias: RGE Flight entry notification
+  trigger:
+    platform: event
+    event_type: opensky_entry
+  action:
+  - service: mqtt.publish
+    data_template:
+      payload_template: '{{ trigger.event.data.callsign }}'
+      topic: hass/message/rgesky/callsign
+      retain: true
