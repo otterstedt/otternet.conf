@@ -4,7 +4,7 @@
   - entity_id: device_tracker.ipcam_guestroom
     platform: state
     to: not_home
-  condition: []
+  condition:
   - condition: state
     entity_id: device_tracker.rt_ax56u_b8f0
     state: home
