@@ -15,6 +15,10 @@
   - delay: 00:00:10
   - data:
       entity_id: switch.cambedroom
+    service: switch.turn_off
+  - delay: 00:00:10
+  - data:
+      entity_id: switch.cambedroom
     service: switch.turn_on
 
 - id: '1542399673362'
@@ -28,6 +32,10 @@
     entity_id: device_tracker.d_link_international_97_71_88
     state: home
   action:
+  - data:
+      entity_id: switch.switch.camgardendoor
+    service: switch.turn_off
+  - delay: 00:00:10
   - data:
       entity_id: switch.switch.camgardendoor
     service: switch.turn_off
