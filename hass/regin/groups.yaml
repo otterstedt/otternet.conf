@@ -100,7 +100,7 @@ network_speed_sln:
     - sensor.fast_com_download
 
 instances:
-  name: Instances
+  name: AWS Instances
   entities:
     - input_boolean.ict_switch
     - sensor.ict_instance
