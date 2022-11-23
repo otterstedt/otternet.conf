@@ -278,6 +278,12 @@ sensor:
           {%- else -%}
             0
           {%- endif %}
+        value_template: >-
+          {% if states.calendar.marbleton_recyclage.attributes.start_time %}
+            {{((as_timestamp(states.calendar.marbleton_recyclage.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {%- else -%}
+            0
+          {%- endif %}
       bishoptonpoubelle:
         friendly_name: Days to Poubelle - Bishopton
         entity_id: sensor.time
@@ -330,6 +336,8 @@ shell_command:
   aws_cli_stop_instances: '/usr/local/bin/aws ec2 stop-instances --instance-ids {{ ids }}'
 
 speedtestdotnet:
+  scan_interval:
+    hours: 6
 
 tellduslive:
   host: 10.0.1.25
