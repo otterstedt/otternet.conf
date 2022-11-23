@@ -23,7 +23,7 @@ bedroom_sln:
     - light.media_room_hood
     - light.bedroom_basement_bedroom_roof
     - sensor.bedroomdown_sln_temperature 
-    - switch.radiator_media
+    - switch.radiator_media_room
     - climate.bedroom_basement_thermostat
 
 climate_sln:
