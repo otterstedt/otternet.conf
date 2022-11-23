@@ -258,17 +258,11 @@ sensor:
         friendly_name: Days to Poubelle
         entity_id: sensor.time
         value_template: >-
-          {% if states.calendar.dudswell_qc.attributes.start_time and 'Marbleton: Poubelle' in states.calendar.dudswell_qc.attributes.message %}
-            {{((as_timestamp(states.calendar.dudswell_qc.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {% if states.calendar.marbleton_poubelle.attributes.start_time %}
+            {{((as_timestamp(states.calendar.marbleton_poubelle.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
             0
           {%- endif %}
-#        value_template: >-
-#          {% if states.calendar.marbleton_poubelle.attributes.start_time %}
-#            {{((as_timestamp(states.calendar.marbleton_poubelle.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
-#          {%- else -%}
-#            0
-#          {%- endif %}
       timetorecyclage:
         friendly_name: Days to Recyclage
         entity_id: sensor.time
@@ -278,36 +272,39 @@ sensor:
           {%- else -%}
             0
           {%- endif %}
+      timetocompost:
+        friendly_name: Days to Compost
+        entity_id: sensor.time
         value_template: >-
-          {% if states.calendar.marbleton_recyclage.attributes.start_time %}
-            {{((as_timestamp(states.calendar.marbleton_recyclage.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {% if states.calendar.dudswell_compost.attributes.start_time %}
+            {{((as_timestamp(states.calendar.dudswell_compost.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
             0
           {%- endif %}
-      bishoptonpoubelle:
-        friendly_name: Days to Poubelle - Bishopton
+      timetogrosbut:
+        friendly_name: Days to Gros But
         entity_id: sensor.time
         value_template: >-
-          {% if states.calendar.bishopton_poubelle.attributes.start_time %}
-            {{((as_timestamp(states.calendar.bishopton_poubelle.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {% if states.calendar.marbleton_gros_rebut.attributes.start_time %}
+            {{((as_timestamp(states.calendar.marbleton_gros_rebut.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
             0
           {%- endif %}
-      bishoptonrecyclage:
-        friendly_name: Days to Recyclage - Bishopton
+      timetoecocentre:
+        friendly_name: Days to Eco Centre
         entity_id: sensor.time
         value_template: >-
-          {% if states.calendar.bishopton_recyclage.attributes.start_time %}
-            {{((as_timestamp(states.calendar.bishopton_recyclage.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {% if states.calendar.dudswell_ecocentre.attributes.start_time %}
+            {{((as_timestamp(states.calendar.dudswell_ecocentre.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
             0
           {%- endif %}
-      timetocomposte:
-        friendly_name: Days to Composte
+      timetoventegarage:
+        friendly_name: Days to Vente de Garage
         entity_id: sensor.time
         value_template: >-
-          {% if states.calendar.dudswell_composte.attributes.start_time %}
-            {{((as_timestamp(states.calendar.dudswell_composte.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+          {% if states.calendar.dudswell_vente_garage.attributes.start_time %}
+            {{((as_timestamp(states.calendar.dudswell_vente_garage.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
             0
           {%- endif %}
