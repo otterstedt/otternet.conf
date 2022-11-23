@@ -164,7 +164,7 @@
   description: 'Roll out the trash'
   trigger:
     - platform: numeric_state
-      entity_id: calendar.marbleton_poubelle
+      entity_id: sensor.timetopoubelle
       above: 0
       below: 1
   condition: []
@@ -179,7 +179,7 @@
   description: 'Roll out the recyclage'
   trigger:
     - platform: numeric_state
-      entity_id: calendar.marbleton_recyclage
+      entity_id: sensor.timetorecyclage
       above: 0
       below: 1
   condition: []
