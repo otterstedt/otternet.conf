@@ -1,0 +1,12 @@
+[DEFAULT]
+findtime = 300
+bantime  = 1200
+
+
+[ssh]
+
+enabled  = true
+port     = ssh
+filter   = sshd
+logpath  = /var/log/auth.log
+maxretry = 4
