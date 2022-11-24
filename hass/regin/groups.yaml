@@ -47,7 +47,7 @@ climate_sln:
     - sensor.bedroomdown_sln_humidity
     - sensor.bedroomdown_sln_temperature 
 
-climate_sln:
+appliances_sln:
   name: Silverlyckan Appliances 
   entities:
     - sensor.freezer_sln_temperature
