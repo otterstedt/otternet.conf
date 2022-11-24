@@ -229,7 +229,32 @@ notify:
 prometheus:
   namespace: hass_sln
 
+input_boolean:
+  bedroom_heat_requested:
+    name: Request Bedroom Heat
+    initial: 'off'
+  bedroom_cool_requested:
+    name: Request Bedroom Cool
+    initial: 'off'
+
 sensor:
+  - platform: imap_email_content
+    server: imap.gmail.com
+    name: bedroom_heat_requested
+    port: 993
+    username: !secret gmail_user
+    password: !secret gmail_password
+    senders:
+      - !secret ka_email
+      - !secret gmail_user
+    value_template: >-
+      {% if 'heat bedroom please' in subject %}
+        up
+      {% elif 'cool bedroom please' in subject %}
+        down
+      {% else %}
+        off
+      {% endif %}
   - platform: imap
     server: imap.gmail.com
     port: 993
