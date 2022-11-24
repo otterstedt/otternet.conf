@@ -34,7 +34,7 @@
   alias: Request Bedroom Cool 
   trigger:
   - platform: state
-    entity_id: sensor.bedroom_cool_requested
+    entity_id: sensor.bedroom_heat_requested
     to: 'down'
   condition: []
   action:
