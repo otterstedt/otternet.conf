@@ -35,7 +35,7 @@
   trigger:
   - platform: state
     entity_id: sensor.bedroom_cool_requested
-    to: 'up'
+    to: 'down'
   condition: []
   action:
   - service: input_boolean.turn_on
