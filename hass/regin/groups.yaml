@@ -120,6 +120,29 @@ instances:
     - input_boolean.tools_switch
     - sensor.tools_instance
 
+heat_requests_sln:
+  name: Silverlyckan Heat Requests
+  entities:
+    - input_boolean.bedroom_cool_requested
+    - input_boolean.bedroom_heat_requested
+    - sensor.bedroom_heat_requested
+
+time_sensors:
+  name: Time & Date
+  entities:
+  
+  - sensor.time
+  - sensor.time_utc
+  - sensor.date
+  - sensor.time_date
+  - sensor.date_time
+  - sensor.date_time_utc
+  - sensor.date_time_iso
+  - sensor.internet_time
+  
+ 
+  
+
 other:
   name: Other Devices
     - person.dclxvi
