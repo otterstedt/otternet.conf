@@ -222,6 +222,18 @@ notify:
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_token_secret
     username: !secret twitter_username
+  - name: "gmail"
+    platform: smtp
+    server: "smtp.gmail.com"
+    port: 587
+    timeout: 15
+    sender: !secret gmail_user
+    encryption: starttls
+    username: !secret gmail_user
+    password: !secret gmail_password
+    recipient:
+      - !secret gmail_user
+    sender_name: !secret gmail_user
 
 #plex:
 #  host: 10.0.1.2
