@@ -163,10 +163,10 @@
   alias: Trash rollout
   description: 'Roll out the trash'
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.timetopoubelle
-      above: 0
-      below: 1
+  - platform: numeric_state
+    entity_id: sensor.timetopoubelle
+    above: 0
+    below: 1
   condition: []
   action:
   - service: notify.twitter
@@ -178,10 +178,10 @@
   alias: Recyclage rollout
   description: 'Roll out the recyclage'
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.timetorecyclage
-      above: 0
-      below: 1
+  - platform: numeric_state
+    entity_id: sensor.timetorecyclage
+    above: 0
+    below: 1
   condition: []
   action:
   - service: notify.twitter
