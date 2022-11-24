@@ -261,7 +261,7 @@ sensor:
           {% if states.calendar.marbleton_poubelle.attributes.start_time %}
             {{((as_timestamp(states.calendar.marbleton_poubelle.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
-            0
+            None
           {%- endif %}
       timetorecyclage:
         friendly_name: Days to Recyclage
@@ -270,7 +270,7 @@ sensor:
           {% if states.calendar.marbleton_recyclage.attributes.start_time %}
             {{((as_timestamp(states.calendar.marbleton_recyclage.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
-            0
+            None
           {%- endif %}
       timetocompost:
         friendly_name: Days to Compost
@@ -279,7 +279,7 @@ sensor:
           {% if states.calendar.dudswell_compost.attributes.start_time %}
             {{((as_timestamp(states.calendar.dudswell_compost.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
-            0
+            None
           {%- endif %}
       timetogrosbut:
         friendly_name: Days to Gros But
@@ -288,7 +288,7 @@ sensor:
           {% if states.calendar.marbleton_gros_rebut.attributes.start_time %}
             {{((as_timestamp(states.calendar.marbleton_gros_rebut.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
-            0
+            None
           {%- endif %}
       timetoecocentre:
         friendly_name: Days to Eco Centre
@@ -297,7 +297,7 @@ sensor:
           {% if states.calendar.dudswell_ecocentre.attributes.start_time %}
             {{((as_timestamp(states.calendar.dudswell_ecocentre.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
-            0
+            None
           {%- endif %}
       timetoventegarage:
         friendly_name: Days to Vente de Garage
@@ -306,7 +306,7 @@ sensor:
           {% if states.calendar.dudswell_vente_garage.attributes.start_time %}
             {{((as_timestamp(states.calendar.dudswell_vente_garage.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
           {%- else -%}
-            0
+            None
           {%- endif %}
   - platform: command_line
     name: ICT Instance
