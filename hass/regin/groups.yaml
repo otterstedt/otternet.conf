@@ -9,6 +9,12 @@ kids:
   entities:
     - person.dorothee
     - person.olivier
+
+presence:
+  name: Silverlyckan Presence
+  entities: 
+    - binary_sensor.person_present
+    - device_tracker.volvo_dclxvi
     
 #pets:
 #  name: Pet Devices
@@ -27,12 +33,10 @@ bedroom_sln:
     - climate.bedroom_basement_thermostat
 
 climate_sln:
-  name: Climate Silverlyckan
+  name: Silverlyckan Climate 
   entities:
     - sensor.bedroom_sln_temperature
     - sensor.bedroom_sln_humidity
-    - sensor.freezer_sln_temperature
-    - sensor.freezer_sln_humidity
     - sensor.mediaroom_sln_temperature
     - sensor.mediaroom_sln_humidity
     - sensor.kitchen_sln_temperature
@@ -40,9 +44,15 @@ climate_sln:
     - sensor.kitchenout_sln_temperature
     - sensor.tvroom_sln_temperature
     - sensor.tvroom_sln_humidity
-    - sensor.dipper_sln_temperature
     - sensor.bedroomdown_sln_humidity
     - sensor.bedroomdown_sln_temperature 
+
+climate_sln:
+  name: Silverlyckan Appliances 
+  entities:
+    - sensor.freezer_sln_temperature
+    - sensor.freezer_sln_humidity
+    - sensor.dipper_sln_temperature
 
 camera_entrance:
   name: Entrance Camera
@@ -80,6 +90,8 @@ dclxvi_sln:
     - sensor.dclxvi_fuel_amount
     - sensor.dclxvi_fuel_level
     - sensor.dclxvi_range
+    - binary_sensor.dclxvi_doors
+    - binary_sensor.dclxvi_windows
     
 environment_sln:
   name: Environment
@@ -88,7 +100,6 @@ environment_sln:
     - sensor.season
     - sensor.silversky
     - sensor.silver_callsign
-    - sensor.dipper_sln_temperature
 
 network_speed_sln:
   name: Network Bandwidth/Speed
