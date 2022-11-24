@@ -23,8 +23,8 @@
       entity_id: climate.bedroom_basement_thermostat
       temperature: "{{(state_attr('climate.bedroom_basement_thermostat' , 'temperature')) + 1 }}"
   - service: input_boolean.turn_off
-      target:
-        entity_id: input_boolean.bedroom_heat_requested
+    target:
+      entity_id: input_boolean.bedroom_heat_requested
   - service: notify.gmail
     data:
       title: "Heat Request Acknowledged"
