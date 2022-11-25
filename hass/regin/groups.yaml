@@ -104,8 +104,8 @@ environment_sln:
 network_speed_sln:
   name: Network Bandwidth/Speed
   entities:
-    - sensor.download_acer_rge
-    - sensor.upload_acer_rge
+    - sensor.download_acer_rge_otternet_ca
+    - sensor.upload_acer_rge_otternet_ca
     - sensor.download_dmz_rge_otternet_ca
     - sensor.upload_dmz_rge_otternet_ca
     - sensor.fast_com_download
