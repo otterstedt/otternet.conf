@@ -12,3 +12,4 @@ RestartSec=15
 
 [Install]
 Alias=nodeexporter.service
+WantedBy=multi-user.target
