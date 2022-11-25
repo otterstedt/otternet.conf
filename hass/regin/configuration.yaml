@@ -181,7 +181,7 @@ iperf3:
   hosts:
     - host: !secret host_dmz_rge
       port: 5001
-    - host: acer.rge
+    - host: !secret hosts_acer_rge
       port: 5001
 
 media_extractor:
