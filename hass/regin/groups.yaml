@@ -76,9 +76,8 @@ entrance_sln:
 network_sln:
   name: Network Silverlyckan
   entities:
-    - sensor.speedtest_ping
-    - sensor.speedtest_download
-    - sensor.speedtest_upload
+    - sensor.asuswrt_devices_connected
+
     
 dclxvi_sln:
   name: DCLXVI
@@ -104,11 +103,25 @@ environment_sln:
 network_speed_sln:
   name: Network Bandwidth/Speed
   entities:
+    - sensor.fast_com_download
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
     - sensor.download_acer_rge_otternet_ca
     - sensor.upload_acer_rge_otternet_ca
     - sensor.download_dmz_rge_otternet_ca
     - sensor.upload_dmz_rge_otternet_ca
-    - sensor.fast_com_download
+    
+
+schedules_sln:
+  name: Silverlyckan Schedules
+  entities:
+  - sensor.timetopoubelle
+  - sensor.timetorecyclage
+  - sensor.timetocompost
+  - sensor.timetogrosbut
+  - sensor.timetoecocentre
+  - sensor.timetoventegarage
 
 instances:
   name: AWS Instances
