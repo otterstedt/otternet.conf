@@ -10,3 +10,6 @@ esxi:
 
 packages:
   - docker.io
+
+host_specific_systemd_services:
+  - otn.nodeexporter.service

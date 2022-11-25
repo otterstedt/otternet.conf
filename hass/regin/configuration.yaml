@@ -170,6 +170,12 @@ input_boolean:
   web_switch:
     name: AWS Web Instance
     icon: mdi:server
+  bedroom_heat_requested:
+    name: Request Bedroom Heat
+    initial: 'off'
+  bedroom_cool_requested:
+    name: Request Bedroom Cool
+    initial: 'off'
 
 iperf3:
   hosts:
@@ -241,14 +247,6 @@ notify:
 
 prometheus:
   namespace: hass_sln
-
-input_boolean:
-  bedroom_heat_requested:
-    name: Request Bedroom Heat
-    initial: 'off'
-  bedroom_cool_requested:
-    name: Request Bedroom Cool
-    initial: 'off'
 
 sensor:
   - platform: imap_email_content

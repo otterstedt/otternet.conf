@@ -15,3 +15,6 @@ packages:
   - docker-ce-cli 
   - containerd.io
   - nfs-common
+
+host_specific_systemd_services:
+  - otn.nodeexporter.service
