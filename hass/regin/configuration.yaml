@@ -370,9 +370,9 @@ shell_command:
   aws_cli_start_instances: '/usr/local/bin/aws ec2 start-instances --instance-ids {{ ids }}'
   aws_cli_stop_instances: '/usr/local/bin/aws ec2 stop-instances --instance-ids {{ ids }}'
 
-speedtestdotnet:
-  scan_interval:
-    hours: 6
+#speedtestdotnet:
+#  scan_interval:
+#    hours: 6
 
 tellduslive:
   host: 10.0.1.25
