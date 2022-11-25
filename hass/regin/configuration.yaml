@@ -259,9 +259,9 @@ sensor:
       - !secret ka_email
       - !secret gmail_user
     value_template: >-
-      {% if 'heat bedroom please' in subject %}
+      {% if 'heat bedroom please' in (subject | lower) %}
         up
-      {% elif 'cool bedroom please' in subject %}
+      {% elif 'cool bedroom please' in (subject | lower) %}
         down
       {% else %}
         off
