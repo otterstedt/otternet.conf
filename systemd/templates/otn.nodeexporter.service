@@ -1,0 +1,14 @@
+[Unit]
+Description=Node Exporter Service
+
+[Service]
+ExecStart=/home/{{ ansible_user }}/node_exporter/node_exporter-{{ version_nodeexporter }}.{{ arch_nodeexporter }}/node_exporter
+User={{ ansible_user }}
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+WorkingDirectory=/home/{{ ansible_user }}/node_exporter/node_exporter-{{ version_nodeexporter }}.{{ arch_nodeexporter }}
+TimeoutSec=60
+Restart=always
+RestartSec=15
+
+[Install]
+Alias=nodeexporter.service
