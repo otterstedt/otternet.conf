@@ -73,57 +73,6 @@ amcrest:
       - sdcard
       - ptz_preset
 
-binary_sensor:
-#  - platform: mqtt
-#    name: "Door Detector"
-#    device_class: "door"
-#    state_topic: "hass/message/sensorist/rge"
-#    payload_on: 1
-#    payload_off: 0
-#    value_template: "{{ value_json['35055']['value'] }}"
-#    json_attributes_topic: "hass/message/sensorist/rge"
-
-# Sensors
-sensor:
-  - platform: imap
-    server: imap.gmail.com
-    port: 993
-    username: !secret gmail_user
-    password: !secret gmail_password
-#  - platform: mqtt
-#    name: "RGE Door Temperature"
-#    state_topic: "hass/message/sensorist/rge"
-#    unit_of_measurement: '°C'
-#    value_template: "{{ value_json['35036']['value'] }}"
-#    json_attributes_topic: "hass/message/sensorist/rge"
-#  - platform: mqtt
-#    name: "RGE Bedroom Temperature "
-#    state_topic: "hass/message/sensorist/rge"
-#    unit_of_measurement: '°C'
-#    value_template: "{{ value_json['35040']['value'] }}"
-#    json_attributes_topic: "hass/message/sensorist/rge"
-  - platform: opensky
-    radius: 15
-    name: rgesky
-#  - platform: mqtt
-#    name: RGE Callsign
-#    unique_id: rgesky_callsign
-#    state_topic: "hass/message/rgesky/callsign"
-#  - platform: trafikverket_weatherstation
-#    name: Trafikverket Borgholm
-#    api_key: <key>
-#    station: Borgholm
-#    monitored_conditions:
-#        - air_temp
-#        - road_temp
-#        - humidity
-#        - precipitation
-#        - wind_direction
-#        - wind_direction_text
-#        - wind_speed
-#        - wind_speed_max
-#        - precipitation_amount
-#        - precipitation_amountname
 
 tellduslive:
 
@@ -133,13 +82,6 @@ tts:
 
 # Cloud
 cloud:
-
-#speedtestdotnet:
-#manual only now
-
-#wwlln:
-#  radius: 50
-#not supported
 
 lutron_caseta:
     host: 10.0.1.41
@@ -151,25 +93,6 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
-#camera:
-#  - platform: mjpeg
-#    name: !secret camera_rge_front_name
-#    mjpeg_url: !secret camera_rge_front_url
-#  - platform: mjpeg
-#    name: !secret camera_rge_lroom_name
-#    mjpeg_url: !secret camera_rge_lroom_url
-#  - platform: mjpeg
-#    name: !secret camera_rge_dtop_name
-#    mjpeg_url: !secret camera_rge_dtop_url
-#  - platform: mjpeg
-#    name: !secret camera_rge_acer_name
-#    mjpeg_url: !secret camera_rge_acer_url
-#  - platform: mjpeg
-#    name: !secret camera_rge_attic_name
-#    mjpeg_url: !secret camera_rge_attic_url
-#  - platform: mjpeg
-#    name: !secret camera_rge_outhouse_name
-#    mjpeg_url: !secret camera_rge_outhouse_url
 
 #device_tracker:
 #  - platform: nmap_tracker
@@ -195,32 +118,7 @@ iperf3:
     - host: !secret hosts_ict 
       port: 5001
 
-notify:
-  - name: pushover
-    platform: pushover
-    api_key: !secret pushover_api_key
-    user_key: !secret pushover_user_key
-  - name: slack_smolandia
-    platform: slack
-    api_key: !secret slack_smolandia_hasse_access_token
-    default_channel: '#automation-notifications'
-    username: hasse
-  - name: aws_cli
-    platform: command_line
-    command: "ARGS=$(cat) && /usr/local/bin/aws $ARGS"
-  - name: twitter
-    platform: twitter
-    consumer_key: !secret twitter_consumer_key
-    consumer_secret: !secret twitter_consumer_secret
-    access_token: !secret twitter_access_token
-    access_token_secret: !secret twitter_access_token_secret
-  - name: twitter_direct
-    platform: twitter
-    consumer_key: !secret twitter_consumer_key
-    consumer_secret: !secret twitter_consumer_secret
-    access_token: !secret twitter_access_token
-    access_token_secret: !secret twitter_access_token_secret
-    username: !secret twitter_username
+
 
 
 mqtt:
@@ -293,23 +191,6 @@ mqtt_eventstream:
 
 ffmpeg:
 
-zone:
-  - name: !secret zone_lkn_name
-    latitude: !secret zone_lkn_latitude
-    longitude: !secret zone_lkn_longitude
-    radius: 500
-    icon: mdi:castle
-  - name: !secret zone_dsn_name
-    latitude: !secret zone_dsn_latitude
-    longitude: !secret zone_dsn_longitude
-    radius: 500
-    icon: mdi:castle
-  - name: !secret zone_mwork_name
-    latitude: !secret zone_mwork_latitude
-    longitude: !secret zone_mwork_longitude
-    radius: 500
-    icon: mdi:office-building
-
 
 panel_iframe:
   grafana:
@@ -323,6 +204,12 @@ panel_iframe:
   
 lovelace:
   mode: yaml
+
+binary_sensor: !include_dir_merge_list binary_sensor/
+camera: !include_dir_merge_list camera/
+notify: !include_dir_merge_list notify/
+sensor: !include_dir_merge_list sensor/
+zone: !include_dir_merge_list zone/
 
 group: !include groups.yaml
 automation: !include automations.yaml
