@@ -123,6 +123,13 @@ schedules_sln:
   - sensor.timetoecocentre
   - sensor.timetoventegarage
 
+aquarium_sln:
+  name: Silverlyckan Aquarium
+  entities:
+  - switch.christmas_tree
+  - sensor.aquarium_temp_sln
+
+
 instances:
   name: AWS Instances
   entities:
