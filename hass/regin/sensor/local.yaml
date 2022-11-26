@@ -1,7 +1,6 @@
 #need to move mqqt to new format when upgrading
 - platform: mqtt
   name: "Aquarium Temperature"
-  unique_id: aquarium_temp_sln
   state_topic: "hass/message/sensorist/mtl"
   unit_of_measurement: '°C'
   value_template: "{{ value_json['32208']['value'] }}"
