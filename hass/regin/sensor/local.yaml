@@ -1,3 +1,11 @@
+#need to move mqqt to new format when upgrading
+- platform: mqtt
+  name: "Aquarium Temperature"
+  unique_id: aquarium_temp_sln
+  state_topic: "hass/message/sensorist/mtl"
+  unit_of_measurement: '°C'
+  value_template: "{{ value_json['32208']['value'] }}"
+  json_attributes_topic: "hass/message/sensorist/mtl"
 - platform: imap_email_content
   server: imap.gmail.com
   name: bedroom_heat_requested
