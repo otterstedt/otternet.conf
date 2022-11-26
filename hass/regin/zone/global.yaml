@@ -1,0 +1,20 @@
+  - name: !secret zone_rge_name
+    latitude: !secret zone_rge_latitude
+    longitude: !secret zone_rge_longitude
+    radius: 500
+    icon: mdi:castle
+  - name: !secret zone_dsn_name
+    latitude: !secret zone_dsn_latitude
+    longitude: !secret zone_dsn_longitude
+    radius: 500
+    icon: mdi:castle
+  - name: !secret zone_lkn_name
+    latitude: !secret zone_lkn_latitude
+    longitude: !secret zone_lkn_longitude
+    radius: 500
+    icon: mdi:castle
+  - name: !secret zone_mwork_name
+    latitude: !secret zone_mwork_latitude
+    longitude: !secret zone_mwork_longitude
+    radius: 500
+    icon: mdi:office-building

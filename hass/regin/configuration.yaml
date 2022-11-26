@@ -42,45 +42,10 @@ amcrest:
 #      - sdcard
 #      - ptz_preset
 
-binary_sensor:
-  - platform: template
-    sensors:
-      person_present:
-        friendly_name: 'Person Present'
-        device_class: presence
-        entity_id:
-          - sensor.time
-        value_template: >
-          {% set ns = namespace(found=false) %}
-          {% for state in states.person %}
-            {% if state.state == 'home' %}
-              {% set ns.found = true %}
-            {% endif %}
-          {% endfor %}
-          {{ns.found}}
 
-camera:
-  - platform: mjpeg
-    name: !secret camera_sln_washer_name
-    mjpeg_url: !secret camera_sln_washer_url
-  - platform: mjpeg
-    name: !secret camera_sln_cat_name
-    mjpeg_url: !secret camera_sln_cat_url
-  - platform: mjpeg
-    name: !secret camera_rge_acer_name
-    mjpeg_url: !secret camera_rge_acer_url
-  - platform: mjpeg
-    name: !secret camera_rge_attic_name
-    mjpeg_url: !secret camera_rge_attic_url
-  - platform: mjpeg
-    name: !secret camera_rge_outhouse_name
-    mjpeg_url: !secret camera_rge_outhouse_url
-  - platform: mjpeg
-    name: !secret camera_rge_lroom_name
-    mjpeg_url: !secret camera_rge_lroom_url
-  - platform: mjpeg
-    name: !secret camera_rge_dtop_name
-    mjpeg_url: !secret camera_rge_dtop_url
+
+
+
 
 lutron_caseta:
     host: 10.0.1.41
@@ -202,48 +167,6 @@ mqtt_eventstream:
   publish_topic: hass/eventstream/slaves/sln
   subscribe_topic: hass/eventstream/master
 
-notify:
-  - name: pushover
-    platform: pushover
-    api_key: !secret pushover_api_key
-    user_key: !secret pushover_user_key
-  - name: slack_smolandia
-    platform: slack
-    api_key: !secret slack_smolandia_hasse_access_token
-    default_channel: '#automation-notifications'
-    username: hasse
-  - name: aws_cli
-    platform: command_line
-    command: "ARGS=$(cat) && /usr/local/bin/aws $ARGS"
-  - name: twitter
-    platform: twitter
-    consumer_key: !secret twitter_consumer_key
-    consumer_secret: !secret twitter_consumer_secret
-    access_token: !secret twitter_access_token
-    access_token_secret: !secret twitter_access_token_secret
-  - name: twitter_direct
-    platform: twitter
-    consumer_key: !secret twitter_consumer_key
-    consumer_secret: !secret twitter_consumer_secret
-    access_token: !secret twitter_access_token
-    access_token_secret: !secret twitter_access_token_secret
-    username: !secret twitter_username
-  - name: "gmail"
-    platform: smtp
-    server: "smtp.gmail.com"
-    port: 587
-    timeout: 15
-    sender: !secret gmail_user
-    encryption: starttls
-    username: !secret gmail_user
-    password: !secret gmail_password
-    recipient:
-      - !secret gmail_user
-    sender_name: !secret gmail_user
-
-#plex:
-#  host: 10.0.1.2
-#  port: 32401
 
 prometheus:
   namespace: hass_sln
@@ -252,10 +175,6 @@ shell_command:
   aws_cli: '/usr/local/bin/aws {{ args }}'
   aws_cli_start_instances: '/usr/local/bin/aws ec2 start-instances --instance-ids {{ ids }}'
   aws_cli_stop_instances: '/usr/local/bin/aws ec2 stop-instances --instance-ids {{ ids }}'
-
-#speedtestdotnet:
-#  scan_interval:
-#    hours: 6
 
 tellduslive:
   host: 10.0.1.25
@@ -284,19 +203,15 @@ volvooncall:
     - any_door_open
     - any_window_open
 
-zone:
-  - name: !secret zone_rge_name
-    latitude: !secret zone_rge_latitude
-    longitude: !secret zone_rge_longitude
-    radius: 500
-    icon: mdi:castle
-  - name: !secret zone_dsn_name
-    latitude: !secret zone_dsn_latitude
-    longitude: !secret zone_dsn_longitude
-    radius: 500
-    icon: mdi:castle
 
+
+
+binary_sensor: !include_dir_merge_list binary_sensor/
+camera: !include_dir_merge_list camera/
+notify: !include_dir_merge_list notify/
 sensor: !include_dir_merge_list sensor/
+zone: !include_dir_merge_list zone/
+
 group: !include groups.yaml
 automation manual: !include_dir_merge_list automations/
 automation ui: !include automations.yaml
