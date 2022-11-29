@@ -107,9 +107,9 @@
     platform: device
     type: turned_on
   condition: 
-    - condition: state
-      entity_id: binary_sensor.person_present
-      state: 'off'
+  - condition: state
+    entity_id: binary_sensor.person_present
+    state: 'off'
   action:
   - data:
       payload: true
