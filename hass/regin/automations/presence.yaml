@@ -122,10 +122,11 @@
   - data:
       message: 'Motion Detected Silverlyckan: Basement Front'
       title: Motion Silverlyckan
-      file:
-        url: http://10.0.1.52/cgi-bin/snapshot.cgi?1
-        username: admin
-        password: !secret mqtt_password
+      data:
+        file:
+          url: http://10.0.1.52/cgi-bin/snapshot.cgi?1
+          username: admin
+          password: !secret mqtt_password
     service: notify.slack_smolandia
 
 - id: '1607193505087'
