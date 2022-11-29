@@ -160,6 +160,26 @@ time_sensors:
   - sensor.date_time_iso
   - sensor.internet_time
   
+michael_info:
+  name: Michael
+  entities:
+    - device_tracker.michael_s_iphone
+    - sensor.michael_s_iphone_distance
+    - sensor.michael_s_iphone_steps
+    - sensor.michael_s_iphone_floors_ascended
+    - sensor.michael_s_iphone_floors_descended
+    - sensor.michael_s_iphone_activity
+    - sensor.michael_s_iphone_average_active_pace
+    - sensor.michael_s_iphone_battery_level
+    - sensor.michael_s_iphone_battery_state
+    - sensor.michael_s_iphone_connection_type
+    - sensor.michael_s_iphone_bssid
+    - sensor.michael_s_iphone_ssid
+    - sensor.michael_s_iphone_storage
+    - binary_sensor.michael_s_iphone_focus
+    - sensor.michael_s_iphone_geocoded_location
+    - sensor.michael_s_iphone_last_update_trigger
+    - sensor.michael_s_iphone_sim_1
  
   
 

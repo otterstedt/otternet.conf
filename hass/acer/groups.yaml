@@ -103,7 +103,7 @@ dclxvi_rge:
     - sensor.dclxvi_fuel_level
     - sensor.dclxvi_range
 
-michael_sln:
+michael_info:
   name: Michael
   entities:
     - device_tracker.michael_s_iphone
