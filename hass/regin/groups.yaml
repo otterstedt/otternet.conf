@@ -54,8 +54,8 @@ appliances_sln:
     - sensor.freezer_sln_humidity
     - sensor.dipper_sln_temperature
 
-camera_entrance:
-  name: Entrance Camera
+camera_entrance_sln:
+  name: Silverlyckan Entrance Camera
   entities:
     - binary_sensor.amcrest_camera_motion_detected
     - binary_sensor.amcrest_camera_online

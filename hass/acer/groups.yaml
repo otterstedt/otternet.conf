@@ -125,4 +125,11 @@ michael_info:
     - sensor.michael_s_iphone_sim_1
    
     
-    
+camera_entrance_sln:
+  name: Silverlyckan Entrance Camera
+  entities:
+    - binary_sensor.amcrest_camera_motion_detected
+    - binary_sensor.amcrest_camera_online
+    - camera.amcrest_camera
+    - sensor.amcrest_camera_ptz_preset
+    - sensor.amcrest_camera_sd_used
