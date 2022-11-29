@@ -9,6 +9,7 @@ ExecStart=/usr/bin/docker run --rm \
   --name=grafana \
   -e "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource" \
   --volume "/home/{{ ansible_user }}/grafana/data:/var/lib/grafana" \
+  -e "GF_INSTALL_PLUGINS=grafana-github-datasource,grafana-clock-panel,grafana-simple-json-datasource" \
   --user 1000 \
   grafana/grafana-oss
 ExecStop=/usr/bin/docker stop grafana
