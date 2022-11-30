@@ -1,0 +1,37 @@
+- id: 'trash_time'
+  alias: Trash rollout
+  description: 'Roll out the trash'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.timetopoubelle
+    above: 0
+    below: 0.5
+  condition: []
+  action:
+  - service: notify.twitter
+    data_template:
+      message: 'Bring out the trash!'
+      title: 'Thrash the trash'
+  - service: notify.gmail_kamo
+    data:
+      title: "Poubelle Tomorrow"
+      message: "Bring out the trash"
+
+- id: 'recycling_time'
+  alias: Recyclage rollout
+  description: 'Roll out the recyclage'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.timetorecyclage
+    above: 0
+    below: 0.5
+  condition: []
+  action:
+  - service: notify.twitter
+    data_template:
+      message: 'Bring out the recyclage!'
+      title: 'Recyclage out'
+  - service: notify.gmail_kamo
+    data:
+      title: "Recyclage Tomorrow"
+      message: "Bring out the recyclage"
