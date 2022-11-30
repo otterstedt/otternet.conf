@@ -120,13 +120,17 @@
       topic: hass/message/motiondetector/sln/basement/front
     service: mqtt.publish
   - data:
-      message: 'Motion Detected Silverlyckan: Basement Front'
-      title: Motion Silverlyckan
+      message: 'Motion Detected: Silverlyckan - Basement Front Snapshot'
+      title: Motion Silverlyckan - Snapshot
       data:
         file:
           url: http://10.0.1.52/cgi-bin/snapshot.cgi?1
           username: admin
           password: !secret mqtt_password
+    service: notify.slack_smolandia
+  - data:
+      message: 'Motion Detected:  Silverlyckan - Basement Front'
+      title: Motion Silverlyckan
     service: notify.slack_smolandia
 
 - id: '1607193505087'
