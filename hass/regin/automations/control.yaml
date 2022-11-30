@@ -25,7 +25,7 @@
   - service: input_boolean.turn_off
     target:
       entity_id: input_boolean.bedroom_heat_requested
-  - service: notify.gmail
+  - service: notify.gmail_kamo
     data:
       title: "Heat Request Acknowledged"
       message: "The heat was turned up a notch"
@@ -57,7 +57,7 @@
   - service: input_boolean.turn_off
     target:
       entity_id: input_boolean.bedroom_cool_requested
-  - service: notify.gmail
+  - service: notify.gmail_kamo
     data:
       title: "Cool Request Acknowledged"
       message: "The heat was turned down a notch"
