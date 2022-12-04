@@ -16,6 +16,12 @@
     data:
       title: "Poubelle Tomorrow"
       message: "Bring out the trash"
+  - service: light.turn_on
+    target:
+      entity_id: light.status_b
+    data:
+      brightness: 130
+      rgb_color: [128,128,128]
 
 - id: 'recycling_time'
   alias: Recyclage rollout
@@ -35,3 +41,9 @@
     data:
       title: "Recyclage Tomorrow"
       message: "Bring out the recyclage"
+  - service: light.turn_on
+    target:
+      entity_id: light.status_b
+    data:
+      brightness: 130
+      rgb_color: [30,144,255]
