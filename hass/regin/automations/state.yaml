@@ -158,3 +158,66 @@
   - data: {}
     entity_id: light.basement_outdoor_lamp
     service: light.turn_off
+
+- id: 'dclxvi_running'
+  alias: DCLXVI engine is running
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.dclxvi_engine
+    from: 'off'
+    to: 'on'
+    platform: state
+  condition: []
+  action:
+  - data: {}
+    target:
+      entity_id: light.status_a
+    service: light.turn_on
+    data:
+      brightness: 130
+      rgb_color: [0,255,0]
+
+- id: 'dclxvi_not_running'
+  alias: DCLXVI engine is not running
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.dclxvi_engine
+    from: 'on'
+    to: 'off'
+    platform: state
+  condition: []
+  action:
+  - data: {}
+    target:
+      entity_id: light.status_a
+    service: light.turn_off
+
+- id: 'dclxvi_low_gas'
+  alias: DCLXVI is low on gas
+  description: ''
+  trigger:
+  - entity_id: sensor.dclxvi_fuel_amount
+    above: 0
+    below: 10
+    platform: numeric_state
+  - entity_id: binary_sensor.dclxvi_engine
+    from: 'on'
+    to: 'off'
+    platform: state
+  condition:
+  - condition: state
+    entity_id: binary_sensor.dclxvi_engine
+    state: 'off'
+  - entity_id: sensor.dclxvi_fuel_amount
+    above: 0
+    below: 10
+    platform: numeric_state
+  action:
+  - delay: 00:01:00
+  - data: {}
+    target:
+      entity_id: light.status_a
+    service: light.turn_on
+    data:
+      brightness: 130
+      rgb_color: [255,0,0]
