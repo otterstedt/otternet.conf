@@ -205,7 +205,7 @@
     to: 'off'
     platform: state
   condition:
-  - condition: state
+  - platform: state
     entity_id: binary_sensor.dclxvi_engine
     state: 'off'
   - entity_id: sensor.dclxvi_fuel_amount
