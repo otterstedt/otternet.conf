@@ -169,8 +169,7 @@
     platform: state
   condition: []
   action:
-  - data: {}
-    target:
+  - target:
       entity_id: light.status_a
     service: light.turn_on
     data:
