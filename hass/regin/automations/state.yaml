@@ -204,13 +204,13 @@
     to: 'off'
     platform: state
   condition:
-  - platform: state
+  - condition: state
     entity_id: binary_sensor.dclxvi_engine
     state: 'off'
-  - entity_id: sensor.dclxvi_fuel_amount
+  - condition: numeric_state
+    entity_id: sensor.dclxvi_fuel_amount
     above: 0
     below: 10
-    platform: numeric_state
   action:
   - delay: 00:01:00
   - data: {}
