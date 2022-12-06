@@ -150,6 +150,10 @@ iperf3:
       port: 5001
 
 media_extractor:
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
  
 mqtt: 
   broker: !secret mqtt_host 
