@@ -14,9 +14,6 @@
   - entity_id: switch.toilet_top_power
     service: switch.turn_on
   - data: {}
-    entity_id: switch.christmas_roof
-    service: switch.turn_on
-  - data: {}
     entity_id: switch.ljusstake
     service: switch.turn_on
 

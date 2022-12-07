@@ -146,9 +146,6 @@
   action:
   - scene: scene.darkness
   - data: {}
-    entity_id: switch.christmas_tree
-    service: switch.turn_off
-  - data: {}
     entity_id: light.roof_bedroom
     service: light.turn_off
 - id: '1607240350332'
