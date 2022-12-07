@@ -148,6 +148,7 @@ iperf3:
       port: 5001
     - host: !secret hosts_acer_rge
       port: 5001
+  scan_interval: '06:00'
 
 media_extractor:
 
