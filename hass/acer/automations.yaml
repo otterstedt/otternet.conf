@@ -54,3 +54,33 @@
       payload_template: '{{ trigger.event.data.callsign }}'
       topic: hass/message/rgesky/callsign
       retain: true
+
+- id: 'motion_rge'
+  alias: Motion Detected RGE
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.backyard_camera_motion_detected
+    from: 'off'
+    to: 'on'
+    platform: state
+  - entity_id: binary_sensor.backyard_camera_person_detected
+    from: 'off'
+    to: 'on'
+    platform: state
+  - entity_id: binary_sensor.door_detector
+    from: 'off'
+    to: 'on'
+    platform: state
+  condition: []
+  action:
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
+    data:
+      brightness: 130
+      rgb_color: [255,124,14]
+  - service: notify.slack_smolandia
+    data:
+      message: 'Intruder detection:  RGE door/camera'
+      title: 'Intruder detection:  RGE'
+    
