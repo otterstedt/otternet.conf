@@ -23,6 +23,22 @@
       brightness: 130
       rgb_color: [128,128,128]
 
+- id: 'trash_time_off'
+  alias: Trash rollout complete
+  description: 'Roll back the trash'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.timetopoubelle
+    below: -0.5
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.status_b
+    data:
+      brightness: 130
+      rgb_color: [128,128,128]
+
 - id: 'recycling_time'
   alias: Recyclage rollout
   description: 'Roll out the recyclage'
