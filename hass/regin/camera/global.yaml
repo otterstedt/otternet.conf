@@ -19,3 +19,6 @@
 - platform: mjpeg
   name: !secret camera_rge_dtop_name
   mjpeg_url: !secret camera_rge_dtop_url
+- platform: mjpeg
+  name: !secret camera_rge_front_name
+  mjpeg_url: !secret camera_rge_front_url
