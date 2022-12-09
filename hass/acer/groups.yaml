@@ -133,3 +133,10 @@ camera_entrance_sln:
     - camera.amcrest_camera
     - sensor.amcrest_camera_ptz_preset
     - sensor.amcrest_camera_sd_used
+
+Status_lights_sln:
+  name: Silverlyckan Status Lights
+  entities:
+    - light.status_a
+    - light.status_b
+    - light.status_c

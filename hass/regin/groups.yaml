@@ -190,3 +190,10 @@ other:
 guests:
   name: Guest Devices
     - person.melanie
+
+Status_lights_sln:
+  name: Silverlyckan Status Lights
+  entities:
+    - light.status_a
+    - light.status_b
+    - light.status_c
