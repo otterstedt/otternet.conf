@@ -35,9 +35,6 @@
   - service: light.turn_off
     target:
       entity_id: light.status_b
-    data:
-      brightness: 130
-      rgb_color: [128,128,128]
 
 - id: 'recycling_time'
   alias: Recyclage rollout
