@@ -77,10 +77,23 @@
       entity_id: light.status_c
     service: light.turn_on
     data:
+      brightness: 230
+      rgb_color: [255,0,0]
+  - delay: 00:00:15
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
+    data:
       brightness: 130
       rgb_color: [255,124,14]
   - service: notify.slack_smolandia
     data:
       message: 'Intruder detection:  RGE door/camera'
       title: 'Intruder detection:  RGE'
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
+    data:
+      brightness: 130
+      rgb_color: [109, 145, 255]
     
