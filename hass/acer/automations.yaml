@@ -90,6 +90,7 @@
     data:
       message: 'Intruder detection:  RGE door/camera'
       title: 'Intruder detection:  RGE'
+  - delay: 02:00:00
   - target:
       entity_id: light.status_c
     service: light.turn_on
