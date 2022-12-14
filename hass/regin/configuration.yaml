@@ -16,6 +16,8 @@ homeassistant:
   time_zone: America/Montreal
   latitude: !secret zone_lkn_latitude
   longitude: !secret zone_lkn_longitude
+  allowlist_external_urls:
+    - "http://10.0.1.52/cgi-bin"
   auth_providers:
     - type: homeassistant
     - type: legacy_api_password
