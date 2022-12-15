@@ -125,6 +125,10 @@
   action:
   - service: notify.slack_smolandia
     data:
+      message: 'Motion Sending Amcrest Snapshot'
+      title: 'Motion Sending Amcrest Snapshot'
+  - service: notify.slack_smolandia
+    data:
       message: 'Motion Detected: Silverlyckan - Basement Front Snapshot'
       title: Motion Silverlyckan - Snapshot
       data:
