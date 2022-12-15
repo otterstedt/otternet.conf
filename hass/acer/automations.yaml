@@ -118,10 +118,10 @@
     platform: state
     to: 'on'
   condition:
-  not:
-    - condition: state
-      entity_id: device_tracker.michael_s_iphone
-      state: 'Silverlyckan'
+    not:
+      - condition: state
+        entity_id: device_tracker.michael_s_iphone
+        state: 'Silverlyckan'
   action:
   - service: notify.slack_smolandia
     data:
