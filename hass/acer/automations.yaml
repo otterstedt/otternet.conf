@@ -133,6 +133,6 @@
       title: Motion Silverlyckan - Snapshot
       data:
         file:
-          url: http://10.0.1.52/cgi-bin/snapshot.cgi?1
-          username: admin
+          url: 'http://10.0.1.52/cgi-bin/snapshot.cgi?1'
+          username: 'admin'
           password: !secret mqtt_password
