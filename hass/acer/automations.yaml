@@ -97,4 +97,31 @@
     data:
       brightness: 130
       rgb_color: [109, 145, 255]
-    
+
+- id: 'motion_detected_basement_door_not_sln'
+  alias: Basement Front Door Motion - not sln
+  description: ''
+  trigger:
+  - device_id: 09a52a4cd0884e178b54fb884166fcdd
+    domain: light
+    entity_id: light.approach_lamp
+    platform: device
+    type: turned_on
+  - entity_id: binary_sensor.amcrest_camera_motion_detected
+    platform: state
+    to: 'on'
+  condition:
+  not:
+    - condition: state
+      entity_id: device_tracker.michael_s_iphone
+      state: 'Silverlyckan'
+  action:
+  - service: notify.slack_smolandia
+    data:
+      message: 'Motion Detected: Silverlyckan - Basement Front Snapshot'
+      title: Motion Silverlyckan - Snapshot
+      data:
+        file:
+          url: http://10.0.1.52/cgi-bin/snapshot.cgi?1
+          username: admin
+          password: !secret mqtt_password
