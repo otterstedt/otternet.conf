@@ -90,6 +90,13 @@
     data:
       message: 'Intruder detection:  RGE door/camera'
       title: 'Intruder detection:  RGE'
+  - service: notify.slack_smolandia
+    data:
+      message: 'Motion Detected RGE: Nest Snapshot'
+      title: Motion Detected RGE - Nest Snapshot
+      data:
+        file:
+          url: !secret camera_rge_nest_snap_url
   - delay: 02:00:00
   - target:
       entity_id: light.status_c

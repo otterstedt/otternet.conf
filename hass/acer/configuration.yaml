@@ -21,6 +21,7 @@ homeassistant:
   longitude: !secret zone_rge_longitude
   allowlist_external_urls:
     - "http://10.0.1.52/cgi-bin"
+    - "https://www.dropcam.com/api"
   auth_providers:
     - type: homeassistant
     - type: legacy_api_password
