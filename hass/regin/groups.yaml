@@ -197,3 +197,12 @@ Status_lights_sln:
     - light.status_a
     - light.status_b
     - light.status_c
+
+detection_rge:
+ name: Rävgrävle
+ entities:
+   - binary_sensor.backyard_camera_motion_detected
+   - binary_sensor.backyard_camera_online
+   - binary_sensor.backyard_camera_person_detected
+   - binary_sensor.backyard_camera_sound_detected
+   - camera.backyard
