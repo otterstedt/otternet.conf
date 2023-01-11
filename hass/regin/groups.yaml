@@ -24,13 +24,18 @@ presence:
 #    - person.loki
 
 bedroom_sln:
-  name: Bedroom
+  name: Silverlyckan Bedroom
   entities:
     - light.media_room_hood
     - light.bedroom_basement_bedroom_roof
     - sensor.bedroomdown_sln_temperature 
-    - switch.radiator_media_room
+    - switch.radiator_bedroom
     - climate.bedroom_basement_thermostat
+
+guestroom_sln:
+  name: Silverlyckan Guestroom
+  entities:
+    - switch.radiator_guestroom
 
 climate_sln:
   name: Silverlyckan Climate 

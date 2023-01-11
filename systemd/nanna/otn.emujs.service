@@ -15,7 +15,7 @@ ExecStart=/usr/bin/docker run --rm \
   -p 4001:4001 \
   -v /home/{{ ansible_user }}/emujs/config:/config \
   -v /home/{{ ansible_user }}/emujs/data:/data \
-  lscr.io/linuxserver/emulatorjs
+  lscr.io/linuxserver/emulatorjs:1.7.2-ls52
 ExecStop=/usr/bin/docker stop emulatorjs
 ExecReload=/usr/bin/docker restart emulatorjs
 User={{ ansible_user }}
