@@ -26,7 +26,6 @@ presence:
 bedroom_sln:
   name: Silverlyckan Bedroom
   entities:
-    - light.media_room_hood
     - light.bedroom_basement_bedroom_roof
     - sensor.bedroomdown_sln_temperature 
     - switch.radiator_bedroom
@@ -186,7 +185,12 @@ michael_info:
     - sensor.michael_s_iphone_last_update_trigger
     - sensor.michael_s_iphone_sim_1
  
-  
+office_room_sln:
+  name: Silverlyckan Office
+    - light.media_room_hood
+    - light.status_c
+    - remote.upstairs
+    - media_player.upstairs
 
 other:
   name: Other Devices
@@ -196,7 +200,7 @@ guests:
   name: Guest Devices
     - person.melanie
 
-Status_lights_sln:
+status_lights_sln:
   name: Silverlyckan Status Lights
   entities:
     - light.status_a
