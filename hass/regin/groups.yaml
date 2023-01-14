@@ -14,7 +14,7 @@ presence:
   name: Silverlyckan Presence
   entities: 
     - binary_sensor.person_present
-    - device_tracker.volvo_dclxvi
+    - device_tracker.dclxvi_position
     
 #pets:
 #  name: Pet Devices
@@ -86,7 +86,7 @@ network_sln:
 dclxvi_sln:
   name: DCLXVI
   entities:
-    - device_tracker.volvo_dclxvi
+    - device_tracker.dclxvi_position
     - binary_sensor.dclxvi_engine
     - switch.dclxvi_engine
     - lock.dclxvi_door_lock
