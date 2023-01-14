@@ -1,0 +1,15 @@
+[Unit]
+Description=Node Exporter Service
+
+[Service]
+ExecStart=/home/{{ ansible_user }}/node_exporter/node_exporter-1.5.0.linux-armv6/node_exporter --collector.systemd --collector.processes
+User={{ ansible_user }}
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+WorkingDirectory=/home/{{ ansible_user }}/node_exporter/node_exporter-1.5.0.linux-armv6
+TimeoutSec=60
+Restart=always
+RestartSec=15
+
+[Install]
+Alias=nodeexporter.service
+WantedBy=multi-user.target
