@@ -1,0 +1,172 @@
+
+
+- id: '1579890137263'
+  alias: Car arrives
+  description: ''
+  trigger:
+  - entity_id: person.dclxvi
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.basement_outdoor_lamp
+    service: light.turn_on
+- id: '1581717740537'
+  alias: Karen arrives
+  description: ''
+  trigger:
+  - entity_id: person.karen
+    platform: state
+    from: not_home
+    to: home
+  condition: []
+  action:
+  - delay: 00:03:00
+  - entity_id: script.goat4sale_sous_sol
+    service: script.turn_on
+
+- alias: Silver Flight entry notification
+  trigger:
+    platform: event
+    event_type: opensky_entry
+  action:
+  - service: mqtt.publish
+    data_template:
+      payload_template: '{{ trigger.event.data.callsign }}'
+      topic: hass/message/silversky/callsign
+      retain: true
+  - service: notify.pushover
+    data_template:
+      message: 'Flyover by: {{ trigger.event.data.callsign }}'
+      title: '{{ trigger.event.data.callsign }}'
+      data:
+        url: https://flightaware.com/live/flight/{{ trigger.event.data.callsign }}
+        sound: pianobar
+        priority: 0
+        attachment: https://w0.pngwave.com/png/942/542/airplane-computer-icons-graphy-aircraft-png-clip-art.png
+  - service: notify.slack_smolandia
+    data_template:
+      message: 'Silverlyckan Flight Entry by: {{ trigger.event.data.callsign }} Altitude:
+        {{ trigger.event.data.altitude }} - https://flightaware.com/live/flight/{{
+        trigger.event.data.callsign }}'
+      title: 'Flight: {{ trigger.event.data.callsign }} Altitude: {{ trigger.event.data.altitude
+        }}'
+  - service: notify.twitter
+    data_template:
+      message: 'Silverlyckan Flight Entry by: {{ trigger.event.data.callsign }} Altitude:
+        {{ trigger.event.data.altitude }} - https://flightaware.com/live/flight/{{
+        trigger.event.data.callsign }} - https://opensky-network.org/aircraft-profile?icao24={{ trigger.event.data.icao24 }}'
+      title: 'Flight: {{ trigger.event.data.callsign }} Altitude: {{ trigger.event.data.altitude
+        }}'
+  id: 4a5f482525864aa2a190e174fb6e9590
+
+- alias: Silver Flight exity notification
+  trigger:
+    platform: event
+    event_type: opensky_exit
+  action:
+  - service: notify.slack_smolandia
+    data_template:
+      message: 'Silverlyckan Flight Exit: {{ trigger.event.data.callsign }} - https://flightaware.com/live/flight/{{
+        trigger.event.data.callsign }}'
+      title: '{{ trigger.event.data.callsign }}'
+  id: 14f96a3cf8ee49a796f81a33763f3769
+
+- id: motion_detected_basement_door_home
+  alias: Basement Front Door Motion - home
+  trigger:
+  - device_id: 09a52a4cd0884e178b54fb884166fcdd
+    domain: light
+    entity_id: light.approach_lamp
+    platform: device
+    type: turned_on
+  - entity_id: binary_sensor.amcrest_camera_motion_detected
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.person_present
+    state: 'on'
+  - condition: template
+    value_template: '{{ not is_state(''media_player.chambre_principale'', ''playing'')
+      }}'
+  action:
+  - data:
+      entity_id: camera.amcrest_camera
+      media_player: media_player.chambre_principale
+    service: camera.play_stream
+
+- id: 'motion_detected_basement_door_not_home'
+  alias: Basement Front Door Motion - not home
+  description: ''
+  trigger:
+  - device_id: 09a52a4cd0884e178b54fb884166fcdd
+    domain: light
+    entity_id: light.approach_lamp
+    platform: device
+    type: turned_on
+  - entity_id: binary_sensor.amcrest_camera_motion_detected
+    platform: state
+    to: 'on'
+  condition: 
+  - condition: state
+    entity_id: binary_sensor.person_present
+    state: 'off'
+  action:
+  - data:
+      payload: true
+      topic: hass/message/motiondetector/sln/basement/front
+    service: mqtt.publish
+  - data:
+      message: 'Motion Detected: Silverlyckan - Basement Front Snapshot'
+      title: Motion Silverlyckan - Snapshot
+      data:
+        file:
+          url: http://10.0.1.52/cgi-bin/snapshot.cgi?1
+          username: admin
+          password: !secret mqtt_password
+    service: notify.slack_smolandia
+  - data:
+      message: 'Motion Detected:  Silverlyckan - Basement Front'
+      title: Motion Silverlyckan
+    service: notify.slack_smolandia
+
+- id: '1607193505087'
+  alias: No Presence
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.person_present
+    for: 01:00
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - scene: scene.darkness
+  - data: {}
+    entity_id: light.roof_bedroom
+    service: light.turn_off
+- id: '1607240350332'
+  alias: Arrival After Sunset
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.person_present
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+  - data: {}
+    entity_id: switch.balcony_power
+    service: switch.turn_on
+  - data: {}
+    entity_id: switch.ljusstake
+    service: switch.turn_on
+  - data: {}
+    entity_id: switch.christmas_tree
+    service: switch.turn_on

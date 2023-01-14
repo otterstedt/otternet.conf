@@ -1,0 +1,15 @@
+- id: '1629321671444'
+  alias: Purge DB
+  description: ''
+  trigger:
+  - platform: time_pattern
+    hours: '02'
+    minutes: '00'
+    seconds: '00'
+  condition: []
+  action:
+  - service: recorder.purge
+    data:
+      keep_days: 5
+      repack: true
+  mode: single

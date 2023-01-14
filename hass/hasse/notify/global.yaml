@@ -1,0 +1,50 @@
+- name: pushover
+  platform: pushover
+  api_key: !secret pushover_api_key
+  user_key: !secret pushover_user_key
+- name: slack_smolandia
+  platform: slack
+  api_key: !secret slack_smolandia_hasse_access_token
+  default_channel: '#automation-notifications'
+  username: hasse
+- name: aws_cli
+  platform: command_line
+  command: "ARGS=$(cat) && /usr/local/bin/aws $ARGS"
+- name: twitter
+  platform: twitter
+  consumer_key: !secret twitter_consumer_key
+  consumer_secret: !secret twitter_consumer_secret
+  access_token: !secret twitter_access_token
+  access_token_secret: !secret twitter_access_token_secret
+- name: twitter_direct
+  platform: twitter
+  consumer_key: !secret twitter_consumer_key
+  consumer_secret: !secret twitter_consumer_secret
+  access_token: !secret twitter_access_token
+  access_token_secret: !secret twitter_access_token_secret
+  username: !secret twitter_username
+- name: "gmail"
+  platform: smtp
+  server: "smtp.gmail.com"
+  port: 587
+  timeout: 15
+  sender: !secret gmail_user
+  encryption: starttls
+  username: !secret gmail_user
+  password: !secret gmail_password
+  recipient:
+    - !secret gmail_user
+  sender_name: !secret gmail_user
+- name: "gmail_kamo"
+  platform: smtp
+  server: "smtp.gmail.com"
+  port: 587
+  timeout: 15
+  sender: !secret gmail_user
+  encryption: starttls
+  username: !secret gmail_user
+  password: !secret gmail_password
+  recipient:
+    - !secret gmail_user
+    - !secret ka_email
+  sender_name: !secret gmail_user

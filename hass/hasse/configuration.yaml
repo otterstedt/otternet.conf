@@ -1,0 +1,225 @@
+# Configure a default setup of Home Assistant (frontend, api, etc) 
+default_config: 
+ 
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc. 
+# http: 
+#   base_url: example.duckdns.org:8123
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 10.0.0.0/8
+    
+api:
+
+homeassistant:
+  unit_system: metric
+  time_zone: America/Montreal
+  latitude: !secret zone_lkn_latitude
+  longitude: !secret zone_lkn_longitude
+  allowlist_external_urls:
+    - "http://10.0.1.52/cgi-bin"
+  auth_providers:
+    - type: homeassistant
+    - type: legacy_api_password
+      api_password: !secret http_api_password
+ 
+ 
+amcrest: 
+  - host: 10.0.1.52 
+    username: admin 
+    password: !secret mqtt_password 
+    binary_sensors:
+      - motion_detected
+      - online
+    sensors:
+      - sdcard
+      - ptz_preset
+#  - host: 10.0.1.54 
+#    username: admin 
+#    password: !secret mqtt_password 
+#    binary_sensors:
+#      - motion_detected
+#      - online
+#    sensors:
+#      - sdcard
+#      - ptz_preset
+
+
+
+
+
+
+lutron_caseta:
+    host: 10.0.1.41
+    keyfile: caseta.key
+    certfile: caseta.crt
+    ca_certs: caseta-bridge.crt
+    
+climate:
+#  - platform: generic_thermostat
+#    name: Bedroom Thermostat
+#    heater: switch.radiator_bedroom
+#    target_sensor: sensor.bedroom_sln_temperature
+#    max_temp: 24
+#    cold_tolerance: 0.8
+#    keep_alive:
+#      minutes: 5
+#  - platform: generic_thermostat
+#    name: Media Room Thermostat
+#    heater: switch.radiator_media
+#    target_sensor: sensor.mediaroom_sln_temperature
+#    max_temp: 24
+#    cold_tolerance: 0.8
+#    keep_alive:
+#      minutes: 5
+  - platform: generic_thermostat
+    name: Bedroom Basement Thermostat
+    heater: switch.radiator_media_room
+    target_sensor: sensor.bedroomdown_sln_temperature
+    max_temp: 24
+    cold_tolerance: 0.3
+    hot_tolerance: 0.3
+    keep_alive:
+      minutes: 5
+
+
+device_tracker: 
+  - platform: bluetooth_tracker 
+  - platform: bluetooth_le_tracker 
+    track_new_devices: true 
+  - platform: nmap_tracker
+    hosts: 10.0.1.0/24, 192.168.0.0/24, 192.168.50.0/24, 192.168.0.0/24
+    home_interval: 3
+    consider_home: 180
+#    exclude:
+#      - 192.168.1.80
+  - platform: tile
+    username: !secret tile_username
+    password: !secret tile_password
+    
+discovery:
+
+fastdotcom:
+  scan_interval:
+      minutes: 720
+
+gdacs:
+
+geo_location:
+  - platform: usgs_earthquakes_feed
+    feed_type: 'past_month_all_earthquakes'
+    radius: 50
+    minimum_magnitude: 0.0
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+ 
+influxdb:
+  api_version: 2
+  host: localhost
+  port: 8086
+  ssl: false
+  bucket: home_assistant
+  organization: 976be20ced77ca21
+  token: !secret influxdb_token_sln
+  tags:
+    source: hass
+
+
+input_boolean:
+  ict_switch:
+    name: AWS ICT Instance
+    icon: mdi:server
+  tools_switch:
+    name: AWS Tools Instance
+    icon: mdi:server
+  web_switch:
+    name: AWS Web Instance
+    icon: mdi:server
+  bedroom_heat_requested:
+    name: Request Bedroom Heat
+    initial: 'off'
+  bedroom_cool_requested:
+    name: Request Bedroom Cool
+    initial: 'off'
+
+iperf3:
+  hosts:
+    - host: !secret host_dmz_rge
+      port: 5001
+    - host: !secret hosts_acer_rge
+      port: 5001
+  scan_interval: '06:00'
+
+media_extractor:
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+ 
+mqtt: 
+  broker: !secret mqtt_host 
+  port: !secret mqtt_port 
+  username: !secret mqtt_user 
+  password: !secret mqtt_password 
+  certificate: /etc/ssl/certs/ca-certificates.crt 
+ 
+mqtt_statestream: 
+  base_topic: hass/statestream 
+  publish_attributes: true 
+  publish_timestamps: true
+
+mqtt_eventstream:
+  publish_topic: hass/eventstream/slaves/sln
+  subscribe_topic: hass/eventstream/master
+
+
+prometheus:
+  namespace: hass_sln
+
+shell_command:
+  aws_cli: '/usr/local/bin/aws {{ args }}'
+  aws_cli_start_instances: '/usr/local/bin/aws ec2 start-instances --instance-ids {{ ids }}'
+  aws_cli_stop_instances: '/usr/local/bin/aws ec2 stop-instances --instance-ids {{ ids }}'
+
+tellduslive:
+  host: 10.0.1.25
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+upnp:
+
+volvooncall:
+  username: !secret voc_user
+  password: !secret voc_password
+  region: !secret voc_region
+  resources:
+    - position 
+    - engine_start
+    - heater
+    - is_engine_running
+    - lock
+    - fuel_amount
+    - fuel_amount_level
+    - distance_to_empty
+    - battery_range
+    - battery_level
+    - any_door_open
+    - any_window_open
+
+
+
+
+binary_sensor: !include_dir_merge_list binary_sensor/
+camera: !include_dir_merge_list camera/
+notify: !include_dir_merge_list notify/
+sensor: !include_dir_merge_list sensor/
+zone: !include_dir_merge_list zone/
+
+group: !include groups.yaml
+automation manual: !include_dir_merge_list automations/
+automation ui: !include automations.yaml
+script: !include scripts.yaml

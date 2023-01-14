@@ -1,0 +1,122 @@
+#need to move mqqt to new format when upgrading
+- platform: mqtt
+  name: "Aquarium Temperature"
+  state_topic: "hass/message/sensorist/mtl"
+  unit_of_measurement: '°C'
+  value_template: "{{ value_json['32208']['value'] }}"
+  json_attributes_topic: "hass/message/sensorist/mtl"
+- platform: imap_email_content
+  server: imap.gmail.com
+  name: bedroom_heat_requested
+  port: 993
+  username: !secret gmail_user
+  password: !secret gmail_password
+  senders:
+    - !secret ka_email
+    - !secret gmail_user
+  value_template: >-
+    {% if 'heat bedroom please' in (subject | lower) %}
+      up
+    {% elif 'cool bedroom please' in (subject | lower) %}
+      down
+    {% else %}
+      off
+    {% endif %}
+- platform: imap
+  server: imap.gmail.com
+  port: 993
+  username: !secret gmail_user
+  password: !secret gmail_password
+- platform: season
+  name: Season
+- platform: mqtt
+  name: Silver Callsign
+  unique_id: silversky_callsign
+  state_topic: "hass/message/silversky/callsign"
+- platform: opensky
+  radius: 15
+  name: silversky
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'date_time_utc'
+    - 'date_time_iso'
+    - 'time_date'
+    - 'time_utc'
+    - 'beat'
+- platform: template
+  sensors:
+    timetopoubelle:
+      friendly_name: Days to Poubelle
+      entity_id: sensor.time
+      value_template: >-
+        {% if states.calendar.marbleton_poubelle.attributes.start_time %}
+          {{((as_timestamp(states.calendar.marbleton_poubelle.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+        {%- else -%}
+          None
+        {%- endif %}
+    timetorecyclage:
+      friendly_name: Days to Recyclage
+      entity_id: sensor.time
+      value_template: >-
+        {% if states.calendar.marbleton_recyclage.attributes.start_time %}
+          {{((as_timestamp(states.calendar.marbleton_recyclage.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+        {%- else -%}
+          None
+        {%- endif %}
+    timetocompost:
+      friendly_name: Days to Compost
+      entity_id: sensor.time
+      value_template: >-
+        {% if states.calendar.dudswell_compost.attributes.start_time %}
+          {{((as_timestamp(states.calendar.dudswell_compost.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+        {%- else -%}
+          None
+        {%- endif %}
+    timetogrosbut:
+      friendly_name: Days to Gros But
+      entity_id: sensor.time
+      value_template: >-
+        {% if states.calendar.marbleton_gros_rebut.attributes.start_time %}
+          {{((as_timestamp(states.calendar.marbleton_gros_rebut.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+        {%- else -%}
+          None
+        {%- endif %}
+    timetoecocentre:
+      friendly_name: Days to Eco Centre
+      entity_id: sensor.time
+      value_template: >-
+        {% if states.calendar.dudswell_ecocentre.attributes.start_time %}
+          {{((as_timestamp(states.calendar.dudswell_ecocentre.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+        {%- else -%}
+          None
+        {%- endif %}
+    timetoventegarage:
+      friendly_name: Days to Vente de Garage
+      entity_id: sensor.time
+      value_template: >-
+        {% if states.calendar.dudswell_vente_garage.attributes.start_time %}
+          {{((as_timestamp(states.calendar.dudswell_vente_garage.attributes.start_time) - as_timestamp(states('sensor.date_time_iso')) ) / ( 60 * 60 * 24 ) ) | default(99) | round(2, 'common') }}
+        {%- else -%}
+          None
+        {%- endif %}
+- platform: command_line
+  name: ICT Instance
+  json_attributes:
+    - Reservations
+  command: !secret aws_instance_ict_status_command
+  value_template: '{{ value_json.Reservations[0].Instances[0].State.Name }}'
+- platform: command_line
+  name: Tools Instance
+  json_attributes:
+    - Reservations
+  command: !secret aws_instance_tools_status_command
+  value_template: '{{ value_json.Reservations[0].Instances[0].State.Name }}'
+- platform: command_line
+  name: Web Instance
+  json_attributes:
+    - Reservations
+  command: !secret aws_instance_web_status_command
+  value_template: '{{ value_json.Reservations[0].Instances[0].State.Name }}'

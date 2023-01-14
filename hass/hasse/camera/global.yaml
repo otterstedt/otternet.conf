@@ -1,0 +1,24 @@
+- platform: mjpeg
+  name: !secret camera_sln_washer_name
+  mjpeg_url: !secret camera_sln_washer_url
+- platform: mjpeg
+  name: !secret camera_sln_cat_name
+  mjpeg_url: !secret camera_sln_cat_url
+- platform: mjpeg
+  name: !secret camera_rge_acer_name
+  mjpeg_url: !secret camera_rge_acer_url
+- platform: mjpeg
+  name: !secret camera_rge_attic_name
+  mjpeg_url: !secret camera_rge_attic_url
+- platform: mjpeg
+  name: !secret camera_rge_outhouse_name
+  mjpeg_url: !secret camera_rge_outhouse_url
+- platform: mjpeg
+  name: !secret camera_rge_lroom_name
+  mjpeg_url: !secret camera_rge_lroom_url
+- platform: mjpeg
+  name: !secret camera_rge_dtop_name
+  mjpeg_url: !secret camera_rge_dtop_url
+- platform: mjpeg
+  name: !secret camera_rge_front_name
+  mjpeg_url: !secret camera_rge_front_url

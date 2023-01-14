@@ -1,0 +1,219 @@
+adults:
+  name: Adult devices
+  entities:
+    - person.michael
+    - person.karen
+
+kids:
+  name: Kid devices
+  entities:
+    - person.dorothee
+    - person.olivier
+
+presence:
+  name: Silverlyckan Presence
+  entities: 
+    - binary_sensor.person_present
+    - device_tracker.volvo_dclxvi
+    
+#pets:
+#  name: Pet Devices
+#  entities:
+#    - person.sven
+#    - person.gustaf
+#    - person.loki
+
+bedroom_sln:
+  name: Silverlyckan Bedroom
+  entities:
+    - light.bedroom_basement_bedroom_roof
+    - sensor.bedroomdown_sln_temperature 
+    - switch.radiator_bedroom
+    - climate.bedroom_basement_thermostat
+
+guestroom_sln:
+  name: Silverlyckan Guestroom
+  entities:
+    - switch.radiator_guestroom
+
+climate_sln:
+  name: Silverlyckan Climate 
+  entities:
+    - sensor.bedroom_sln_temperature
+    - sensor.bedroom_sln_humidity
+    - sensor.mediaroom_sln_temperature
+    - sensor.mediaroom_sln_humidity
+    - sensor.kitchen_sln_temperature
+    - sensor.kitchen_sln_humidity
+    - sensor.kitchenout_sln_temperature
+    - sensor.tvroom_sln_temperature
+    - sensor.tvroom_sln_humidity
+    - sensor.bedroomdown_sln_humidity
+    - sensor.bedroomdown_sln_temperature 
+
+appliances_sln:
+  name: Silverlyckan Appliances 
+  entities:
+    - sensor.freezer_sln_temperature
+    - sensor.freezer_sln_humidity
+    - sensor.dipper_sln_temperature
+
+camera_entrance_sln:
+  name: Silverlyckan Entrance Camera
+  entities:
+    - binary_sensor.amcrest_camera_motion_detected
+    - binary_sensor.amcrest_camera_online
+    - camera.amcrest_camera
+    - sensor.amcrest_camera_ptz_preset
+    - sensor.amcrest_camera_sd_used
+
+entrance_sln:
+  name: Entrance
+  entities:
+    - binary_sensor.amcrest_camera_motion_detected
+    - light.approach_lamp
+    - light.basement_outdoor_lamp
+    - switch.ljusstake
+    - switch.balcony_power
+    - binary_sensor.door_sln
+    
+network_sln:
+  name: Network Silverlyckan
+  entities:
+    - sensor.asuswrt_devices_connected
+
+    
+dclxvi_sln:
+  name: DCLXVI
+  entities:
+    - device_tracker.volvo_dclxvi
+    - binary_sensor.dclxvi_engine
+    - switch.dclxvi_engine
+    - lock.dclxvi_door_lock
+    - sensor.dclxvi_fuel_amount
+    - sensor.dclxvi_fuel_level
+    - sensor.dclxvi_range
+    - binary_sensor.dclxvi_doors
+    - binary_sensor.dclxvi_windows
+    
+environment_sln:
+  name: Environment
+  entities:
+    - sun.sun
+    - sensor.season
+    - sensor.silversky
+    - sensor.silver_callsign
+
+network_speed_sln:
+  name: Network Bandwidth/Speed
+  entities:
+    - sensor.fast_com_download
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.download_acer_rge_otternet_ca
+    - sensor.upload_acer_rge_otternet_ca
+    - sensor.download_dmz_rge_otternet_ca
+    - sensor.upload_dmz_rge_otternet_ca
+    
+
+schedules_sln:
+  name: Silverlyckan Schedules
+  entities:
+  - sensor.timetopoubelle
+  - sensor.timetorecyclage
+  - sensor.timetocompost
+  - sensor.timetogrosbut
+  - sensor.timetoecocentre
+  - sensor.timetoventegarage
+
+aquarium_sln:
+  name: Silverlyckan Aquarium
+  entities:
+  - switch.christmas_tree
+  - sensor.aquarium_temperature
+
+
+instances:
+  name: AWS Instances
+  entities:
+    - input_boolean.ict_switch
+    - sensor.ict_instance
+    - input_boolean.web_switch
+    - sensor.web_instance
+    - input_boolean.tools_switch
+    - sensor.tools_instance
+
+heat_requests_sln:
+  name: Silverlyckan Heat Requests
+  entities:
+    - input_boolean.bedroom_cool_requested
+    - input_boolean.bedroom_heat_requested
+    - sensor.bedroom_heat_requested
+
+time_sensors:
+  name: Time & Date
+  entities:
+  
+  - sensor.time
+  - sensor.time_utc
+  - sensor.date
+  - sensor.time_date
+  - sensor.date_time
+  - sensor.date_time_utc
+  - sensor.date_time_iso
+  - sensor.internet_time
+  
+michael_info:
+  name: Michael
+  entities:
+    - device_tracker.michael_s_iphone
+    - sensor.michael_s_iphone_distance
+    - sensor.michael_s_iphone_steps
+    - sensor.michael_s_iphone_floors_ascended
+    - sensor.michael_s_iphone_floors_descended
+    - sensor.michael_s_iphone_activity
+    - sensor.michael_s_iphone_average_active_pace
+    - sensor.michael_s_iphone_battery_level
+    - sensor.michael_s_iphone_battery_state
+    - sensor.michael_s_iphone_connection_type
+    - sensor.michael_s_iphone_bssid
+    - sensor.michael_s_iphone_ssid
+    - sensor.michael_s_iphone_storage
+    - binary_sensor.michael_s_iphone_focus
+    - sensor.michael_s_iphone_geocoded_location
+    - sensor.michael_s_iphone_last_update_trigger
+    - sensor.michael_s_iphone_sim_1
+ 
+office_room_sln:
+  name: Silverlyckan Office
+  entities:
+    - light.media_room_hood
+    - light.status_c
+    - remote.upstairs
+    - media_player.upstairs
+
+other:
+  name: Other Devices
+  entities:
+    - person.dclxvi
+
+guests:
+  name: Guest Devices
+    - person.melanie
+
+status_lights_sln:
+  name: Silverlyckan Status Lights
+  entities:
+    - light.status_a
+    - light.status_b
+    - light.status_c
+
+detection_rge:
+ name: Rävgrävle
+ entities:
+   - binary_sensor.backyard_camera_motion_detected
+   - binary_sensor.backyard_camera_online
+   - binary_sensor.backyard_camera_person_detected
+   - binary_sensor.backyard_camera_sound_detected
+   - camera.backyard
