@@ -159,11 +159,41 @@ nest:
   client_secret: !secret nest_client_secret
  
 mqtt: 
-  broker: !secret mqtt_host 
-  port: !secret mqtt_port 
-  username: !secret mqtt_user 
-  password: !secret mqtt_password 
-  certificate: /etc/ssl/certs/ca-certificates.crt 
+#  broker: !secret mqtt_host 
+#  port: !secret mqtt_port 
+#  username: !secret mqtt_user 
+#  password: !secret mqtt_password 
+#  certificate: /etc/ssl/certs/ca-certificates.crt
+  binary_sensor:
+    - name: "Door Detector"
+      device_class: "door"
+      state_topic: "hass/message/sensorist/rge"
+      payload_on: 1
+      payload_off: 0
+      value_template: "{{ value_json['35055']['value'] }}"
+      json_attributes_topic: "hass/message/sensorist/rge"
+  sensor:
+    - name: "RGE Door Temperature"
+      state_topic: "hass/message/sensorist/rge"
+      unit_of_measurement: '°C'
+      value_template: "{{ value_json['35036']['value'] }}"
+      json_attributes_topic: "hass/message/sensorist/rge"
+    - name: "RGE Bedroom Temperature "
+      state_topic: "hass/message/sensorist/rge"
+      unit_of_measurement: '°C'
+      value_template: "{{ value_json['35040']['value'] }}"
+      json_attributes_topic: "hass/message/sensorist/rge"
+    - name: RGE Callsign
+      unique_id: rgesky_callsign
+      state_topic: "hass/message/rgesky/callsign"
+    - name: "Aquarium Temperature"
+      state_topic: "hass/message/sensorist/mtl"
+      unit_of_measurement: '°C'
+      value_template: "{{ value_json['32208']['value'] }}"
+      json_attributes_topic: "hass/message/sensorist/mtl"
+    - name: Silver Callsign
+      unique_id: silversky_callsign
+      state_topic: "hass/message/silversky/callsign"
  
 mqtt_statestream: 
   base_topic: hass/statestream 
