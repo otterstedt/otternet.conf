@@ -1,29 +1,71 @@
-# Configure a default setup of Home Assistant (frontend, api, etc) 
-default_config: 
- 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc. 
-# http: 
-#   base_url: example.duckdns.org:8123
-http:
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 10.0.0.0/8
-    
-api:
+#homeassistant:
+#  # Name of the location where Home Assistant is running
+#  name: Home
+#  # Location required to calculate the time the sun rises and sets
+#  latitude: !secret zone_rge_latitude
+#  longitude: !secret zone_rge_longitude
+#  # Impacts weather/sunrise data (altitude above sea level in meters)
+#  elevation: 0
+#  # metric for Metric, imperial for Imperial
+#  unit_system: metric
+#  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+#  time_zone: UTC
+##  # Customization file
+##  customize: !include customize.yaml
 
 homeassistant:
+  name: Silverlyckan
   unit_system: metric
   time_zone: America/Montreal
   latitude: !secret zone_lkn_latitude
   longitude: !secret zone_lkn_longitude
   allowlist_external_urls:
     - "http://10.0.1.52/cgi-bin"
+    - "https://www.dropcam.com/api"
   auth_providers:
     - type: homeassistant
     - type: legacy_api_password
       api_password: !secret http_api_password
- 
- 
+  unit_system: metric
+
+default_config:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+backup:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+#http:
+#  api_password: !secret http_api_password
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+#google:
+#  client_id: !secret google_client_id
+#  client_secret: !secret google_client_secret
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
 amcrest: 
   - host: 10.0.1.52 
     username: admin 
@@ -34,47 +76,28 @@ amcrest:
     sensors:
       - sdcard
       - ptz_preset
-#  - host: 10.0.1.54 
-#    username: admin 
-#    password: !secret mqtt_password 
-#    binary_sensors:
-#      - motion_detected
-#      - online
-#    sensors:
-#      - sdcard
-#      - ptz_preset
 
 
+tellduslive:
+  host: 10.0.1.25
 
+# Text to speech
+tts:
+  - platform: google_translate
 
-
+# Cloud
+cloud:
 
 lutron_caseta:
     host: 10.0.1.41
     keyfile: caseta.key
     certfile: caseta.crt
     ca_certs: caseta-bridge.crt
-    
+
 climate:
-#  - platform: generic_thermostat
-#    name: Bedroom Thermostat
-#    heater: switch.radiator_bedroom
-#    target_sensor: sensor.bedroom_sln_temperature
-#    max_temp: 24
-#    cold_tolerance: 0.8
-#    keep_alive:
-#      minutes: 5
-#  - platform: generic_thermostat
-#    name: Media Room Thermostat
-#    heater: switch.radiator_media
-#    target_sensor: sensor.mediaroom_sln_temperature
-#    max_temp: 24
-#    cold_tolerance: 0.8
-#    keep_alive:
-#      minutes: 5
   - platform: generic_thermostat
     name: Bedroom Basement Thermostat
-    heater: switch.radiator_media_room
+    heater: switch.radiator_bedroom
     target_sensor: sensor.bedroomdown_sln_temperature
     max_temp: 24
     cold_tolerance: 0.3
@@ -82,7 +105,27 @@ climate:
     keep_alive:
       minutes: 5
 
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
 
+
+#device_tracker:
+#  - platform: nmap_tracker
+#    hosts: 192.168.0.0/24, 192.168.50.0/24, 192.168.0.0/24
+#    home_interval: 1
+#    exclude:
+#      - 192.168.1.80
+
+#  - platform: nmap_tracker
+#    hosts: ipcam-back.lan
+#    home_interval: 1
+#  - platform: nmap_tracker
+#    hosts: ipcam-front.lan
+#    home_interval: 1
+#  - platform: nmap_tracker
+#    hosts: ipcam-living.lan
+#    home_interval: 1
 device_tracker: 
   - platform: bluetooth_tracker 
   - platform: bluetooth_le_tracker 
@@ -96,8 +139,6 @@ device_tracker:
   - platform: tile
     username: !secret tile_username
     password: !secret tile_password
-    
-discovery:
 
 fastdotcom:
   scan_interval:
@@ -111,13 +152,9 @@ geo_location:
     radius: 50
     minimum_magnitude: 0.0
 
-#google:
-#  client_id: !secret google_client_id
-#  client_secret: !secret google_client_secret
- 
 influxdb:
   api_version: 2
-  host: localhost
+  host: 10.0.1.162
   port: 8086
   ssl: false
   bucket: home_assistant
@@ -125,7 +162,6 @@ influxdb:
   token: !secret influxdb_token_sln
   tags:
     source: hass
-
 
 input_boolean:
   ict_switch:
@@ -146,6 +182,8 @@ input_boolean:
 
 iperf3:
   hosts:
+    - host: !secret hosts_ict 
+      port: 5001
     - host: !secret host_dmz_rge
       port: 5001
     - host: !secret hosts_acer_rge
@@ -154,15 +192,14 @@ iperf3:
 
 media_extractor:
 
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
- 
-mqtt: 
-#  broker: !secret mqtt_host 
-#  port: !secret mqtt_port 
-#  username: !secret mqtt_user 
-#  password: !secret mqtt_password 
+
+
+
+mqtt:
+#  broker: !secret mqtt_host
+#  port: !secret mqtt_port
+#  username: !secret mqtt_user
+#  password: !secret mqtt_password
 #  certificate: /etc/ssl/certs/ca-certificates.crt
   binary_sensor:
     - name: "Door Detector"
@@ -183,6 +220,9 @@ mqtt:
       unit_of_measurement: '°C'
       value_template: "{{ value_json['35040']['value'] }}"
       json_attributes_topic: "hass/message/sensorist/rge"
+    - name: Silver Callsign
+      unique_id: silversky_callsign
+      state_topic: "hass/message/silversky/callsign"
     - name: RGE Callsign
       unique_id: rgesky_callsign
       state_topic: "hass/message/rgesky/callsign"
@@ -191,19 +231,45 @@ mqtt:
       unit_of_measurement: '°C'
       value_template: "{{ value_json['32208']['value'] }}"
       json_attributes_topic: "hass/message/sensorist/mtl"
-    - name: Silver Callsign
-      unique_id: silversky_callsign
-      state_topic: "hass/message/silversky/callsign"
- 
-mqtt_statestream: 
-  base_topic: hass/statestream 
-  publish_attributes: true 
+
+volvooncall:
+  username: !secret voc_user
+  password: !secret voc_password
+  region: !secret voc_region
+  resources:
+    - position
+    - lock 
+    - heater
+    - odometer
+    - average_speed
+    - fuel_amount
+    - fuel_amount_level
+    - average_fuel_consumption
+    - distance_to_empty
+    - washer_fluid_level
+    - brake_fluid
+    - service_warning_status
+    - bulb_failures
+    - battery_range
+    - battery_level
+    - engine_start  
+    - last_trip    
+    - is_engine_running
+    - tyre_pressure_front_left_tyre_pressure
+    - tyre_pressure_front_right_tyre_pressure
+    - tyre_pressure_rear_left_tyre_pressure
+    - tyre_pressure_rear_right_tyre_pressure
+    - any_door_open
+    - any_window_open
+
+mqtt_statestream:
+  base_topic: hass/statestream
+  publish_attributes: true
   publish_timestamps: true
 
 mqtt_eventstream:
   publish_topic: hass/eventstream/slaves/sln
   subscribe_topic: hass/eventstream/master
-
 
 prometheus:
   namespace: hass_sln
@@ -213,35 +279,21 @@ shell_command:
   aws_cli_start_instances: '/usr/local/bin/aws ec2 start-instances --instance-ids {{ ids }}'
   aws_cli_stop_instances: '/usr/local/bin/aws ec2 stop-instances --instance-ids {{ ids }}'
 
-tellduslive:
-  host: 10.0.1.25
-
-# Text to speech
-tts:
-  - platform: google_translate
-
-upnp:
-
-volvooncall:
-  username: !secret voc_user
-  password: !secret voc_password
-  region: !secret voc_region
-  resources:
-    - position 
-    - engine_start
-    - heater
-    - is_engine_running
-    - lock
-    - fuel_amount
-    - fuel_amount_level
-    - distance_to_empty
-    - battery_range
-    - battery_level
-    - any_door_open
-    - any_window_open
+ffmpeg:
 
 
+panel_iframe:
+  grafana:
+    title: 'Grafana'
+    url: http://192.168.50.10:3000
+    icon: mdi:gauge
 
+#upnp:
+#  sensors: true
+#  port_mapping: false
+  
+lovelace:
+  mode: yaml
 
 binary_sensor: !include_dir_merge_list binary_sensor/
 camera: !include_dir_merge_list camera/
@@ -253,3 +305,9 @@ group: !include groups.yaml
 automation manual: !include_dir_merge_list automations/
 automation ui: !include automations.yaml
 script: !include scripts.yaml
+light: !include lights.yaml
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.mqtt: warning
