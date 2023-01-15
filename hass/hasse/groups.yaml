@@ -51,6 +51,14 @@ climate_sln:
     - sensor.bedroomdown_sln_humidity
     - sensor.bedroomdown_sln_temperature 
 
+climate_rge:
+  name: Climate Rävgrävle
+  entities:
+    - sensor.temp_patio_temperature
+    - sensor.temp_patio_humidity
+    - sensor.rge_bedroom_temperature
+    - sensor.rge_door_temperature
+
 appliances_sln:
   name: Silverlyckan Appliances 
   entities:
@@ -212,8 +220,19 @@ status_lights_sln:
 detection_rge:
  name: Rävgrävle
  entities:
+   - binary_sensor.door_detector
    - binary_sensor.backyard_camera_motion_detected
    - binary_sensor.backyard_camera_online
    - binary_sensor.backyard_camera_person_detected
    - binary_sensor.backyard_camera_sound_detected
    - camera.backyard
+
+lights_rge:
+  name: Rävgrävle Lights
+  entities:
+    - light.kitchentable
+    - switch.acer
+    - switch.lampflower
+    - switch.greenblack
+    - switch.lamptable
+    - switch.cambigroom
