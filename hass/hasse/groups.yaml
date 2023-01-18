@@ -123,6 +123,8 @@ network_speed_sln:
     - sensor.upload_acer_rge_otternet_ca
     - sensor.download_dmz_rge_otternet_ca
     - sensor.upload_dmz_rge_otternet_ca
+    - sensor.download_ict_otternet_ca
+    - sensor.upload_ict_otternet_ca
     
 
 schedules_sln:
