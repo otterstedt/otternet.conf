@@ -37,15 +37,15 @@
       payload_template: '{{ trigger.event.data.callsign }}'
       topic: hass/message/silversky/callsign
       retain: true
-  - service: notify.pushover
-    data_template:
-      message: 'Flyover by: {{ trigger.event.data.callsign }}'
-      title: '{{ trigger.event.data.callsign }}'
-      data:
-        url: https://flightaware.com/live/flight/{{ trigger.event.data.callsign }}
-        sound: pianobar
-        priority: 0
-        attachment: https://w0.pngwave.com/png/942/542/airplane-computer-icons-graphy-aircraft-png-clip-art.png
+#  - service: notify.pushover
+#    data_template:
+#      message: 'Flyover by: {{ trigger.event.data.callsign }}'
+#      title: '{{ trigger.event.data.callsign }}'
+#      data:
+#        url: https://flightaware.com/live/flight/{{ trigger.event.data.callsign }}
+#        sound: pianobar
+#        priority: 0
+#        attachment: https://w0.pngwave.com/png/942/542/airplane-computer-icons-graphy-aircraft-png-clip-art.png
   - service: notify.slack_smolandia
     data_template:
       message: 'Silverlyckan Flight Entry by: {{ trigger.event.data.callsign }} Altitude:
