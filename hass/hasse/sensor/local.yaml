@@ -145,3 +145,20 @@
       value_template: "{{ state_attr('sensor.dclxvi_tracker_speed', 'humidity') }}"
       friendly_name: DCLXVI Tracker Speed Humidity
       unit_of_measurement: '%'
+- platform: mqtt
+  name: "DCLXVI Tracker Speed"
+  state_topic: "hass/message/location/dclxvi_pi"
+  unit_of_measurement: 'm/s'
+  value_template: "{{ value_json.speed }}"
+  json_attributes_topic: "hass/message/location/dclxvi_pi"
+- platform: mqtt
+  name: DCLXVI Tracker Last Seen
+  unique_id: dclxvi_tracker_last_seen
+  state_topic: hass/message/location/dclxvi_pi
+  value_template: "{{ value_json.date }}"
+  unit_of_measurement: 'ISO Time'
+  json_attributes_topic: "hass/message/location/dclxvi_pi"
+- platform: gpsd
+  name: DCLXVI Remote GPS
+  host: 10.0.1.80
+  port: 2947
