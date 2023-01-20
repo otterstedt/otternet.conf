@@ -35,6 +35,9 @@ guestroom_sln:
   name: Silverlyckan Guestroom
   entities:
     - switch.radiator_guestroom
+    - cover.blind
+    - sensor.bedroom_sln_temperature
+    - sensor.bedroom_sln_humidity
 
 climate_sln:
   name: Silverlyckan Climate 
