@@ -1,0 +1,17 @@
+[Unit]
+Description=Prometheus Docker
+Requires=docker.service
+After=docker.service 
+
+[Service]
+ExecStart=/usr/bin/docker run --rm --name=prometheus -v /home/{{ ansible_user }}/prometheus/config:/etc/prometheus -v prometheus-vol:/prometheus --net=host prom/prometheus
+ExecStop=/usr/bin/docker stop prometheus
+ExecReload=/usr/bin/docker restart prometheus
+User={{ ansible_user }}
+Group=docker
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+TimeoutSec=600
+
+[Install]
+Alias=prometheus.service
+WantedBy=multi-user.target

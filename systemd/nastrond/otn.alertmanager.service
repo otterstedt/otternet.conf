@@ -1,0 +1,17 @@
+[Unit]
+Description=AlertManager Docker
+Requires=docker.service
+After=docker.service 
+
+[Service]
+ExecStart=/usr/bin/docker run --rm --name=alertmanager -v /home/{{ ansible_user }}/alertmanager/config:/etc/alertmanager -v prometheus-alertmanager-vol:/alertmanager --net=host prom/alertmanager
+ExecStop=/usr/bin/docker stop alertmanager
+ExecReload=/usr/bin/docker restart alertmanager
+User={{ ansible_user }}
+Group=docker
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+TimeoutSec=600
+
+[Install]
+Alias=alertmanager.service
+WantedBy=multi-user.target
