@@ -91,7 +91,9 @@ entrance_sln:
 network_sln:
   name: Network Silverlyckan
   entities:
-    - sensor.asuswrt_devices_connected
+    - sensor.10_0_1_1_devices_connected
+    - sensor.10_0_1_2_devices_connected
+    - sensor.192_168_50_1_devices_connected
 
     
 dclxvi_sln:
