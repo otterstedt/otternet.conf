@@ -1,10 +1,3 @@
-#need to move mqqt to new format when upgrading
-- platform: mqtt
-  name: "Aquarium Temperature"
-  state_topic: "hass/message/sensorist/mtl"
-  unit_of_measurement: '°C'
-  value_template: "{{ value_json['32208']['value'] }}"
-  json_attributes_topic: "hass/message/sensorist/mtl"
 - platform: imap_email_content
   server: imap.gmail.com
   name: bedroom_heat_requested
@@ -27,15 +20,8 @@
   port: 993
   username: !secret gmail_user
   password: !secret gmail_password
-- platform: season
-  name: Season
-- platform: mqtt
-  name: Silver Callsign
-  unique_id: silversky_callsign
-  state_topic: "hass/message/silversky/callsign"
-- platform: opensky
-  radius: 15
-  name: silversky
+#- platform: season
+#  name: Season
 - platform: time_date
   display_options:
     - 'time'
@@ -120,3 +106,46 @@
     - Reservations
   command: !secret aws_instance_web_status_command
   value_template: '{{ value_json.Reservations[0].Instances[0].State.Name }}'
+- platform: opensky
+  radius: 15
+  name: silversky
+- platform: template
+  sensors:
+    dclxvi_odometer_10k:
+      value_template: '{{  ((states.sensor.dclxvi_odometer.state | int) - 55983)  % 10000 }}'
+      friendly_name: '10k odometer'
+      unit_of_measurement: 'km'
+    dclxvi_odometer_insurance_period:
+      value_template: '{{  ((states.sensor.dclxvi_odometer.state | int) - 205810) }}'
+      friendly_name: 'Insurance Period Odometer'
+      unit_of_measurement: 'km'
+    to_home_dclxvi_diff:
+      value_template: '{{  (((states.sensor.dclxvi_to_home.state | float) -  (states.sensor.dclxvi_to_home_usual.state | float))  | int)}}'
+      friendly_name: 'DCLXVI to Home Difference'
+      unit_of_measurement: 'min'
+    dclxvi_tracker_last_seen_duration:
+      value_template: "{{ ((as_timestamp(now()) - (state_attr('sensor.dclxvi_tracker_last_seen', 'timestamp') | int )) / 3600) | round(2) }}"
+      entity_id: 
+        - sensor.dclxvi_tracker_last_seen
+      friendly_name: DCXLVI Tracker Since Last Seen
+      unit_of_measurement: Hours
+    dclxvi_tracker_speed_coordinates:
+      value_template: "{{ (state_attr('sensor.dclxvi_tracker_speed', 'latitude'), state_attr('sensor.dclxvi_tracker_speed', 'longitude')) | join(',') }}"
+      friendly_name: DCLXVI Tracker Speed Coordinates
+      unit_of_measurement: DD
+    dclxvi_tracker_speed_temp:
+      value_template: "{{ state_attr('sensor.dclxvi_tracker_speed', 'temp') }}"
+      friendly_name: DCLXVI Tracker Speed Temperature
+      unit_of_measurement: C
+    dclxvi_tracker_speed_pressure:
+      value_template: "{{ state_attr('sensor.dclxvi_tracker_speed', 'pressure') }}"
+      friendly_name: DCLXVI Tracker Speed Pressure
+      unit_of_measurement: bar
+    dclxvi_tracker_speed_humidity:
+      value_template: "{{ state_attr('sensor.dclxvi_tracker_speed', 'humidity') }}"
+      friendly_name: DCLXVI Tracker Speed Humidity
+      unit_of_measurement: '%'
+- platform: gpsd
+  name: DCLXVI Remote GPS
+  host: 10.0.1.80
+  port: 2947
