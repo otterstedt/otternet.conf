@@ -43,6 +43,9 @@ backup:
 #   base_url: example.duckdns.org:8123
 #http:
 #  api_password: !secret http_api_password
+http:
+  trusted_proxies:
+    - 10.0.1.0/24
 
 # Discover some devices automatically
 discovery:
