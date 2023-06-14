@@ -116,10 +116,10 @@ nest:
 
 influxdb:
 
-iperf3:
-  hosts:
-    - host: !secret hosts_ict 
-      port: 5001
+#iperf3:
+#  hosts:
+#    - host: !secret hosts_ict 
+#      port: 5001
 
 
 
