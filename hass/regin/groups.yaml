@@ -258,6 +258,24 @@ michael_health:
     - sensor.withings_systolic_blood_pressure_mmhg_michael
     - sensor.withings_temperature_c_michael
  
+karen_health:
+  name: Karen Health Information
+  entities:
+    - sensor.withings_weight_kg_karen
+    - sensor.withings_body_temperature_c_karen
+    - sensor.withings_bone_mass_kg_karen
+    - sensor.withings_diastolic_blood_pressure_mmhg_karen
+    - sensor.withings_fat_free_mass_kg_karen
+    - sensor.withings_fat_mass_kg_karen
+    - sensor.withings_fat_ratio_pct_karen
+    - sensor.withings_heart_pulse_bpm_karen
+    - sensor.withings_muscle_mass_kg_karen
+    - sensor.withings_pulse_wave_velocity_karen
+    - sensor.withings_skin_temperature_c_karen
+    - sensor.withings_spo2_pct_karen
+    - sensor.withings_systolic_blood_pressure_mmhg_karen
+    - sensor.withings_temperature_c_karen
+
 office_room_sln:
   name: Silverlyckan Office
   entities:
