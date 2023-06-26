@@ -106,7 +106,6 @@ dclxvi_rge:
 xc40_rge: 
   name: XC40
   entities:
-    - person.xc40
     - device_tracker.xc40_position
     - lock.xc40_door_lock
     - binary_sensor.xc40_door_lock
