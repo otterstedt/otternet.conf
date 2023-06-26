@@ -199,6 +199,24 @@ michael_info:
     - sensor.michael_s_iphone_geocoded_location
     - sensor.michael_s_iphone_last_update_trigger
     - sensor.michael_s_iphone_sim_1
+
+michael_health:
+  name: Michael Health Information
+  entities:
+    - sensor.withings_weight_kg_michael
+    - sensor.withings_body_temperature_c_michael
+    - sensor.withings_bone_mass_kg_michael
+    - sensor.withings_diastolic_blood_pressure_mmhg_michael
+    - sensor.withings_fat_free_mass_kg_michael
+    - sensor.withings_fat_mass_kg_michael
+    - sensor.withings_fat_ratio_pct_michael
+    - sensor.withings_heart_pulse_bpm_michael
+    - sensor.withings_muscle_mass_kg_michael
+    - sensor.withings_pulse_wave_velocity_michael
+    - sensor.withings_skin_temperature_c_michael
+    - sensor.withings_spo2_pct_michael
+    - sensor.withings_systolic_blood_pressure_mmhg_michael
+    - sensor.withings_temperature_c_michael
  
 office_room_sln:
   name: Silverlyckan Office
