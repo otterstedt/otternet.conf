@@ -108,6 +108,46 @@ dclxvi_sln:
     - sensor.dclxvi_range
     - binary_sensor.dclxvi_doors
     - binary_sensor.dclxvi_windows
+
+xc40_sln: 
+  name: XC40
+  entities:
+    - person.xc40
+    - device_tracker.xc40_position
+    - lock.xc40_door_lock
+    - binary_sensor.xc40_door_lock
+    - binary_sensor.xc40_engine
+    - switch.xc40_engine
+    - switch.xc40_heater
+    - sensor.xc40_fuel_amount
+    - sensor.xc40_fuel_level
+    - sensor.xc40_range
+    - sensor.xc40_fuel_consumption
+    - sensor.xc40_average_speed
+    - sensor.xc40_odometer
+    - sensor.xc40_trip_meter_1
+    - sensor.xc40_trip_meter_2
+    - binary_sensor.xc40_service
+    - binary_sensor.xc40_brake_fluid
+    - binary_sensor.xc40_bulbs
+    - binary_sensor.xc40_hood
+    - binary_sensor.xc40_tailgate
+    - binary_sensor.xc40_washer_fluid
+    - binary_sensor.xc40_doors
+    - binary_sensor.xc40_front_left_door
+    - binary_sensor.xc40_front_right_door
+    - binary_sensor.xc40_rear_left_door
+    - binary_sensor.xc40_rear_right_door
+    - binary_sensor.xc40_front_left_tire
+    - binary_sensor.xc40_front_right_tire
+    - binary_sensor.xc40_rear_left_tire
+    - binary_sensor.xc40_rear_right_tire
+    - binary_sensor.xc40_windows
+    - binary_sensor.xc40_front_left_window
+    - binary_sensor.xc40_front_right_window
+    - binary_sensor.xc40_rear_left_window
+    - binary_sensor.xc40_rear_right_window
+
     
 environment_sln:
   name: Environment
