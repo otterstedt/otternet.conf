@@ -60,3 +60,23 @@
     data:
       brightness: 130
       rgb_color: [30,144,255]
+
+
+- id: 'shower_reminder'
+  alias: Shower reminder
+  description: 'Remind for showers'
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: "-00:05:00"
+  condition: []
+  action:
+  - service: notify.hass
+    data:
+      message: "It's getting dark. Go to the shower immediately! <@726104204334071889> <@779130749156196352> <@812484916083818547>"
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
+      data:
+        verify_ssl: False 
+        urls:
+        - "https://media3.giphy.com/media/3o6MbjjOqVPMHZvuve/giphy.gif"
