@@ -182,8 +182,6 @@ input_boolean:
 
 iperf3:
   hosts:
-    - host: !secret hosts_ict 
-      port: 5001
     - host: !secret host_dmz_rge
       port: 5001
     - host: !secret hosts_acer_rge
