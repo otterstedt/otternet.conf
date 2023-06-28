@@ -184,7 +184,7 @@
   action:
   - service: notify.hass
     data:
-      message: "Oli is in the hooooouse!"
+      message: "<@812484916083818547> is in the hooooouse!"
       target: 
       - !secret discord_channel_silverlyckan_general_id
 
@@ -200,7 +200,7 @@
   action:
   - service: notify.hass
     data:
-      message: "Leroux have landed!"
+      message: "Leroux have landed! <@726104204334071889> <@779130749156196352>"
       target: 
       - !secret discord_channel_silverlyckan_general_id
 
