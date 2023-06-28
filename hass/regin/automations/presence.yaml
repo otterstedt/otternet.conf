@@ -203,3 +203,31 @@
       message: "Leroux have landed!"
       target: 
       - !secret discord_channel_silverlyckan_general_id
+
+- alias: 'Increasing MC Players'
+  trigger:
+    platform: state
+    entity_id: sensor.silverlyckan_server_players_online
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.state | int > trigger.from_state.state | int }}'
+  action:
+  - service: notify.hass
+    data:
+      message: "A player has joined the Silverlyckan Minecraft Server (mc.otternet.ca)"
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
+
+- alias: 'Decreasing MC Players'
+  trigger:
+    platform: state
+    entity_id: sensor.silverlyckan_server_players_online
+  condition:
+    condition: template
+    value_template: '{{ trigger.from_state.state | int > trigger.to_state.state | int }}'
+  action:
+  - service: notify.hass
+    data:
+      message: "A player has left the Silverlyckan Minecraft Server"
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
