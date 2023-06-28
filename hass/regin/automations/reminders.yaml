@@ -69,7 +69,16 @@
   - platform: sun
     event: sunset
     offset: "-00:05:00"
-  condition: []
+  condition: 
+    alias: "Dirty Kids Present"
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: "person.olivier"
+        state: "home"
+      - condition: state
+        entity_id: "person.super_leroux_bros"
+        state: "home"
   action:
   - service: notify.hass
     data:
