@@ -217,3 +217,29 @@
     data:
       brightness: 130
       rgb_color: [255,0,0]
+
+- id: 'media_upstairs'
+  alias: Media Upstairs
+  description: 'Notify movie playing'
+  trigger:
+  - entity_id: media_player.plex_plex_for_roku_upstairs
+    to: 'playing'
+    platform: state
+  condition: 
+    alias: "Kids Present"
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: "person.olivier"
+        state: "home"
+      - condition: state
+        entity_id: "person.super_leroux_bros"
+        state: "home"
+  action:
+  - service: notify.hass
+    data:
+      message: >-
+        "Now playing upstairs: {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_title}}"
+        "Summary: {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_summary}}""
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
