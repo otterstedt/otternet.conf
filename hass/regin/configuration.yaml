@@ -23,6 +23,7 @@ homeassistant:
     - "http://10.0.1.52/cgi-bin"
     - "https://www.dropcam.com/api"
     - "https://media3.giphy.com/media"
+    - "https://i.giphy.com/media"
   auth_providers:
     - type: homeassistant
     - type: legacy_api_password
