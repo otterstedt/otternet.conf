@@ -170,3 +170,36 @@
   - data: {}
     entity_id: switch.christmas_tree
     service: switch.turn_on
+
+
+- id: 'presence_olivier'
+  alias: Olivier Present
+  description: ''
+  trigger:
+  - entity_id: person.olivier
+    from: 'not_home'
+    platform: state
+    to: 'home'
+  condition: []
+  action:
+  - service: notify.hass
+    data:
+      message: "Oli is in the hooooouse!"
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
+
+- id: 'presence_leroux'
+  alias: Leroux Present
+  description: ''
+  trigger:
+  - entity_id: person.super_leroux_bros
+    from: 'not_home'
+    platform: state
+    to: 'home'
+  condition: []
+  action:
+  - service: notify.hass
+    data:
+      message: "Leroux have landed!"
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
