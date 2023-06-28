@@ -216,7 +216,7 @@
     data:
       message: "A player has joined the Silverlyckan Minecraft Server (mc.otternet.ca). Players: {{states.sensor.silverlyckan_server_players_online.attributes.players_list}}"
       target: 
-      - !secret discord_channel_silverlyckan_general_id
+      - !secret discord_channel_silverlyckan_minecraft_id
 
 - alias: 'Decreasing MC Players'
   trigger:
@@ -230,4 +230,4 @@
     data:
       message: "A player has left the Silverlyckan Minecraft Server. Players: {{states.sensor.silverlyckan_server_players_online.attributes.players_list}}"
       target: 
-      - !secret discord_channel_silverlyckan_general_id
+      - !secret discord_channel_silverlyckan_minecraft_id
