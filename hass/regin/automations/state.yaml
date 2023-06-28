@@ -239,7 +239,8 @@
   - service: notify.hass
     data:
       message: >-
-        "Now playing upstairs: {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_title}}"
-        "Summary: {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_summary}}""
+        Now playing upstairs: {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_title}}
+        
+        Summary: {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_summary}}
       target: 
       - !secret discord_channel_silverlyckan_general_id
