@@ -22,6 +22,12 @@
     data:
       brightness: 130
       rgb_color: [128,128,128]
+  - service: notify.hass
+    data:
+      message: "<@everyone> Bring out the trash bin!"
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
+
 
 - id: 'trash_time_off'
   alias: Trash rollout complete
@@ -60,6 +66,11 @@
     data:
       brightness: 130
       rgb_color: [30,144,255]
+  - service: notify.hass
+    data:
+      message: "<@everyone> Bring out the recyclage bin!"
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
 
 
 - id: 'shower_reminder'
