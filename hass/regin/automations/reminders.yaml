@@ -94,7 +94,9 @@
   - service: notify.hass
     data:
       message: >-
-        It's getting dark. Go to the shower immediately! <@726104204334071889> <@779130749156196352> <@812484916083818547>"
+        It's getting dark. Go to the shower immediately! 
+        
+        <@everyone>
 
         https://i.giphy.com/media/3o6MbjjOqVPMHZvuve/giphy.webp
       target: 
