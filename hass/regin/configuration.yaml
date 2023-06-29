@@ -177,9 +177,6 @@ input_boolean:
   tools_switch:
     name: AWS Tools Instance
     icon: mdi:server
-  web_switch:
-    name: AWS Web Instance
-    icon: mdi:server
   bedroom_heat_requested:
     name: Request Bedroom Heat
     initial: 'off'

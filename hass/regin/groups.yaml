@@ -192,8 +192,6 @@ instances:
   entities:
     - input_boolean.ict_switch
     - sensor.ict_instance
-    - input_boolean.web_switch
-    - sensor.web_instance
     - input_boolean.tools_switch
     - sensor.tools_instance
 

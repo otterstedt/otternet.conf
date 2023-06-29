@@ -100,12 +100,6 @@
     - Reservations
   command: !secret aws_instance_tools_status_command
   value_template: '{{ value_json.Reservations[0].Instances[0].State.Name }}'
-- platform: command_line
-  name: Web Instance
-  json_attributes:
-    - Reservations
-  command: !secret aws_instance_web_status_command
-  value_template: '{{ value_json.Reservations[0].Instances[0].State.Name }}'
 - platform: opensky
   radius: 15
   name: silversky
