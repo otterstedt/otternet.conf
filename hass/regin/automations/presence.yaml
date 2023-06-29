@@ -275,6 +275,7 @@
     to: 'not_home'
     for: "00:01:00"
   condition:
+  - condition: state
     entity_id: 
        - device_tracker.cloudflare_dns
        - device_tracker.google_dns
