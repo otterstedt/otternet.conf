@@ -231,3 +231,42 @@
       message: "A player has left the Silverlyckan Minecraft Server. Players: {{states.sensor.silverlyckan_server_players_online.attributes.players_list}}"
       target: 
       - !secret discord_channel_silverlyckan_minecraft_id
+
+- id: 'internet_available'
+  alias: 'Internet is available'
+  trigger:
+    platform: state
+    entity_id: person.internet_access
+    from: 'not_home'
+    to: 'home'
+  condition: []
+  action:
+  - service: notify.hass
+    data:
+      message: "That was a glitch in the matrix. Internet is back in the chalet!"
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
+
+
+- id: 'internet_unavailable'
+  alias: 'Internet is not available'
+  trigger:
+    platform: state
+    entity_id: person.internet_access
+    from: 'home'
+    to: 'not_home'
+  condition: []
+  action:
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
+    data:
+      brightness: 255
+      rgb_color: [255,0,0]
+  - delay: 00:00:15
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
+    data:
+      brightness: 130
+      rgb_color: [255,124,14]
