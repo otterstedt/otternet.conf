@@ -236,10 +236,15 @@
   alias: 'Internet is available'
   trigger:
     platform: state
-    entity_id: person.internet_access
+    entity_id: device_tracker.cloudflare_dns
     from: 'not_home'
     to: 'home'
-  condition: []
+  condition:
+  - condition: state
+    entity_id: 
+       - device_tracker.cloudflare_dns
+       - device_tracker.google_dns
+    state: "home"
   action:
   - service: notify.hass
     data:
@@ -252,10 +257,15 @@
   alias: 'Internet is not available'
   trigger:
     platform: state
-    entity_id: person.internet_access
+    entity_id: device_tracker.cloudflare_dns
     from: 'home'
     to: 'not_home'
-  condition: []
+    for: "00:01:00"
+  condition:
+    entity_id: 
+       - device_tracker.cloudflare_dns
+       - device_tracker.google_dns
+    state: "not_home"
   action:
   - target:
       entity_id: light.status_c
