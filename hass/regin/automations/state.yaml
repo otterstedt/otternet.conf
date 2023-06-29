@@ -156,11 +156,15 @@
     entity_id: light.basement_outdoor_lamp
     service: light.turn_off
 
-- id: 'dclxvi_running'
-  alias: DCLXVI engine is running
+- id: 'vehicle_running'
+  alias: Vehicle engine is running
   description: ''
   trigger:
   - entity_id: binary_sensor.dclxvi_engine
+    from: 'off'
+    to: 'on'
+    platform: state
+  - entity_id: binary_sensor.xc40_engine
     from: 'off'
     to: 'on'
     platform: state
@@ -173,15 +177,24 @@
       brightness: 130
       rgb_color: [0,255,0]
 
-- id: 'dclxvi_not_running'
-  alias: DCLXVI engine is not running
+- id: 'vehicle_not_running'
+  alias: Vehicle engine is not running
   description: ''
   trigger:
   - entity_id: binary_sensor.dclxvi_engine
     from: 'on'
     to: 'off'
     platform: state
-  condition: []
+  - entity_id: binary_sensor.xc40_engine
+    from: 'on'
+    to: 'off'
+    platform: state
+  condition:
+  - condition: state
+    entity_id: 
+       - binary_sensor.xc40_engine
+       - binary_sensor.dclxvi_engine
+    state: "off"
   action:
   - data: {}
     target:
