@@ -134,18 +134,18 @@ nest:
 #  - platform: nmap_tracker
 #    hosts: ipcam-living.lan
 #    home_interval: 1
-device_tracker: 
-  - platform: bluetooth_tracker 
-  - platform: bluetooth_le_tracker 
-    track_new_devices: true 
-  - platform: tile
-    username: !secret tile_username
-    password: !secret tile_password
-  - platform: ping
-    hosts: 
-      google_dns: 8.8.8.8
-      cloudflare_dns: 1.1.1.1
-    count: 4
+#device_tracker: 
+#  - platform: bluetooth_tracker 
+#  - platform: bluetooth_le_tracker 
+#    track_new_devices: true 
+#  - platform: tile
+#    username: !secret tile_username
+#    password: !secret tile_password
+#  - platform: ping
+#    hosts: 
+#      google_dns: 8.8.8.8
+#      cloudflare_dns: 1.1.1.1
+#    count: 4
 
 fastdotcom:
   scan_interval:
@@ -316,6 +316,7 @@ camera: !include_dir_merge_list camera/
 notify: !include_dir_merge_list notify/
 sensor: !include_dir_merge_list sensor/
 zone: !include_dir_merge_list zone/
+device_tracker: !include_dir_merge_list device_tracker/
 
 group: !include groups.yaml
 automation manual: !include_dir_merge_list automations/
