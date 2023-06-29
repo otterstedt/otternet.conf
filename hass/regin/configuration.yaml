@@ -141,6 +141,11 @@ device_tracker:
   - platform: tile
     username: !secret tile_username
     password: !secret tile_password
+  - platform: ping
+    hosts: 
+      google_dns: 8.8.8.8
+      cloudflare_dns: 1.1.1.1
+    count: 4
 
 fastdotcom:
   scan_interval:
