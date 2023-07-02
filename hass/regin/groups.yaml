@@ -7,8 +7,9 @@ adults:
 kids:
   name: Kid devices
   entities:
-    - person.dorothee
+    - person.leroux
     - person.olivier
+    - input_boolean.olivier_present
 
 presence:
   name: Silverlyckan Presence
