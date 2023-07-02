@@ -7,7 +7,7 @@ adults:
 kids:
   name: Kid devices
   entities:
-    - person.leroux
+    - person.super_leroux_bros
     - input_boolean.leroux_present
     - person.olivier
     - input_boolean.olivier_present

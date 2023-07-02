@@ -212,7 +212,7 @@
 - id: leroux_not_detected
   alias: Leroux Not Detected
   trigger:
-  - entity_id: person.leroux
+  - entity_id: person.super_leroux_bros
     from: 'home'
     platform: state
     to: 'not_home'
