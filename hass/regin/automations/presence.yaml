@@ -209,6 +209,20 @@
     data:
       entity_id: input_boolean.olivier_present
 
+- id: leroux_not_detected
+  alias: Leroux Not Detected
+  trigger:
+  - entity_id: person.leroux
+    from: 'home'
+    platform: state
+    to: 'not_home'
+    for: "02:00:00"
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.leroux_present
+
 - id: 'presence_leroux'
   alias: Leroux Present
   description: ''
@@ -224,6 +238,9 @@
       message: "Leroux have landed! <@726104204334071889> <@779130749156196352>"
       target: 
       - !secret discord_channel_silverlyckan_general_id
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.leroux_present
 
 - alias: 'Increasing MC Players'
   trigger:
