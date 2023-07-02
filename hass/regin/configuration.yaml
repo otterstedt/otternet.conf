@@ -185,7 +185,6 @@ input_boolean:
     initial: 'off'
   olivier_present:
     name: Olivier Present
-    initial: 'off'
 
 
 iperf3:
