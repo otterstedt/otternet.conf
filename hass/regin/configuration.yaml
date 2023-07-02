@@ -183,6 +183,10 @@ input_boolean:
   bedroom_cool_requested:
     name: Request Bedroom Cool
     initial: 'off'
+  olivier_present:
+    name: Olivier Present
+    initial: 'off'
+
 
 iperf3:
   hosts:

@@ -172,6 +172,20 @@
     service: switch.turn_on
 
 
+- id: olivier_not_detected
+  alias: Olivier Not Detected
+  trigger:
+  - entity_id: person.olivier
+    from: 'home'
+    platform: state
+    to: 'not_home'
+    for: "02:00:00"
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.olivier_present
+
 - id: 'presence_olivier'
   alias: Olivier Present
   description: ''
@@ -180,13 +194,20 @@
     from: 'not_home'
     platform: state
     to: 'home'
-  condition: []
+  condition:
+  - condition: state
+    entity_id: 
+       - input_boolean.olivier_present
+    state: "off"
   action:
   - service: notify.hass
     data:
       message: "<@812484916083818547> is in the hooooouse!"
       target: 
       - !secret discord_channel_silverlyckan_general_id
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.olivier_present
 
 - id: 'presence_leroux'
   alias: Leroux Present
