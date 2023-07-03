@@ -231,7 +231,11 @@
     from: 'not_home'
     platform: state
     to: 'home'
-  condition: []
+  condition: 
+  - condition: state
+    entity_id: 
+       - input_boolean.leroux_present
+    state: "off"
   action:
   - service: notify.hass
     data:
