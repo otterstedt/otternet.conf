@@ -116,6 +116,7 @@ xc40_sln:
   entities:
     - person.xc40
     - device_tracker.xc40_position
+    - sensor.xc40_last_trip
     - lock.xc40_door_lock
     - binary_sensor.xc40_door_lock
     - binary_sensor.xc40_engine
