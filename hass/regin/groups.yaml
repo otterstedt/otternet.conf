@@ -171,10 +171,10 @@ network_speed_otn:
     - sensor.10_0_1_2_download_speed
     - sensor.10_0_1_2_upload
     - sensor.10_0_1_2_upload_speed
-    - sensor.10_0_1_2_download
-    - sensor.10_0_1_2_download_speed
-    - sensor.10_0_1_2_upload
-    - sensor.10_0_1_2_upload_speed
+    - sensor.192_168_50_1_download
+    - sensor.192_168_50_1_download_speed
+    - sensor.192_168_50_1_upload
+    - sensor.192_168_50_1_upload_speed
     - sensor.fast_com_download
     - sensor.speedtest_ping
     - sensor.speedtest_download
