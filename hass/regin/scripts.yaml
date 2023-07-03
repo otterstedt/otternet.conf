@@ -1,6 +1,16 @@
 goat4sale:
   alias: Goat 4 Sale
   sequence:
+  - target:
+      entity_id: media_player.chambre_principale
+    data:
+      media_content_type: cast
+      media_content_id: '
+        {
+          "app_name": "youtube",
+          "media_id": "DoM6IhfY8No"
+        }'
+    service: media_player.play_media
   - service: media_extractor.play_media
     data:
       entity_id: media_player.chambre_principale
