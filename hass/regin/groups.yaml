@@ -160,9 +160,21 @@ environment_sln:
     - sensor.silversky
     - sensor.silver_callsign
 
-network_speed_sln:
+network_speed_otn:
   name: Network Bandwidth/Speed
   entities:
+    - sensor.10_0_1_1_download
+    - sensor.10_0_1_1_download_speed
+    - sensor.10_0_1_1_upload
+    - sensor.10_0_1_1_upload_speed
+    - sensor.10_0_1_2_download
+    - sensor.10_0_1_2_download_speed
+    - sensor.10_0_1_2_upload
+    - sensor.10_0_1_2_upload_speed
+    - sensor.10_0_1_2_download
+    - sensor.10_0_1_2_download_speed
+    - sensor.10_0_1_2_upload
+    - sensor.10_0_1_2_upload_speed
     - sensor.fast_com_download
     - sensor.speedtest_ping
     - sensor.speedtest_download
@@ -171,6 +183,35 @@ network_speed_sln:
     - sensor.upload_acer_rge_otternet_ca
     - sensor.download_dmz_rge_otternet_ca
     - sensor.upload_dmz_rge_otternet_ca
+
+router_state_otn:
+  name: Router Status
+  entities:
+  - sensor.10_0_1_1_load_avg_1m
+  - sensor.10_0_1_1_load_avg_5m
+  - sensor.10_0_1_1_load_avg_15m
+  - sensor.10_0_1_1_cpu_temperature
+  - sensor.10_0_1_1_5ghz_temperature
+  - sensor.10_0_1_1_2_4ghz_temperature
+  - sensor.10_0_1_2_load_avg_1m
+  - sensor.10_0_1_2_load_avg_5m
+  - sensor.10_0_1_2_load_avg_15m
+  - sensor.10_0_1_2_cpu_temperature
+  - sensor.10_0_1_2_5ghz_temperature
+  - sensor.10_0_1_2_2_4ghz_temperature
+  - sensor.192_168_50_1_download
+  - sensor.192_168_50_1_download_speed
+  - sensor.192_168_50_1_upload
+  - sensor.192_168_50_1_upload_speed
+  - sensor.192_168_50_1_load_avg_1m
+  - sensor.192_168_50_1_load_avg_5m
+  - sensor.192_168_50_1_load_avg_15m
+  - sensor.192_168_50_1_cpu_temperature
+  - sensor.192_168_50_1_5ghz_temperature
+  - sensor.192_168_50_1_2_4ghz_temperature
+
+
+
     
 
 schedules_sln:
