@@ -21,13 +21,18 @@
     platform: state
     from: not_home
     to: home
-  condition: []
+  condition: 
+  not:
+    - condition: state
+      entity_id: media_player.chambre_principale
+      state: 'playing'
   action:
   - delay: 00:03:00
-  - entity_id: script.goat4sale_sous_sol
-    service: script.turn_on
   - entity_id: script.goat4sale
     service: script.turn_on
+  - delay: 00:01:00
+  - entity_id: media_player.chambre_principale
+    service: media_player.turn_off
 
 - alias: Silver Flight entry notification
   trigger:
