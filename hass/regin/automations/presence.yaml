@@ -22,10 +22,10 @@
     from: not_home
     to: home
   condition: 
-  not:
-    - condition: state
-      entity_id: media_player.chambre_principale
-      state: 'playing'
+    not:
+      - condition: state
+        entity_id: media_player.chambre_principale
+        state: 'playing'
   action:
   - delay: 00:03:00
   - entity_id: script.goat4sale
