@@ -42,8 +42,6 @@ detection_rge:
 network_speed_rge:
   name: Network Bandwidth/Speed
   entities:
-    - sensor.download_ict_otternet_ca
-    - sensor.upload_ict_otternet_ca
     - sensor.speedtest_download
     - sensor.speedtest_upload
     - sensor.speedtest_ping
