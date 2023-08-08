@@ -22,3 +22,6 @@
 - platform: mjpeg
   name: !secret camera_rge_front_name
   mjpeg_url: !secret camera_rge_front_url
+- platform: mjpeg
+  name: !secret camera_rge_front_logitech_name
+  mjpeg_url: !secret camera_rge_front_logitech_url
