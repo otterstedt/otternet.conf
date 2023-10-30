@@ -40,7 +40,7 @@
   alias: Open bedroom cover in the morning
   description: ''
   trigger:
-  - at: '10:15'
+  - at: '06:30'
     platform: time
   condition:
   - condition: state
@@ -64,11 +64,11 @@
     service: cover.close_cover
 
 - id: '1603569088971'
-  alias: Close cover on Bedroom TV active
+  alias: Close cover on Projector Playing
   description: ''
   trigger:
-  - entity_id: media_player.chambre_principale
-    from: unavailable
+  - entity_id: media_player.roku_projector
+    from: idle
     platform: state
   condition:
   - before: sunset
@@ -77,6 +77,7 @@
   - data: {}
     entity_id: cover.blind
     service: cover.close_cover
+
 - id: '1605573145016'
   alias: Bedroom TV inactive
   description: What to do when Bedroom TV is deactivated
