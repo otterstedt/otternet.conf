@@ -16,3 +16,6 @@
 #  - platform: mjpeg
 #    name: !secret camera_rge_outhouse_name
 #    mjpeg_url: !secret camera_rge_outhouse_url
+# - platform: mjpeg
+#   name: !secret camera_rge_front_logitech_name
+#   mjpeg_url: !secret camera_rge_front_logitech_url

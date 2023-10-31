@@ -37,7 +37,7 @@
     service: light.turn_off
 
 - id: '1603335949549'
-  alias: Open bedroom cover in the morning
+  alias: Open Office Blinds in the morning
   description: ''
   trigger:
   - at: '06:30'
@@ -78,21 +78,7 @@
     entity_id: cover.blind
     service: cover.close_cover
 
-- id: '1605573145016'
-  alias: Bedroom TV inactive
-  description: What to do when Bedroom TV is deactivated
-  trigger:
-  - entity_id: media_player.chambre_principale
-    platform: state
-    to: idle
-    for: 00:10:00
-  condition:
-  - before: sunset
-    condition: sun
-  action:
-  - data: {}
-    entity_id: cover.blind
-    service: cover.open_cover
+
 - id: '1606788055635'
   alias: Media Player Active - Media Room
   description: ''
@@ -112,6 +98,7 @@
     state: below_horizon
   action:
   - scene: scene.movies
+
 - id: '1606788898506'
   alias: Media Player Stop - Media Room
   description: ''
@@ -143,6 +130,7 @@
   - data: {}
     entity_id: light.hood_lamp
     service: light.turn_on
+    
 - id: '1609806458284'
   alias: Turn off outdoor lamp after period of time
   description: Turns off outdoor lamp if on for a certain time
