@@ -326,9 +326,13 @@ office_room_sln:
 media_room_sln:
   name: Silverlyckan Media Room
   entities:
+    - light.media_room_chandelier
     - light.media_room_hood
     - switch.marshall_fridge
     - switch.media_power
+    - remote.55_hisense_roku_tv
+    - binary_sensor.55_hisense_roku_tv_headphones_connected
+
 
 
 other:
