@@ -50,7 +50,7 @@ http:
   base_url: !secret http_base_url
   use_x_forwarded_for: true
   trusted_proxies:
-    - 10.0.1.0/24
+    - 10.0.0.0/8
   
 
 
