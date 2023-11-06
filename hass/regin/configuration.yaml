@@ -15,6 +15,7 @@
 
 homeassistant:
   name: Silverlyckan
+  external_url: !secret http_base_url
   unit_system: metric
   time_zone: America/Montreal
   latitude: !secret zone_lkn_latitude
