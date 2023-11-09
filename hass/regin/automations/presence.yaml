@@ -339,6 +339,7 @@
 
 - id: 'catdoor_camera_motion'
   mode: queued
+  max: 2
   alias: Catdoor Camera Motion
   description: ''
   trigger:
