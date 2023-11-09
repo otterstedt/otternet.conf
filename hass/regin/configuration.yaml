@@ -30,6 +30,8 @@ homeassistant:
     - type: legacy_api_password
       api_password: !secret http_api_password
   unit_system: metric
+  whitelist_external_dirs:
+  - /tmp
 
 default_config:
 
