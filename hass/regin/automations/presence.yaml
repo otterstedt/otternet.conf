@@ -371,3 +371,81 @@
   - target:
       entity_id: light.status_c
     service: light.turn_on
+
+- id: 'rge_attic_camera_motion'
+  alias: Attic Camera Motion
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.attic_door_motion
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.attic_entrance
+      filename: "/tmp/attic_entrance1.jpg"
+  - delay: 00:00:03
+  - service: camera.snapshot
+    data:
+      entity_id: camera.attic_entrance
+      filename: "/tmp/attic_entrance2.jpg"
+  - delay: 00:00:05
+  - service: camera.snapshot
+    data:
+      entity_id: camera.attic_entrance
+      filename: "/tmp/attic_entrance3.jpg"
+  - delay: 00:00:05
+  - service: notify.hass
+    data:
+      message: "Attic door motion detected, danger!"
+      target: 
+      - !secret discord_channel_silverlyckan_automations_id
+      data:
+        images:
+        - "/tmp/attic_entrance1.jpg"
+        - "/tmp/attic_entrance2.jpg"
+        - "/tmp/attic_entrance3.jpg"
+  - target:
+      entity_id: light.status_c
+    service: light.turn_off
+  - delay: 00:00:05
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
+
+- id: 'sln_mouse_camera_motion'
+  alias: Death Row Motion
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.mouse_motion
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.death_row
+      filename: "/tmp/death_row1.jpg"
+  - delay: 00:00:10
+  - service: camera.snapshot
+    data:
+      entity_id: camera.death_row
+      filename: "/tmp/death_row2.jpg"
+  - delay: 00:00:05
+  - service: notify.hass
+    data:
+      message: "Dead Mouse Walking, check!"
+      target: 
+      - !secret discord_channel_silverlyckan_automations_id
+      data:
+        images:
+        - "/tmp/death_row1.jpg"
+        - "/tmp/death_row2.jpg"
+  - target:
+      entity_id: light.status_c
+    service: light.turn_off
+  - delay: 00:00:05
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
