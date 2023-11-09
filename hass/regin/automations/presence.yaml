@@ -336,3 +336,37 @@
     data:
       brightness: 255
       rgb_color: [255,0,0]
+
+- id: 'catdoor_camera_motion'
+  alias: Catdoor Camera Motion
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.cat_door_motion
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: !secret camera_sln_cat_door_internal_entity_id
+      filename: "/tmp/catdoor_internal.jpg"
+  - service: camera.snapshot
+    data:
+      entity_id: !secret camera_sln_cat_entity_id
+      filename: "/tmp/catdoor_view.jpg"
+  - service: notify.hass
+    data:
+      message: "Cat door motion detected, meow!"
+      target: 
+      - !secret discord_channel_silverlyckan_automations_id
+      data:
+        images:
+        - "/tmp/catdoor_internal.jpg"
+        - "/tmp/catdoor_view.jpg"
+  - target:
+      entity_id: light.status_c
+    service: light.turn_off
+  - delay: 00:00:05
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
