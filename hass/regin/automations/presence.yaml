@@ -338,6 +338,7 @@
       rgb_color: [255,0,0]
 
 - id: 'catdoor_camera_motion'
+  mode: queued
   alias: Catdoor Camera Motion
   description: ''
   trigger:
