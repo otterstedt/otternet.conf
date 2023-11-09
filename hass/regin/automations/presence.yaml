@@ -354,6 +354,7 @@
     data:
       entity_id: !secret camera_sln_cat_entity_id
       filename: "/tmp/catdoor_view.jpg"
+  - delay: 00:00:05
   - service: notify.hass
     data:
       message: "Cat door motion detected, meow!"
