@@ -27,25 +27,25 @@
   mjpeg_url: !secret camera_rge_front_logitech_url
 - platform: generic
   name: !secret camera_qnap_channel1_name
-  name: !secret camera_qnap_channel1_url
+  stream_source: !secret camera_qnap_channel1_url
 - platform: generic
   name: !secret camera_qnap_channel2_name
-  name: !secret camera_qnap_channel2_url
+  stream_source: !secret camera_qnap_channel2_url
 - platform: generic
   name: !secret camera_qnap_channel3_name
-  name: !secret camera_qnap_channel3_url
+  stream_source: !secret camera_qnap_channel3_url
 - platform: generic
   name: !secret camera_qnap_channel4_name
-  name: !secret camera_qnap_channel4_url
+  stream_source: !secret camera_qnap_channel4_url
 - platform: generic
   name: !secret camera_qnap_channel5_name
-  name: !secret camera_qnap_channel5_url
+  stream_source: !secret camera_qnap_channel5_url
 - platform: generic
   name: !secret camera_qnap_channel6_name
-  name: !secret camera_qnap_channel6_url
+  stream_source: !secret camera_qnap_channel6_url
 - platform: generic
   name: !secret camera_qnap_channel7_name
-  name: !secret camera_qnap_channel7_url
+  stream_source: !secret camera_qnap_channel7_url
 - platform: generic
   name: !secret camera_qnap_channel8_name
-  name: !secret camera_qnap_channel8_url
+  stream_source: !secret camera_qnap_channel8_url
