@@ -149,12 +149,7 @@
   alias: Vehicle engine is running
   description: ''
   trigger:
-  - entity_id: binary_sensor.dclxvi_engine
-    from: 'off'
-    to: 'on'
-    platform: state
   - entity_id: binary_sensor.xc40_engine
-    from: 'off'
     to: 'on'
     platform: state
   condition: []
@@ -170,19 +165,13 @@
   alias: Vehicle engine is not running
   description: ''
   trigger:
-  - entity_id: binary_sensor.dclxvi_engine
-    from: 'on'
-    to: 'off'
-    platform: state
   - entity_id: binary_sensor.xc40_engine
-    from: 'on'
     to: 'off'
     platform: state
   condition:
   - condition: state
     entity_id: 
        - binary_sensor.xc40_engine
-       - binary_sensor.dclxvi_engine
     state: "off"
   action:
   - data: {}
