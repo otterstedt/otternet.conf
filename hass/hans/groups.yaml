@@ -1,0 +1,178 @@
+weather_rge:
+  name: Climate
+  entities:
+    - sensor.temp_patio_temperature
+    - sensor.temp_patio_humidity
+    - sensor.rge_bedroom_temperature
+    - sensor.rge_door_temperature
+
+
+weather_sln:
+  name: Climate Silverlyckan
+  entities:
+    - sensor.bedroom_sln_humidity
+    - sensor.bedroom_sln_temperature
+    - sensor.bedroomdown_sln_humidity
+    - sensor.bedroomdown_sln_temperature
+    - sensor.dipper_sln_temperature
+    - sensor.freezer_sln_humidity
+    - sensor.freezer_sln_temperature
+    - sensor.kitchen_mtl_humidity
+    - sensor.kitchen_mtl_temperature
+    - sensor.kitchenout_mtl_temperature
+    - sensor.mediaroom_sln_humidity
+    - sensor.mediaroom_sln_temperature
+    - sensor.tvroom_mtl_humidity
+    - sensor.tvroom_mtl_temperature
+    
+state:
+  name: Chalet State
+  entities:
+    -  binary_sensor.door_detector
+
+detection_rge:
+ name: Rävgrävle
+ entities:
+   - binary_sensor.backyard_camera_motion_detected
+   - binary_sensor.backyard_camera_online
+   - binary_sensor.backyard_camera_person_detected
+   - binary_sensor.backyard_camera_sound_detected
+   - camera.backyard
+
+network_speed_rge:
+  name: Network Bandwidth/Speed
+  entities:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+
+network_throughput:
+  name: Network Throughput
+  entities:
+    - sensor.rt_ax56u_b8f0_b_received
+    - sensor.rt_ax56u_b8f0_b_sent
+    - sensor.rt_ax56u_b8f0_kib_s_received
+    - sensor.rt_ax56u_b8f0_kib_s_sent
+    - sensor.rt_ax56u_b8f0_packets_received
+    - sensor.rt_ax56u_b8f0_packets_sent
+    - sensor.rt_ax56u_b8f0_packets_s_received
+    - sensor.rt_ax56u_b8f0_packets_s_sent
+
+surroundings:
+  name: Surroundings
+  entities:
+    - sensor.rge_callsign
+    - sensor.rgesky
+
+rge_lights:
+  name: Rävgrävle Lights
+  entities:
+    - light.kitchentable
+    - switch.acer
+    - switch.lampflower
+    - switch.greenblack
+    - switch.lamptable
+    - switch.cambigroom
+
+sln_lights:
+  name: Silverlyckan Lights
+  entities:
+  - light.bathroom_bathroom_light
+  - light.salle_a_manger_dinner_table
+  - light.bedroom_basement_bedroom_roof
+  - light.exterieur_balcony_light
+  - light.media_room_chandelier
+  - light.media_room_hood
+
+asus_router:
+  name: RGE Asus
+  entities:
+    - sensor.rt_ax56u_b8f0_external_ip
+    - binary_sensor.rt_ax56u_b8f0_wan_status
+
+dclxvi_rge:
+  name: DCLXVI
+  entities:
+    - device_tracker.dclxvi_position
+    - binary_sensor.dclxvi_engine
+    - switch.dclxvi_engine
+    - lock.dclxvi_door_lock
+    - sensor.dclxvi_fuel_amount
+    - sensor.dclxvi_fuel_level
+    - sensor.dclxvi_range
+
+xc40_rge: 
+  name: XC40
+  entities:
+    - device_tracker.xc40_position
+    - lock.xc40_door_lock
+    - binary_sensor.xc40_door_lock
+    - binary_sensor.xc40_engine
+    - switch.xc40_engine
+    - switch.xc40_heater
+    - sensor.xc40_fuel_amount
+    - sensor.xc40_fuel_level
+    - sensor.xc40_range
+    - sensor.xc40_fuel_consumption
+    - sensor.xc40_average_speed
+    - sensor.xc40_odometer
+    - sensor.xc40_trip_meter_1
+    - sensor.xc40_trip_meter_2
+    - binary_sensor.xc40_service
+    - binary_sensor.xc40_brake_fluid
+    - binary_sensor.xc40_bulbs
+    - binary_sensor.xc40_hood
+    - binary_sensor.xc40_tailgate
+    - binary_sensor.xc40_washer_fluid
+    - binary_sensor.xc40_doors
+    - binary_sensor.xc40_front_left_door
+    - binary_sensor.xc40_front_right_door
+    - binary_sensor.xc40_rear_left_door
+    - binary_sensor.xc40_rear_right_door
+    - binary_sensor.xc40_front_left_tire
+    - binary_sensor.xc40_front_right_tire
+    - binary_sensor.xc40_rear_left_tire
+    - binary_sensor.xc40_rear_right_tire
+    - binary_sensor.xc40_windows
+    - binary_sensor.xc40_front_left_window
+    - binary_sensor.xc40_front_right_window
+    - binary_sensor.xc40_rear_left_window
+    - binary_sensor.xc40_rear_right_window
+
+michael_info:
+  name: Michael
+  entities:
+    - device_tracker.michael_s_iphone
+    - sensor.michael_s_iphone_distance
+    - sensor.michael_s_iphone_steps
+    - sensor.michael_s_iphone_floors_ascended
+    - sensor.michael_s_iphone_floors_descended
+    - sensor.michael_s_iphone_activity
+    - sensor.michael_s_iphone_average_active_pace
+    - sensor.michael_s_iphone_battery_level
+    - sensor.michael_s_iphone_battery_state
+    - sensor.michael_s_iphone_connection_type
+    - sensor.michael_s_iphone_bssid
+    - sensor.michael_s_iphone_ssid
+    - sensor.michael_s_iphone_storage
+    - binary_sensor.michael_s_iphone_focus
+    - sensor.michael_s_iphone_geocoded_location
+    - sensor.michael_s_iphone_last_update_trigger
+    - sensor.michael_s_iphone_sim_1
+   
+    
+camera_entrance_sln:
+  name: Silverlyckan Entrance Camera
+  entities:
+    - binary_sensor.amcrest_camera_motion_detected
+    - binary_sensor.amcrest_camera_online
+    - camera.amcrest_camera
+    - sensor.amcrest_camera_ptz_preset
+    - sensor.amcrest_camera_sd_used
+
+Status_lights_sln:
+  name: Silverlyckan Status Lights
+  entities:
+    - light.status_a
+    - light.status_b
+    - light.status_c

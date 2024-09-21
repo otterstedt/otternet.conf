@@ -1,0 +1,138 @@
+- id: '1542399583462'
+  alias: Turn on Front Yard Cam
+  trigger:
+  - entity_id: device_tracker.ipcam_guestroom
+    platform: state
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: device_tracker.rt_ax56u_b8f0
+    state: home
+  action:
+  - data:
+      entity_id: switch.cambedroom
+    service: switch.turn_off
+  - delay: 00:00:15
+  - data:
+      entity_id: switch.cambedroom
+    service: switch.turn_off
+  - delay: 00:00:10
+  - data:
+      entity_id: switch.cambedroom
+    service: switch.turn_on
+
+- id: '1542399673362'
+  alias: Turn On Living Room Cam
+  trigger:
+  - entity_id: device_tracker.nmap_tracker_00_62_6e_63_2c_f2
+    platform: state
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: device_tracker.d_link_international_97_71_88
+    state: home
+  action:
+  - data:
+      entity_id: switch.switch.camgardendoor
+    service: switch.turn_off
+  - delay: 00:00:15
+  - data:
+      entity_id: switch.switch.camgardendoor
+    service: switch.turn_off
+  - delay: 00:00:10
+  - data:
+      entity_id: switch.switch.camgardendoor
+    service: switch.turn_on 
+
+- alias: RGE Flight entry notification
+  trigger:
+    platform: event
+    event_type: opensky_entry
+  action:
+  - service: mqtt.publish
+    data_template:
+      payload_template: '{{ trigger.event.data.callsign }}'
+      topic: hass/message/rgesky/callsign
+      retain: true
+
+- id: 'motion_rge'
+  alias: Motion Detected RGE
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.backyard_camera_motion_detected
+    from: 'off'
+    to: 'on'
+    platform: state
+  - entity_id: binary_sensor.backyard_camera_person_detected
+    from: 'off'
+    to: 'on'
+    platform: state
+  - entity_id: binary_sensor.door_detector
+    from: 'off'
+    to: 'on'
+    platform: state
+  condition: []
+  action:
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
+    data:
+      brightness: 230
+      rgb_color: [255,0,0]
+  - delay: 00:00:15
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
+    data:
+      brightness: 130
+      rgb_color: [255,124,14]
+  - service: notify.slack_smolandia
+    data:
+      message: 'Intruder detection:  RGE door/camera'
+      title: 'Intruder detection:  RGE'
+  - service: notify.slack_smolandia
+    data:
+      message: 'Motion Detected RGE: Nest Snapshot'
+      title: Motion Detected RGE - Nest Snapshot
+      data:
+        file:
+          url: !secret camera_rge_nest_snap_url
+  - delay: 02:00:00
+  - target:
+      entity_id: light.status_c
+    service: light.turn_on
+    data:
+      brightness: 130
+      rgb_color: [109, 145, 255]
+
+- id: 'motion_detected_basement_door_not_sln'
+  alias: Basement Front Door Motion - not sln
+  description: ''
+  trigger:
+  - device_id: 09a52a4cd0884e178b54fb884166fcdd
+    domain: light
+    entity_id: light.approach_lamp
+    platform: device
+    type: turned_on
+  - entity_id: binary_sensor.amcrest_camera_motion_detected
+    platform: state
+    to: 'on'
+  condition:
+    not:
+      - condition: state
+        entity_id: device_tracker.michael_s_iphone
+        state: 'Silverlyckan'
+  action:
+  - service: notify.slack_smolandia
+    data:
+      message: 'Motion Sending Amcrest Snapshot'
+      title: 'Motion Sending Amcrest Snapshot'
+  - service: notify.slack_smolandia
+    data:
+      message: 'Motion Detected: Silverlyckan - Basement Front Snapshot'
+      title: Motion Silverlyckan - Snapshot
+      data:
+        file:
+          url: 'http://10.0.1.52/cgi-bin/snapshot.cgi'
+          username: 'admin'
+          password: !secret mqtt_password
