@@ -28,24 +28,48 @@
 - platform: generic
   name: !secret camera_qnap_channel1_name
   stream_source: !secret camera_qnap_channel1_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
 - platform: generic
   name: !secret camera_qnap_channel2_name
   stream_source: !secret camera_qnap_channel2_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
 - platform: generic
   name: !secret camera_qnap_channel3_name
   stream_source: !secret camera_qnap_channel3_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
 - platform: generic
   name: !secret camera_qnap_channel4_name
   stream_source: !secret camera_qnap_channel4_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
 - platform: generic
   name: !secret camera_qnap_channel5_name
   stream_source: !secret camera_qnap_channel5_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
 - platform: generic
   name: !secret camera_qnap_channel6_name
   stream_source: !secret camera_qnap_channel6_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
 - platform: generic
   name: !secret camera_qnap_channel7_name
   stream_source: !secret camera_qnap_channel7_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
 - platform: generic
   name: !secret camera_qnap_channel8_name
   stream_source: !secret camera_qnap_channel8_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
