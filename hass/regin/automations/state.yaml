@@ -275,3 +275,8 @@
       data:
         images:
         - "/tmp/plex_helvete.jpg"
+        embed:
+          image:
+            url: >-
+              http://localhost:8123{{
+              state_attr('media_player.plex_plex_for_roku_projector', 'entity_picture') }}

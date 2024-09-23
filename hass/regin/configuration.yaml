@@ -25,6 +25,8 @@ homeassistant:
     - "https://www.dropcam.com/api"
     - "https://media3.giphy.com/media"
     - "https://i.giphy.com/media"
+    - "http://localhost"
+    - "http://localhost:8123"
   auth_providers:
     - type: homeassistant
     - type: legacy_api_password
