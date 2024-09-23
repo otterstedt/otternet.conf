@@ -239,3 +239,39 @@
         {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_summary}}
       target: 
       - !secret discord_channel_silverlyckan_general_id
+
+- id: 'media_cinema_helvete'
+  alias: Helvete Cinema Notifier
+  description: 'Notify movie playing'
+  trigger:
+  - entity_id: media_player.plex_plex_for_roku_projector
+    to: 'playing'
+    platform: state
+    for: "00:01:00"
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: media_player.plex_plex_for_roku_projector
+      filename: "/tmp/plex_helvete.jpg"
+  - service: notify.hass
+    data:
+      message: >-
+        Now playing at Helvete: 
+        
+        {{states.media_player.plex_plex_for_roku_projector.attributes.media_series_title}}
+
+        {{states.media_player.plex_plex_for_roku_projector.attributes.media_title}}
+        
+        {{states.media_player.plex_plex_for_roku_projector.attributes.media_summary}}
+      target: 
+      - !secret discord_channel_silverlyckan_helvete_id
+  - delay: 00:00:05
+  - service: notify.hass
+    data:
+      message: "Cinema Helvete Poster"
+      target: 
+      - !secret discord_channel_silverlyckan_helvete_id
+      data:
+        images:
+        - "/tmp/plex_helvete.jpg"
