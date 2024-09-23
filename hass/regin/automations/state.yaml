@@ -252,8 +252,8 @@
   action:
   - service: camera.snapshot
     data:
-      entity_id: media_player.plex_plex_for_roku_projector
-      filename: "/tmp/plex_helvete.jpg"
+      entity_id: camera.localhost
+      filename: "/tmp/plex_helvete_poster.jpg"
   - service: notify.hass
     data:
       message: >-
@@ -269,14 +269,9 @@
   - delay: 00:00:05
   - service: notify.hass
     data:
-      message: "Cinema Helvete Poster"
+      message: "{{states.media_player.plex_plex_for_roku_projector.attributes.media_title}}"
       target: 
       - !secret discord_channel_silverlyckan_helvete_id
       data:
         images:
-        - "/tmp/plex_helvete.jpg"
-        - http://localhost:8123{{ state_attr('media_player.plex_plex_for_roku_projector', 'entity_picture') }}
-        embed:
-          image:
-            url: >-
-              http://localhost:8123{{ state_attr('media_player.plex_plex_for_roku_projector', 'entity_picture') }}
+        - "/tmp/plex_helvete_poster.jpg"
