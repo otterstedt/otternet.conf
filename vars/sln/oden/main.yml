@@ -1,0 +1,11 @@
+host:
+  site: 4
+  id: 190
+  description: Media/Services/Tools
+
+packages:
+  - iperf3
+  - nfs-common
+
+host_specific_systemd_services:
+  - otn.nodeexporter.service
