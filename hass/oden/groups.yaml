@@ -1,0 +1,372 @@
+adults:
+  name: Adult devices
+  entities:
+    - person.michael
+    - person.karen
+
+kids:
+  name: Kid devices
+  entities:
+    - person.super_leroux_bros
+    - input_boolean.leroux_present
+    - person.olivier
+    - input_boolean.olivier_present
+
+presence:
+  name: Silverlyckan Presence
+  entities: 
+    - binary_sensor.person_present
+    - device_tracker.dclxvi_position
+    
+#pets:
+#  name: Pet Devices
+#  entities:
+#    - person.sven
+#    - person.gustaf
+#    - person.loki
+
+bedroom_sln:
+  name: Silverlyckan Bedroom
+  entities:
+    - light.bedroom_basement_bedroom_roof
+    - sensor.bedroomdown_sln_temperature 
+    - switch.radiator_bedroom
+    - climate.bedroom_basement_thermostat
+
+guestroom_sln:
+  name: Silverlyckan Guestroom
+  entities:
+    - switch.radiator_guestroom
+    - cover.blind
+    - sensor.bedroom_sln_temperature
+    - sensor.bedroom_sln_humidity
+
+climate_sln:
+  name: Silverlyckan Climate 
+  entities:
+    - sensor.bedroom_sln_temperature
+    - sensor.bedroom_sln_humidity
+    - sensor.mediaroom_sln_temperature
+    - sensor.mediaroom_sln_humidity
+    - sensor.kitchen_sln_temperature
+    - sensor.kitchen_sln_humidity
+    - sensor.kitchenout_sln_temperature
+    - sensor.tvroom_sln_temperature
+    - sensor.tvroom_sln_humidity
+    - sensor.bedroomdown_sln_humidity
+    - sensor.bedroomdown_sln_temperature 
+
+climate_rge:
+  name: Climate Rävgrävle
+  entities:
+    - sensor.temp_patio_temperature
+    - sensor.temp_patio_humidity
+    - sensor.rge_bedroom_temperature
+    - sensor.rge_door_temperature
+
+appliances_sln:
+  name: Silverlyckan Appliances 
+  entities:
+    - sensor.freezer_sln_temperature
+    - sensor.freezer_sln_humidity
+    - sensor.dipper_sln_temperature
+
+camera_entrance_sln:
+  name: Silverlyckan Entrance Camera
+  entities:
+    - binary_sensor.amcrest_camera_motion_detected
+    - binary_sensor.amcrest_camera_online
+    - camera.amcrest_camera
+    - sensor.amcrest_camera_ptz_preset
+    - sensor.amcrest_camera_sd_used
+
+entrance_sln:
+  name: Entrance
+  entities:
+    - binary_sensor.amcrest_camera_motion_detected
+    - light.approach_lamp
+    - light.basement_outdoor_lamp
+    - switch.ljusstake
+    - switch.balcony_power
+    - binary_sensor.door_sln
+    
+network_sln:
+  name: Network Silverlyckan
+  entities:
+    - sensor.10_0_1_1_devices_connected
+    - sensor.10_0_1_2_devices_connected
+    - sensor.192_168_50_1_devices_connected
+
+    
+dclxvi_sln:
+  name: DCLXVI
+  entities:
+    - device_tracker.dclxvi_position
+    - binary_sensor.dclxvi_engine
+    - switch.dclxvi_engine
+    - lock.dclxvi_door_lock
+    - sensor.dclxvi_fuel_amount
+    - sensor.dclxvi_fuel_level
+    - sensor.dclxvi_range
+    - binary_sensor.dclxvi_doors
+    - binary_sensor.dclxvi_windows
+
+xc40_sln: 
+  name: XC40
+  entities:
+    - person.xc40
+    - device_tracker.xc40_position
+    - sensor.xc40_last_trip
+    - lock.xc40_door_lock
+    - binary_sensor.xc40_door_lock
+    - binary_sensor.xc40_engine
+    - switch.xc40_engine
+    - switch.xc40_heater
+    - sensor.xc40_fuel_amount
+    - sensor.xc40_fuel_level
+    - sensor.xc40_range
+    - sensor.xc40_fuel_consumption
+    - sensor.xc40_average_speed
+    - sensor.xc40_odometer
+    - sensor.xc40_trip_meter_1
+    - sensor.xc40_trip_meter_2
+    - binary_sensor.xc40_service
+    - binary_sensor.xc40_brake_fluid
+    - binary_sensor.xc40_bulbs
+    - binary_sensor.xc40_hood
+    - binary_sensor.xc40_tailgate
+    - binary_sensor.xc40_washer_fluid
+    - binary_sensor.xc40_doors
+    - binary_sensor.xc40_front_left_door
+    - binary_sensor.xc40_front_right_door
+    - binary_sensor.xc40_rear_left_door
+    - binary_sensor.xc40_rear_right_door
+    - binary_sensor.xc40_front_left_tire
+    - binary_sensor.xc40_front_right_tire
+    - binary_sensor.xc40_rear_left_tire
+    - binary_sensor.xc40_rear_right_tire
+    - binary_sensor.xc40_windows
+    - binary_sensor.xc40_front_left_window
+    - binary_sensor.xc40_front_right_window
+    - binary_sensor.xc40_rear_left_window
+    - binary_sensor.xc40_rear_right_window
+
+    
+environment_sln:
+  name: Environment
+  entities:
+    - sun.sun
+    - sensor.season
+    - sensor.silversky
+    - sensor.silver_callsign
+
+network_speed_otn:
+  name: Network Bandwidth/Speed
+  entities:
+    - sensor.10_0_1_1_download
+    - sensor.10_0_1_1_download_speed
+    - sensor.10_0_1_1_upload
+    - sensor.10_0_1_1_upload_speed
+    - sensor.10_0_1_2_download
+    - sensor.10_0_1_2_download_speed
+    - sensor.10_0_1_2_upload
+    - sensor.10_0_1_2_upload_speed
+    - sensor.192_168_50_1_download
+    - sensor.192_168_50_1_download_speed
+    - sensor.192_168_50_1_upload
+    - sensor.192_168_50_1_upload_speed
+    - sensor.fast_com_download
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.download_acer_rge_otternet_ca
+    - sensor.upload_acer_rge_otternet_ca
+    - sensor.download_dmz_rge_otternet_ca
+    - sensor.upload_dmz_rge_otternet_ca
+
+router_state_otn:
+  name: Router Status
+  entities:
+  - sensor.10_0_1_1_load_avg_1m
+  - sensor.10_0_1_1_load_avg_5m
+  - sensor.10_0_1_1_load_avg_15m
+  - sensor.10_0_1_1_cpu_temperature
+  - sensor.10_0_1_1_5ghz_temperature
+  - sensor.10_0_1_1_2_4ghz_temperature
+  - sensor.10_0_1_2_load_avg_1m
+  - sensor.10_0_1_2_load_avg_5m
+  - sensor.10_0_1_2_load_avg_15m
+  - sensor.10_0_1_2_cpu_temperature
+  - sensor.10_0_1_2_5ghz_temperature
+  - sensor.10_0_1_2_2_4ghz_temperature
+  - sensor.192_168_50_1_download
+  - sensor.192_168_50_1_download_speed
+  - sensor.192_168_50_1_upload
+  - sensor.192_168_50_1_upload_speed
+  - sensor.192_168_50_1_load_avg_1m
+  - sensor.192_168_50_1_load_avg_5m
+  - sensor.192_168_50_1_load_avg_15m
+  - sensor.192_168_50_1_cpu_temperature
+  - sensor.192_168_50_1_5ghz_temperature
+  - sensor.192_168_50_1_2_4ghz_temperature
+
+
+
+    
+
+schedules_sln:
+  name: Silverlyckan Schedules
+  entities:
+  - sensor.timetopoubelle
+  - sensor.timetorecyclage
+  - sensor.timetocompost
+  - sensor.timetogrosbut
+  - sensor.timetoecocentre
+  - sensor.timetoventegarage
+
+aquarium_sln:
+  name: Silverlyckan Aquarium
+  entities:
+  - switch.christmas_tree
+  - sensor.aquarium_temperature
+
+
+instances:
+  name: AWS Instances
+  entities:
+    - input_boolean.ict_switch
+    - sensor.ict_instance
+    - input_boolean.tools_switch
+    - sensor.tools_instance
+
+heat_requests_sln:
+  name: Silverlyckan Heat Requests
+  entities:
+    - input_boolean.bedroom_cool_requested
+    - input_boolean.bedroom_heat_requested
+    - sensor.bedroom_heat_requested
+
+time_sensors:
+  name: Time & Date
+  entities:
+  
+  - sensor.time
+  - sensor.time_utc
+  - sensor.date
+  - sensor.time_date
+  - sensor.date_time
+  - sensor.date_time_utc
+  - sensor.date_time_iso
+  - sensor.internet_time
+  
+michael_info:
+  name: Michael
+  entities:
+    - device_tracker.michael_s_iphone
+    - sensor.michael_s_iphone_distance
+    - sensor.michael_s_iphone_steps
+    - sensor.michael_s_iphone_floors_ascended
+    - sensor.michael_s_iphone_floors_descended
+    - sensor.michael_s_iphone_activity
+    - sensor.michael_s_iphone_average_active_pace
+    - sensor.michael_s_iphone_battery_level
+    - sensor.michael_s_iphone_battery_state
+    - sensor.michael_s_iphone_connection_type
+    - sensor.michael_s_iphone_bssid
+    - sensor.michael_s_iphone_ssid
+    - sensor.michael_s_iphone_storage
+    - binary_sensor.michael_s_iphone_focus
+    - sensor.michael_s_iphone_geocoded_location
+    - sensor.michael_s_iphone_last_update_trigger
+    - sensor.michael_s_iphone_sim_1
+
+michael_health:
+  name: Michael Health Information
+  entities:
+    - sensor.withings_weight_kg_michael
+    - sensor.withings_body_temperature_c_michael
+    - sensor.withings_bone_mass_kg_michael
+    - sensor.withings_diastolic_blood_pressure_mmhg_michael
+    - sensor.withings_fat_free_mass_kg_michael
+    - sensor.withings_fat_mass_kg_michael
+    - sensor.withings_fat_ratio_pct_michael
+    - sensor.withings_heart_pulse_bpm_michael
+    - sensor.withings_muscle_mass_kg_michael
+    - sensor.withings_pulse_wave_velocity_michael
+    - sensor.withings_skin_temperature_c_michael
+    - sensor.withings_spo2_pct_michael
+    - sensor.withings_systolic_blood_pressure_mmhg_michael
+    - sensor.withings_temperature_c_michael
+ 
+karen_health:
+  name: Karen Health Information
+  entities:
+    - sensor.withings_weight_kg_karen
+    - sensor.withings_body_temperature_c_karen
+    - sensor.withings_bone_mass_kg_karen
+    - sensor.withings_diastolic_blood_pressure_mmhg_karen
+    - sensor.withings_fat_free_mass_kg_karen
+    - sensor.withings_fat_mass_kg_karen
+    - sensor.withings_fat_ratio_pct_karen
+    - sensor.withings_heart_pulse_bpm_karen
+    - sensor.withings_muscle_mass_kg_karen
+    - sensor.withings_pulse_wave_velocity_karen
+    - sensor.withings_skin_temperature_c_karen
+    - sensor.withings_spo2_pct_karen
+    - sensor.withings_systolic_blood_pressure_mmhg_karen
+    - sensor.withings_temperature_c_karen
+
+office_room_sln:
+  name: Silverlyckan Office
+  entities:
+    - light.status_c
+    - remote.upstairs
+    - media_player.upstairs
+
+media_room_sln:
+  name: Silverlyckan Media Room
+  entities:
+    - light.media_room_chandelier
+    - light.media_room_hood
+    - switch.marshall_fridge
+    - switch.media_power
+    - remote.55_hisense_roku_tv
+    - binary_sensor.55_hisense_roku_tv_headphones_connected
+
+
+
+other:
+  name: Other Devices
+  entities:
+    - person.dclxvi
+
+guests:
+  name: Guest Devices
+    - person.melanie
+
+status_lights_sln:
+  name: Silverlyckan Status Lights
+  entities:
+    - light.status_a
+    - light.status_b
+    - light.status_c
+
+detection_rge:
+ name: Rävgrävle
+ entities:
+   - binary_sensor.door_detector
+   - binary_sensor.backyard_camera_motion_detected
+   - binary_sensor.backyard_camera_online
+   - binary_sensor.backyard_camera_person_detected
+   - binary_sensor.backyard_camera_sound_detected
+   - camera.backyard
+
+lights_rge:
+  name: Rävgrävle Lights
+  entities:
+    - light.kitchentable
+    - switch.acer
+    - switch.lampflower
+    - switch.greenblack
+    - switch.lamptable
+    - switch.cambigroom

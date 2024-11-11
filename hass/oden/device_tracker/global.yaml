@@ -1,0 +1,12 @@
+- platform: bluetooth_tracker 
+- platform: bluetooth_le_tracker 
+  track_new_devices: true 
+- platform: tile
+  username: !secret tile_username
+  password: !secret tile_password
+- platform: ping
+  hosts: 
+    google_dns: 8.8.8.8
+    cloudflare_dns: 1.1.1.1
+    dmz_rge: !secret host_dmz_rge
+  count: 4

@@ -1,0 +1,277 @@
+- id: sunset_lights
+  alias: Lights at sunset - Presence
+  trigger:
+  - event: sunset
+    offset: -00:15:00
+    platform: sun
+  condition:
+  - condition: state
+    entity_id: binary_sensor.person_present
+    state: 'on'
+  action:
+  - entity_id: switch.balcony_power
+    service: switch.turn_on
+  - entity_id: switch.toilet_top_power
+    service: switch.turn_on
+  - data: {}
+    entity_id: switch.ljusstake
+    service: switch.turn_on
+
+- id: sunrise_lights
+  alias: Lights at sunrise - Always
+  trigger:
+  - event: sunrise
+    offset: 00:15:00
+    platform: sun
+  condition: []
+  action:
+  - entity_id: switch.balcony_power
+    service: switch.turn_off
+  - entity_id: switch.toilet_top_power
+    service: switch.turn_off
+  - data: {}
+    entity_id: switch.ljusstake
+    service: switch.turn_off
+  - data: {}
+    entity_id: light.hood_lamp
+    service: light.turn_off
+
+- id: '1603335949549'
+  alias: Open Office Blinds in the morning
+  description: ''
+  trigger:
+  - at: '06:30'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: binary_sensor.person_present
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: cover.blind
+    service: cover.open_cover
+- id: '1603407361649'
+  alias: Close Cover at sunset
+  description: ''
+  trigger:
+  - event: sunset
+    offset: 00:15
+    platform: sun
+  condition: []
+  action:
+  - data: {}
+    entity_id: cover.blind
+    service: cover.close_cover
+
+- id: '1603569088971'
+  alias: Close cover on Projector Playing
+  description: ''
+  trigger:
+  - entity_id: media_player.roku_projector
+    from: idle
+    platform: state
+  condition:
+  - before: sunset
+    condition: sun
+  action:
+  - data: {}
+    entity_id: cover.blind
+    service: cover.close_cover
+
+
+- id: '1606788055635'
+  alias: Media Player Active - Media Room
+  description: ''
+  trigger:
+  - entity_id: media_player.55_hisense_roku_tv
+    platform: state
+    to: playing
+  - entity_id: media_player.sous_sol
+    platform: state
+    to: playing
+  condition:
+  - condition: state
+    entity_id: light.media_room_roof
+    state: 'on'
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+  - scene: scene.movies
+
+- id: '1606788898506'
+  alias: Media Player Stop - Media Room
+  description: ''
+  trigger:
+  - entity_id: media_player.sous_sol
+    from: playing
+    platform: state
+  - entity_id: media_player.les_kids
+    from: playing
+    platform: state
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  - condition: state
+    entity_id: light.media_room_roof
+    state: 'on'
+  action:
+  - scene: scene.movies_paused
+
+- id: '1607240653386'
+  alias: Lights at Sunset - Always
+  description: ''
+  trigger:
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.hood_lamp
+    service: light.turn_on
+    
+- id: '1609806458284'
+  alias: Turn off outdoor lamp after period of time
+  description: Turns off outdoor lamp if on for a certain time
+  trigger:
+  - entity_id: light.basement_outdoor_lamp
+    for: 00:10:00
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.basement_outdoor_lamp
+    service: light.turn_off
+
+- id: 'vehicle_running'
+  alias: Vehicle engine is running
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.xc40_engine
+    to: 'on'
+    platform: state
+  condition: []
+  action:
+  - target:
+      entity_id: light.status_a
+    service: light.turn_on
+    data:
+      brightness: 130
+      rgb_color: [0,255,0]
+
+- id: 'vehicle_not_running'
+  alias: Vehicle engine is not running
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.xc40_engine
+    to: 'off'
+    platform: state
+  condition:
+  - condition: state
+    entity_id: 
+       - binary_sensor.xc40_engine
+    state: "off"
+  action:
+  - data: {}
+    target:
+      entity_id: light.status_a
+    service: light.turn_off
+
+- id: 'dclxvi_low_gas'
+  alias: DCLXVI is low on gas
+  description: ''
+  trigger:
+  - entity_id: sensor.dclxvi_fuel_amount
+    above: 0
+    below: 10
+    platform: numeric_state
+  - entity_id: binary_sensor.dclxvi_engine
+    from: 'on'
+    to: 'off'
+    platform: state
+  condition:
+  - condition: state
+    entity_id: binary_sensor.dclxvi_engine
+    state: 'off'
+  - condition: numeric_state
+    entity_id: sensor.dclxvi_fuel_amount
+    above: 0
+    below: 10
+  action:
+  - delay: 00:01:00
+  - data: {}
+    target:
+      entity_id: light.status_a
+    service: light.turn_on
+    data:
+      brightness: 130
+      rgb_color: [255,0,0]
+
+- id: 'media_upstairs'
+  alias: Media Upstairs
+  description: 'Notify movie playing'
+  trigger:
+  - entity_id: media_player.plex_plex_for_roku_upstairs
+    to: 'playing'
+    platform: state
+  condition: 
+    alias: "Kids Present"
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: "person.olivier"
+        state: "home"
+      - condition: state
+        entity_id: "person.super_leroux_bros"
+        state: "home"
+  action:
+  - service: notify.hass
+    data:
+      message: >-
+        Now playing upstairs: 
+        
+        {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_series_title}}
+
+        {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_title}}
+        
+        {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_summary}}
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
+
+- id: 'media_cinema_helvete'
+  alias: Helvete Cinema Notifier
+  description: 'Notify movie playing'
+  trigger:
+  - entity_id: media_player.plex_plex_for_roku_projector
+    to: 'playing'
+    platform: state
+    for: "00:01:00"
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.localhost
+      filename: "/tmp/plex_helvete_poster.jpg"
+  - service: notify.hass
+    data:
+      message: >-
+        Now playing at Helvete: 
+        
+        {{states.media_player.plex_plex_for_roku_projector.attributes.media_series_title}}
+
+        {{states.media_player.plex_plex_for_roku_projector.attributes.media_title}}
+        
+        {{states.media_player.plex_plex_for_roku_projector.attributes.media_summary}}
+      target: 
+      - !secret discord_channel_silverlyckan_helvete_id
+  - delay: 00:00:05
+  - service: notify.hass
+    data:
+      message: "{{states.media_player.plex_plex_for_roku_projector.attributes.media_title}}"
+      target: 
+      - !secret discord_channel_silverlyckan_helvete_id
+      data:
+        images:
+        - "/tmp/plex_helvete_poster.jpg"

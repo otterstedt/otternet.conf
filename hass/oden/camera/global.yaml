@@ -1,0 +1,75 @@
+- platform: mjpeg
+  name: !secret camera_sln_washer_name
+  mjpeg_url: !secret camera_sln_washer_url
+- platform: mjpeg
+  name: !secret camera_sln_cat_name
+  mjpeg_url: !secret camera_sln_cat_url
+- platform: mjpeg
+  name: !secret camera_rge_acer_name
+  mjpeg_url: !secret camera_rge_acer_url
+- platform: mjpeg
+  name: !secret camera_rge_attic_name
+  mjpeg_url: !secret camera_rge_attic_url
+- platform: mjpeg
+  name: !secret camera_rge_outhouse_name
+  mjpeg_url: !secret camera_rge_outhouse_url
+- platform: mjpeg
+  name: !secret camera_rge_lroom_name
+  mjpeg_url: !secret camera_rge_lroom_url
+- platform: mjpeg
+  name: !secret camera_rge_dtop_name
+  mjpeg_url: !secret camera_rge_dtop_url
+- platform: mjpeg
+  name: !secret camera_rge_front_name
+  mjpeg_url: !secret camera_rge_front_url
+- platform: mjpeg
+  name: !secret camera_rge_front_logitech_name
+  mjpeg_url: !secret camera_rge_front_logitech_url
+- platform: generic
+  name: !secret camera_qnap_channel1_name
+  stream_source: !secret camera_qnap_channel1_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
+- platform: generic
+  name: !secret camera_qnap_channel2_name
+  stream_source: !secret camera_qnap_channel2_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
+- platform: generic
+  name: !secret camera_qnap_channel3_name
+  stream_source: !secret camera_qnap_channel3_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
+- platform: generic
+  name: !secret camera_qnap_channel4_name
+  stream_source: !secret camera_qnap_channel4_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
+- platform: generic
+  name: !secret camera_qnap_channel5_name
+  stream_source: !secret camera_qnap_channel5_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
+- platform: generic
+  name: !secret camera_qnap_channel6_name
+  stream_source: !secret camera_qnap_channel6_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
+- platform: generic
+  name: !secret camera_qnap_channel7_name
+  stream_source: !secret camera_qnap_channel7_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password
+- platform: generic
+  name: !secret camera_qnap_channel8_name
+  stream_source: !secret camera_qnap_channel8_url
+  authentication: digest
+  username: !secret qnap_sln_username
+  password: !secret qnap_sln_password

@@ -1,0 +1,107 @@
+- id: 'trash_time'
+  alias: Trash rollout
+  description: 'Roll out the trash'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.timetopoubelle
+    above: 0
+    below: 0.5
+  condition: []
+  action:
+  - service: notify.twitter
+    data_template:
+      message: 'Bring out the trash!'
+      title: 'Thrash the trash'
+  - service: notify.gmail_kamo
+    data:
+      title: "Poubelle Tomorrow"
+      message: "Bring out the trash"
+  - service: light.turn_on
+    target:
+      entity_id: light.status_b
+    data:
+      brightness: 130
+      rgb_color: [128,128,128]
+  - service: notify.hass
+    data:
+      message: "<@everyone> Bring out the trash bin!"
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
+
+
+- id: 'trash_time_off'
+  alias: Trash rollout complete
+  description: 'Roll back the trash'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.timetopoubelle
+    below: -0.5
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.status_b
+
+- id: 'recycling_time'
+  alias: Recyclage rollout
+  description: 'Roll out the recyclage'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.timetorecyclage
+    above: 0
+    below: 0.5
+  condition: []
+  action:
+  - service: notify.twitter
+    data_template:
+      message: 'Bring out the recyclage!'
+      title: 'Recyclage out'
+  - service: notify.gmail_kamo
+    data:
+      title: "Recyclage Tomorrow"
+      message: "Bring out the recyclage"
+  - service: light.turn_on
+    target:
+      entity_id: light.status_b
+    data:
+      brightness: 130
+      rgb_color: [30,144,255]
+  - service: notify.hass
+    data:
+      message: "<@everyone> Bring out the recyclage bin!"
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
+
+
+- id: 'shower_reminder'
+  alias: Shower reminder
+  description: 'Remind for showers'
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: "-00:05:00"
+  condition: 
+    alias: "Dirty Kids Present"
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: "input_boolean.leroux_present"
+        state: "home"
+      - condition: state
+        entity_id: "input_boolean.olivier_present"
+        state: "home"
+  action:
+  - service: notify.hass
+    data:
+      message: >-
+        It's getting dark. Go to the shower immediately! 
+        
+        <@everyone>
+
+        https://i.giphy.com/media/3o6MbjjOqVPMHZvuve/giphy.webp
+      target: 
+      - !secret discord_channel_silverlyckan_general_id
+      data:
+        verify_ssl: False 
+        urls:
+        - "https://i.giphy.com/media/3o6MbjjOqVPMHZvuve/giphy.webp"
