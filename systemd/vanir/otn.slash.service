@@ -1,0 +1,25 @@
+[Unit]
+Description=Slash Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name slash \
+    -p 5231:5231 \
+    -v /home/{{ ansible_user }}/slash:/var/opt/slash \
+    yourselfhosted/slash:latest
+ExecStop=/usr/bin/docker stop slash
+ExecReload=/usr/bin/docker restart slash
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.slash
+
+[Install]
+Alias=slash.service
+WantedBy=multi-user.target

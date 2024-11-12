@@ -1,0 +1,19 @@
+[Unit]
+Description=Minecraft Java+Bedrock Server Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run -v /home/{{ ansible_user }}/minecraft/minecraft:/minecraft -p 25565:25565 -p 19132:19132/udp -p 19132:19132 05jchambers/legendary-minecraft-geyser-floodgate:latest
+User={{ ansible_user }}
+Group=docker
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+WorkingDirectory=/home/{{ ansible_user }}/minecraft
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.minecraft
+
+[Install]
+Alias=mc.paper.service
+WantedBy=multi-user.target

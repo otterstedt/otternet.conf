@@ -1,0 +1,28 @@
+[Unit]
+Description=Posterr Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name posterr \
+    -p 9876:3000 \
+    -e TZ=America/Montreal \
+    -e BASEPATH="/otn" \
+    -v /home/{{ ansible_user }}/posterr/config:/usr/src/app/config \
+    -v /home/{{ ansible_user }}/posterr/custom:/usr/src/app/public/custom \
+    petersem/posterr
+ExecStop=/usr/bin/docker stop posterr
+ExecReload=/usr/bin/docker restart posterr
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.posterr
+
+[Install]
+Alias=posterr.service
+WantedBy=multi-user.target

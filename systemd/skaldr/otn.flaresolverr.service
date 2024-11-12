@@ -1,0 +1,25 @@
+[Unit]
+Description=Flaresolverr Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name=flaresolverr \
+    -p 8191:8191 \
+    -e LOG_LEVEL=info \
+    ghcr.io/flaresolverr/flaresolverr:latest
+ExecStop=/usr/bin/docker stop flaresolverr
+ExecReload=/usr/bin/docker restart flaresolverr
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.flaresolverr
+
+[Install]
+Alias=flaresolverr.service
+WantedBy=multi-user.target

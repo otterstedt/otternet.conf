@@ -1,0 +1,32 @@
+[Unit]
+Description=Sonarr Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name sonarr \
+    -p 8989:8989 \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e UMASK=002 \
+    -e TZ=America/Montreal \
+    -v /home/{{ ansible_user }}/sonarr/config:/config \
+    -v /home/{{ ansible_user }}/sonarr/data:/data \
+    -v /home/{{ ansible_user }}/Media/:/otn-media \
+    -v /home/{{ ansible_user }}/aria2/downloads:/downloads \
+    ghcr.io/hotio/sonarr
+ExecStop=/usr/bin/docker stop sonarr
+ExecReload=/usr/bin/docker restart sonarr
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.sonarr
+
+[Install]
+Alias=sonarr.service
+WantedBy=multi-user.target

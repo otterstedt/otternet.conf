@@ -1,0 +1,27 @@
+[Unit]
+Description=Overseerr Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name overseerr \
+    -e LOG_LEVEL=debug \
+    -e TZ=America/Montreal \
+    -p 5055:5055 \
+    -v /home/{{ ansible_user }}/overseerr/config:/app/config \
+    sctx/overseerr
+ExecStop=/usr/bin/docker stop overseerr
+ExecReload=/usr/bin/docker restart overseerr
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.overseerr
+
+[Install]
+Alias=overseerr.service
+WantedBy=multi-user.target

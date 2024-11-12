@@ -1,0 +1,29 @@
+[Unit]
+Description=Prowlarr Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name prowlarr \
+    -p 9696:9696 \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e UMASK=002 \
+    -e TZ=America/Montreal \
+    -v /home/{{ ansible_user }}/prowlarr/config:/config \
+    ghcr.io/hotio/prowlarr
+ExecStop=/usr/bin/docker stop prowlarr
+ExecReload=/usr/bin/docker restart prowlarr
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.prowlarr
+
+[Install]
+Alias=prowlarr.service
+WantedBy=multi-user.target

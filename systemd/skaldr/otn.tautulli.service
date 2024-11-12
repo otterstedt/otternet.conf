@@ -1,0 +1,28 @@
+[Unit]
+Description=Tautulli Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name=tautulli.skaldr \
+    -v /home/{{ ansible_user }}/tautulli/skaldr/config:/config \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e TZ="Europe/Stockholm" \
+    -p 8181:8181 \
+    ghcr.io/tautulli/tautulli
+ExecStop=/usr/bin/docker stop tautulli.skaldr
+ExecReload=/usr/bin/docker restart tautulli.skaldr
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.tautulli
+
+[Install]
+Alias=tautulli.service
+WantedBy=multi-user.target

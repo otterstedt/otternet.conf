@@ -1,0 +1,32 @@
+[Unit]
+Description=Radarr Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name radarr \
+    -p 7878:7878 \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e UMASK=002 \
+    -e TZ="Etc/UTC" \
+    -v /home/{{ ansible_user }}/radarr/config:/config \
+    -v /home/{{ ansible_user }}/radarr/data:/data \
+    -v /home/{{ ansible_user }}/Media/:/otn-media \
+    -v /home/{{ ansible_user }}/aria2/downloads:/downloads \
+    ghcr.io/hotio/radarr
+ExecStop=/usr/bin/docker stop radarr
+ExecReload=/usr/bin/docker restart radarr
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.radarr
+
+[Install]
+Alias=radarr.service
+WantedBy=multi-user.target

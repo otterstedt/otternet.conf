@@ -1,0 +1,26 @@
+[Unit]
+Description=Dashy Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+  -p 8181:8080 \
+  -v /home/{{ ansible_user }}/dashy/user-data:/app/user-data \
+  -v /home/{{ ansible_user }}/dashy/item-icons:/app/public/item-icons \
+  --name dashy \
+  lissy93/dashy:latest
+ExecStop=/usr/bin/docker stop dashy
+ExecReload=/usr/bin/docker restart dashy
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.dashy
+
+[Install]
+Alias=dashy.service
+WantedBy=multi-user.target

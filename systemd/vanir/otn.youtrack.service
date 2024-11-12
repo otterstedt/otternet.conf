@@ -1,0 +1,29 @@
+[Unit]
+Description=Youtrack Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name youtrack \
+    -v /home/{{ ansible_user }}/youtrack/data:/opt/youtrack/data \
+    -v /home/{{ ansible_user }}/youtrack/conf:/opt/youtrack/conf \
+    -v /home/{{ ansible_user }}/youtrack/logs:/opt/youtrack/logs \
+    -v /home/{{ ansible_user }}/youtrack/backups:/opt/youtrack/backups \
+    -e TZ=America/Montreal \
+    -p 8080:8080 \
+    jetbrains/youtrack:2024.3.48383
+ExecStop=/usr/bin/docker stop youtrack
+ExecReload=/usr/bin/docker restart youtrack
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.youtrack
+
+[Install]
+Alias=youtrack.service
+WantedBy=multi-user.target
