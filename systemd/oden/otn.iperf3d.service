@@ -1,0 +1,13 @@
+[Unit]
+Description=iperf3 service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/iperf3 -p 5001 -s
+User={{ ansible_user }}
+RestartSec=60
+Restart=always
+
+[Install]
+Alias=iperf3d.service
+WantedBy=multi-user.target
