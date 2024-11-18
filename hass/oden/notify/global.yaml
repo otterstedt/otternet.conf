@@ -49,15 +49,15 @@
     - !secret ka_email
   sender_name: !secret gmail_user
 
-  - name: "otternet_notifications"
-    platform: smtp
-    server: "smtp.protonmail.ch"
-    port: 587
-    timeout: 15
-    sender: !secret otternet_mail_user
-    encryption: starttls
-    username: !secret otternet_mail_user
-    password: !secret otternet_mail_password
-    recipient:
-      - !secret otternet_notifications_email
-    sender_name: !secret otternet_mail_user
+- name: "otternet_notifications"
+  platform: smtp
+  server: "smtp.protonmail.ch"
+  port: 587
+  timeout: 15
+  sender: !secret otternet_mail_user
+  encryption: starttls
+  username: !secret otternet_mail_user
+  password: !secret otternet_mail_password
+  recipient:
+    - !secret otternet_notifications_email
+  sender_name: !secret otternet_mail_user
