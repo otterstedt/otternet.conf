@@ -44,3 +44,8 @@
       message: "Good morning boys! Today's chalet weather: {{states.sensor.val_des_sources_summary.state}}"
       target: 
       - !secret discord_channel_silverlyckan_general_id
+  - service: notify.otternet_notifications
+    data:
+      title: "Morning message"
+      message: "Sending Morning Message to the boys"
+    

@@ -4,7 +4,7 @@
   alias: Car arrives
   description: ''
   trigger:
-  - entity_id: person.dclxvi
+  - entity_id: person.xc40
     from: not_home
     platform: state
     to: home
@@ -13,6 +13,12 @@
   - data: {}
     entity_id: light.basement_outdoor_lamp
     service: light.turn_on
+  - service: notify.otternet_notifications
+    data:
+      title: "XC40 arrival"
+      message: "XC40 has arrived"
+
+
 - id: '1581717740537'
   alias: Karen arrives
   description: ''
@@ -34,7 +40,8 @@
   - entity_id: media_player.chambre_principale
     service: media_player.turn_off
 
-- alias: Silver Flight entry notification
+- id: 4a5f482525864aa2a190e174fb6e9590 
+  alias: Silver Flight entry notification
   trigger:
     platform: event
     event_type: opensky_entry
@@ -67,9 +74,14 @@
         trigger.event.data.callsign }} - https://opensky-network.org/aircraft-profile?icao24={{ trigger.event.data.icao24 }}'
       title: 'Flight: {{ trigger.event.data.callsign }} Altitude: {{ trigger.event.data.altitude
         }}'
-  id: 4a5f482525864aa2a190e174fb6e9590
+  - service: notify.otternet_notifications
+    data:
+      title: "Flight entered the sln area: {{ trigger.event.data.callsign }}"
+      message: "Flight entered. see: https://flightaware.com/live/flight/{{ trigger.event.data.callsign }}"
 
-- alias: Silver Flight exity notification
+
+- id: 14f96a3cf8ee49a796f81a33763f3769
+  alias: Silver Flight exit notification
   trigger:
     platform: event
     event_type: opensky_exit
@@ -79,7 +91,12 @@
       message: 'Silverlyckan Flight Exit: {{ trigger.event.data.callsign }} - https://flightaware.com/live/flight/{{
         trigger.event.data.callsign }}'
       title: '{{ trigger.event.data.callsign }}'
-  id: 14f96a3cf8ee49a796f81a33763f3769
+  - service: notify.otternet_notifications
+    data:
+      title: "Flight exited the sln area: {{ trigger.event.data.callsign }}"
+      message: "Flight exit. see: https://flightaware.com/live/flight/{{ trigger.event.data.callsign }}"
+
+
 
 - id: motion_detected_basement_door_home
   alias: Basement Front Door Motion - home
@@ -104,6 +121,10 @@
       entity_id: camera.amcrest_camera
       media_player: media_player.chambre_principale
     service: camera.play_stream
+  - service: notify.otternet_notifications
+    data:
+      title: "Motion detected: Basement Front"
+      message: "Motion was detected at the front door and people present"
 
 - id: 'motion_detected_basement_door_not_home'
   alias: Basement Front Door Motion - not home
@@ -139,6 +160,10 @@
       message: 'Motion Detected:  Silverlyckan - Basement Front'
       title: Motion Silverlyckan
     service: notify.slack_smolandia
+  - service: notify.otternet_notifications
+    data:
+      title: "Motion detected: Basement Front"
+      message: "Motion was detected at the front door and no one is at home"
 
 - id: '1607193505087'
   alias: No Presence
@@ -177,6 +202,10 @@
   - data: {}
     entity_id: switch.christmas_tree
     service: switch.turn_on
+  - service: notify.otternet_notifications
+    data:
+      title: "People Presence - Empty"
+      message: "No one is in the house"
 
 
 - id: olivier_not_detected
@@ -192,6 +221,10 @@
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.olivier_present
+  - service: notify.otternet_notifications
+    data:
+      title: "Olivia not home"
+      message: "Olivier has left the building"
 
 - id: 'presence_olivier'
   alias: Olivier Present
@@ -215,6 +248,10 @@
   - service: input_boolean.turn_on
     data:
       entity_id: input_boolean.olivier_present
+  - service: notify.otternet_notifications
+    data:
+      title: "Olivier at home"
+      message: "Oliver has landed"
 
 - id: leroux_not_detected
   alias: Leroux Not Detected
@@ -229,6 +266,10 @@
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.leroux_present
+  - service: notify.otternet_notifications
+    data:
+      title: "Boys are not home"
+      message: "Leroux have left the building"
 
 - id: 'presence_leroux'
   alias: Leroux Present
@@ -252,6 +293,10 @@
   - service: input_boolean.turn_on
     data:
       entity_id: input_boolean.leroux_present
+  - service: notify.otternet_notifications
+    data:
+      title: "Boys are home"
+      message: "Leroux have landed"
 
 - alias: 'Increasing MC Players'
   trigger:
@@ -313,6 +358,10 @@
     data:
       brightness: 130
       rgb_color: [108,144,255]
+  - service: notify.otternet_notifications
+    data:
+      title: "Internet Status: Up"
+      message: "Internet is up and running"
 
 
 - id: 'internet_unavailable'
@@ -336,6 +385,10 @@
     data:
       brightness: 255
       rgb_color: [255,0,0]
+  - service: notify.otternet_notifications
+    data:
+      title: "Internet Status: Down"
+      message: "Internet is down so this will probably not work"
 
 - id: 'catdoor_camera_motion'
   mode: queued
@@ -373,6 +426,10 @@
   - target:
       entity_id: light.status_c
     service: light.turn_on
+  - service: notify.otternet_notifications
+    data:
+      title: "Camera Motion: Cat door"
+      message: "Motion was detected at the cat door"
 
 - id: 'rge_attic_camera_motion'
   alias: Attic Camera Motion
@@ -415,6 +472,10 @@
   - target:
       entity_id: light.status_c
     service: light.turn_on
+  - service: notify.otternet_notifications
+    data:
+      title: "Camera Motion: RGE Attic"
+      message: "Motion detected at the attic door"
 
 - id: 'sln_mouse_camera_motion'
   alias: Death Row Motion
@@ -451,3 +512,8 @@
   - target:
       entity_id: light.status_c
     service: light.turn_on
+  - service: notify.otternet_notifications
+    data:
+      title: "Camera Motion: Death row"
+      message: "A mouse was detected"
+    

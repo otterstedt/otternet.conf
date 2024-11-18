@@ -16,6 +16,10 @@
   - data: {}
     entity_id: switch.ljusstake
     service: switch.turn_on
+  - service: notify.otternet_notifications
+    data:
+      title: "Lights at sunset"
+      message: "Handling switches at sunset"
 
 - id: sunrise_lights
   alias: Lights at sunrise - Always
@@ -35,6 +39,10 @@
   - data: {}
     entity_id: light.hood_lamp
     service: light.turn_off
+  - service: notify.otternet_notifications
+    data:
+      title: "Lights at sunrise"
+      message: "Handling switches at sunrise"
 
 - id: '1603335949549'
   alias: Open Office Blinds in the morning
@@ -50,6 +58,11 @@
   - data: {}
     entity_id: cover.blind
     service: cover.open_cover
+  - service: notify.otternet_notifications
+    data:
+      title: "Morning Blinds"
+      message: "Open office blinds in the morning"
+
 - id: '1603407361649'
   alias: Close Cover at sunset
   description: ''
@@ -62,6 +75,10 @@
   - data: {}
     entity_id: cover.blind
     service: cover.close_cover
+  - service: notify.otternet_notifications
+    data:
+      title: "Sunset blinds"
+      message: "Handling switches at sunset"
 
 - id: '1603569088971'
   alias: Close cover on Projector Playing
@@ -77,6 +94,10 @@
   - data: {}
     entity_id: cover.blind
     service: cover.close_cover
+  - service: notify.otternet_notifications
+    data:
+      title: "Blinds on Projector Playing"
+      message: "Closing Blinds as Projectr is playing"
 
 
 - id: '1606788055635'
@@ -98,6 +119,10 @@
     state: below_horizon
   action:
   - scene: scene.movies
+  - service: notify.otternet_notifications
+    data:
+      title: "Media Player - Media room - Active"
+      message: "Media player is active in the media room"
 
 - id: '1606788898506'
   alias: Media Player Stop - Media Room
@@ -118,6 +143,10 @@
     state: 'on'
   action:
   - scene: scene.movies_paused
+  - service: notify.otternet_notifications
+    data:
+      title: "Media Player - Media room - Stopped"
+      message: "Media player is inactive in the media room"
 
 - id: '1607240653386'
   alias: Lights at Sunset - Always
@@ -130,6 +159,10 @@
   - data: {}
     entity_id: light.hood_lamp
     service: light.turn_on
+  - service: notify.otternet_notifications
+    data:
+      title: "Lights at sunset"
+      message: "Handling lights at sunset"
     
 - id: '1609806458284'
   alias: Turn off outdoor lamp after period of time
@@ -144,6 +177,10 @@
   - data: {}
     entity_id: light.basement_outdoor_lamp
     service: light.turn_off
+  - service: notify.otternet_notifications
+    data:
+      title: "Basement Outdoor Lamp "
+      message: "Turning off outdoor lamp after 10 minutes"
 
 - id: 'vehicle_running'
   alias: Vehicle engine is running
@@ -160,6 +197,10 @@
     data:
       brightness: 130
       rgb_color: [0,255,0]
+  - service: notify.otternet_notifications
+    data:
+      title: "XC40 Engine Running"
+      message: "The engine is running"
 
 - id: 'vehicle_not_running'
   alias: Vehicle engine is not running
@@ -178,25 +219,29 @@
     target:
       entity_id: light.status_a
     service: light.turn_off
+  - service: notify.otternet_notifications
+    data:
+      title: "XC40 Engine Not Running"
+      message: "The engin e has been turned off"
 
-- id: 'dclxvi_low_gas'
-  alias: DCLXVI is low on gas
+- id: 'xc40_low_gas'
+  alias: XC40 is low on gas
   description: ''
   trigger:
-  - entity_id: sensor.dclxvi_fuel_amount
+  - entity_id: sensor.xc40_fuel_amount
     above: 0
     below: 10
     platform: numeric_state
-  - entity_id: binary_sensor.dclxvi_engine
+  - entity_id: binary_sensor.xc40_engine
     from: 'on'
     to: 'off'
     platform: state
   condition:
   - condition: state
-    entity_id: binary_sensor.dclxvi_engine
+    entity_id: binary_sensor.xc40_engine
     state: 'off'
   - condition: numeric_state
-    entity_id: sensor.dclxvi_fuel_amount
+    entity_id: sensor.xc40_fuel_amount
     above: 0
     below: 10
   action:
@@ -208,6 +253,10 @@
     data:
       brightness: 130
       rgb_color: [255,0,0]
+  - service: notify.otternet_notifications
+    data:
+      title: "XC40 - Low Gas"
+      message: "XC40 is low on gas and engine is off"
 
 - id: 'media_upstairs'
   alias: Media Upstairs
@@ -239,6 +288,10 @@
         {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_summary}}
       target: 
       - !secret discord_channel_silverlyckan_general_id
+  - service: notify.otternet_notifications
+    data:
+      title: "Media Player - Upstairs - Playing"
+      message: "Media player is playing {{states.media_player.plex_plex_for_roku_upstairs.attributes.media_title}} upstairs. Sending to discord too for the kids"
 
 - id: 'media_cinema_helvete'
   alias: Helvete Cinema Notifier
@@ -275,3 +328,8 @@
       data:
         images:
         - "/tmp/plex_helvete_poster.jpg"
+  - service: notify.otternet_notifications
+    data:
+      title: "Cinema: Helvete - Playing"
+      message: "Currently Playing: {{states.media_player.plex_plex_for_roku_projector.attributes.media_title}}. Sending to discord too"
+        
