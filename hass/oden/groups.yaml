@@ -97,19 +97,6 @@ network_sln:
     - sensor.10_0_1_2_devices_connected
     - sensor.192_168_50_1_devices_connected
 
-    
-dclxvi_sln:
-  name: DCLXVI
-  entities:
-    - device_tracker.dclxvi_position
-    - binary_sensor.dclxvi_engine
-    - switch.dclxvi_engine
-    - lock.dclxvi_door_lock
-    - sensor.dclxvi_fuel_amount
-    - sensor.dclxvi_fuel_level
-    - sensor.dclxvi_range
-    - binary_sensor.dclxvi_doors
-    - binary_sensor.dclxvi_windows
 
 xc40_sln: 
   name: XC40

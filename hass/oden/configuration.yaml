@@ -246,13 +246,14 @@ mqtt:
       unit_of_measurement: '°C'
       value_template: "{{ value_json['32208']['value'] }}"
       json_attributes_topic: "hass/message/sensorist/mtl"
-    - name: "DCLXVI Tracker Speed"
+    - name: "XC40 Tracker Speed"
+      unique_id: xc40_tracker_speed
       state_topic: "hass/message/location/dclxvi_pi"
       unit_of_measurement: 'm/s'
       value_template: "{{ value_json.speed }}"
       json_attributes_topic: "hass/message/location/dclxvi_pi"
-    - name: DCLXVI Tracker Last Seen
-      unique_id: dclxvi_tracker_last_seen
+    - name: XC40 Tracker Last Seen
+      unique_id: xc40_tracker_last_seen
       state_topic: hass/message/location/dclxvi_pi
       value_template: "{{ value_json.date }}"
       unit_of_measurement: 'ISO Time'

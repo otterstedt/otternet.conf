@@ -106,11 +106,11 @@
 - platform: template
   sensors:
     dclxvi_odometer_10k:
-      value_template: '{{  ((states.sensor.dclxvi_odometer.state | int) - 55983)  % 10000 }}'
+      value_template: '{{  ((states.sensor.xc40_odometer.state | int) - 55983)  % 10000 }}'
       friendly_name: '10k odometer'
       unit_of_measurement: 'km'
     dclxvi_odometer_insurance_period:
-      value_template: '{{  ((states.sensor.dclxvi_odometer.state | int) - 205810) }}'
+      value_template: '{{  ((states.sensor.xc40_odometer.state | int) - 205810) }}'
       friendly_name: 'Insurance Period Odometer'
       unit_of_measurement: 'km'
     to_home_dclxvi_diff:
@@ -118,25 +118,25 @@
       friendly_name: 'DCLXVI to Home Difference'
       unit_of_measurement: 'min'
     dclxvi_tracker_last_seen_duration:
-      value_template: "{{ ((as_timestamp(now()) - (state_attr('sensor.dclxvi_tracker_last_seen', 'timestamp') | int )) / 3600) | round(2) }}"
+      value_template: "{{ ((as_timestamp(now()) - (state_attr('sensor.xc40_tracker_last_seen', 'timestamp') | int )) / 3600) | round(2) }}"
       entity_id: 
         - sensor.dclxvi_tracker_last_seen
       friendly_name: DCXLVI Tracker Since Last Seen
       unit_of_measurement: Hours
     dclxvi_tracker_speed_coordinates:
-      value_template: "{{ (state_attr('sensor.dclxvi_tracker_speed', 'latitude'), state_attr('sensor.dclxvi_tracker_speed', 'longitude')) | join(',') }}"
+      value_template: "{{ (state_attr('sensor.xc40_tracker_speed', 'latitude'), state_attr('sensor.xc40_tracker_speed', 'longitude')) | join(',') }}"
       friendly_name: DCLXVI Tracker Speed Coordinates
       unit_of_measurement: DD
     dclxvi_tracker_speed_temp:
-      value_template: "{{ state_attr('sensor.dclxvi_tracker_speed', 'temp') }}"
+      value_template: "{{ state_attr('sensor.xc40_tracker_speed', 'temp') }}"
       friendly_name: DCLXVI Tracker Speed Temperature
       unit_of_measurement: C
     dclxvi_tracker_speed_pressure:
-      value_template: "{{ state_attr('sensor.dclxvi_tracker_speed', 'pressure') }}"
+      value_template: "{{ state_attr('sensor.xc40_tracker_speed', 'pressure') }}"
       friendly_name: DCLXVI Tracker Speed Pressure
       unit_of_measurement: bar
     dclxvi_tracker_speed_humidity:
-      value_template: "{{ state_attr('sensor.dclxvi_tracker_speed', 'humidity') }}"
+      value_template: "{{ state_attr('sensor.xc40_tracker_speed', 'humidity') }}"
       friendly_name: DCLXVI Tracker Speed Humidity
       unit_of_measurement: '%'
 - platform: gpsd
