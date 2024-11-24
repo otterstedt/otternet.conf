@@ -200,9 +200,11 @@ input_boolean:
 iperf3:
   hosts:
     - host: !secret host_dmz_rge
-      port: 5001
+      port: !secret iperf3_port
     - host: !secret hosts_acer_rge
-      port: 5001
+      port: !secret iperf3_port
+    - host: !secret hosts_skaldr_ip
+      port: !secret iperf3_port
   scan_interval: '06:00'
 
 media_extractor:
