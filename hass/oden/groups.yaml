@@ -16,7 +16,7 @@ presence:
   name: Silverlyckan Presence
   entities: 
     - binary_sensor.person_present
-    - device_tracker.dclxvi_position
+    - device_tracker.xc40_position
     
 #pets:
 #  name: Pet Devices
@@ -144,7 +144,6 @@ environment_sln:
   entities:
     - sun.sun
     - sensor.season
-    - sensor.silversky
     - sensor.silver_callsign
 
 network_speed_otn:
