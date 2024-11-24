@@ -153,6 +153,8 @@ nest:
 #      cloudflare_dns: 1.1.1.1
 #    count: 4
 
+bluetooth:
+
 fastdotcom:
   scan_interval:
       minutes: 720
