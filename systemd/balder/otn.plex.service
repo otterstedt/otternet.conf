@@ -1,0 +1,35 @@
+[Unit]
+Description=Plex Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm \
+    --name plex \
+    --network=host \
+    -e TZ="America/Montreal" \
+    -v /home/{{ ansible_user }}/plex/config:/config \
+    -v /home/{{ ansible_user }}/plex/transcode:/transcode \
+    -v /home/{{ ansible_user }}/Media:/data \
+    -v /home/{{ ansible_user }}/Media/Multimedia:/share/Multimedia \
+    -v /home/{{ ansible_user }}/Media/Plexternal:/share/ExternalMedia/Plexternal \
+    -v /home/{{ ansible_user }}/Media/iTunes:/share/ExternalMedia/backups/iTunes \
+    -v /home/{{ ansible_user }}/baldervg1/apps/frigate:/share/Frigate \
+    --env NVIDIA_VISIBLE_DEVICES=all \
+    --env NVIDIA_DRIVER_CAPABILITIES=compute,video,utility \
+    --gpus all \
+    plexinc/pms-docker
+ExecStop=/usr/bin/docker stop plex
+ExecReload=/usr/bin/docker restart plex
+User={{ ansible_user }}
+RestartSec=10
+Restart=always
+Group=docker
+TimeoutSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=otn.plex
+
+[Install]
+Alias=plex.service
+WantedBy=multi-user.target
