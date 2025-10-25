@@ -1,3 +1,5 @@
+# temporary in sln due to simplicity
+
 packages:
   - vulkan-tools libvulkan1 mesa-vulkan-driver
   - ocl-icd-libopencl1sudo opencl-headers intel-opencl-icd ocl-icd-opencl-dev
