@@ -1,0 +1,22 @@
+packages:
+  - vulkan-tools libvulkan1 mesa-vulkan-driver
+  - ocl-icd-libopencl1sudo opencl-headers intel-opencl-icd ocl-icd-opencl-dev
+  - nfs-common
+  - iptables-persistent
+
+repositories:
+  -  ppa:graphics-drivers/ppa 
+
+iptables_routing: 
+  - iptables -t nat -A POSTROUTING -o tailscale0 -j MASQUERADE
+  - iptables -A FORWARD -i enp4s0 -o tailscale0 -j ACCEPT
+  - iptables -A FORWARD -o tailscale0 -j ACCEPT
+  - iptables -A FORWARD -i tailscale0 -m conntrack --ctstate ESTABLISHED,RELATED   -j ACCEPT
+  - iptables -A INPUT -i tailscale0 -j ACCEPT
+  - iptables-save > /etc/iptables/rules.v4
+
+tailscale:
+  - tailscale up --advertise-exit-node --accept-routes --advertise-routes=192.168.160.0/24
+
+host_specific_systemd_services:
+  - otn.nodeexporter.service
