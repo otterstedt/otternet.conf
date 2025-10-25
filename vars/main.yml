@@ -4,7 +4,7 @@
 otternet_systemd_services: []
 site_specific_systemd_services: []
 host_specific_systemd_services: []
-version_nodeexporter: 1.4.0
+version_nodeexporter: 1.10.0
 arch_nodeexporter: linux-amd64
 
 
